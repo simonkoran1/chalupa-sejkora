@@ -6,16 +6,16 @@ import Footer from '../../components/Footer.astro';
 const web3formsAccessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
 
 const heroImages = [
-  { src: "/images/64fecd68d795d0489d94adaf_Sejkora_vchod%20Large.jpeg", alt: "Entrance" },
-  { src: "/images/64fec541385f1e55d5bdf3e7_Sejkora_oby%CC%81vaci%CC%81_pokoj_1%20Large.jpeg", alt: "Living room" },
-  { src: "/images/64fec62c880af21199abfd0f_Sejkora_loz%CC%8Cnice_1_1%20Large.jpeg", alt: "Bedroom 1" },
-  { src: "/images/64fecafd126548ca6e8921ec_Sejkora_koupelna_2%20Large.jpeg", alt: "Bathroom" },
-  { src: "/images/64fecc2a2994b2723a1efd2f_Sejkora_posezeni%CC%81_ve_stodole_1%20Large.jpeg", alt: "Barn" },
+  { src: "/images/64fecd68d795d0489d94adaf_Sejkora_vchod_Large.jpeg", alt: "Entrance" },
+  { src: "/images/64fec541385f1e55d5bdf3e7_Sejkora_obyvaci_pokoj_1_Large.jpeg", alt: "Living room" },
+  { src: "/images/64fec62c880af21199abfd0f_Sejkora_loznice_1_1_Large.jpeg", alt: "Bedroom 1" },
+  { src: "/images/64fecafd126548ca6e8921ec_Sejkora_koupelna_2_Large.jpeg", alt: "Bathroom" },
+  { src: "/images/64fecc2a2994b2723a1efd2f_Sejkora_posezeni_ve_stodole_1_Large.jpeg", alt: "Barn" },
 ];
 
 const amenities = [
   { icon: "/images/646e41126208a6804846f01e_users.svg", label: "12 beds" },
-  { icon: "/images/6481f217eb6060b444d33650_dry_cleaning_FILL0_wght400_GRAD0_opsz48%201.svg", label: "Bed linen + towels" },
+  { icon: "/images/6481f217eb6060b444d33650_dry_cleaning_FILL0_wght400_GRAD0_opsz48_1.svg", label: "Bed linen + towels" },
   { icon: "/images/646e16b8cf58fdca2a37f710_moon.svg", label: "3 bedrooms" },
   { icon: "/images/646e42274c0cd17102ad4c5b_sparkles.svg", label: "2 bathrooms" },
   { icon: "/images/646e4246a96973549500817c_face-smile.svg", label: "Common room" },
@@ -31,30 +31,30 @@ const amenities = [
   { icon: "/images/646e41bc65826fe48fa1dbcf_wifi.svg", label: "Wi-Fi" },
   { icon: "/images/646e4177c2e8a5002a538a30_fire.svg", label: "Fire pit" },
   { icon: "/images/6481f2d55078f9d6968535ae_viewfinder-dot.svg", label: "Children's playground" },
-  { icon: "/images/6481f2e0f6d43dca1a50570f_local_parking_FILL0_wght400_GRAD0_opsz48%201.svg", label: "Free parking" },
+  { icon: "/images/6481f2e0f6d43dca1a50570f_local_parking_FILL0_wght400_GRAD0_opsz48_1.svg", label: "Free parking" },
   { icon: "/images/646e42274c0cd17102ad4c5b_sparkles.svg", label: "Washing machine" },
-  { icon: "/images/6481f2ec64288ce2b7cd6449_coffee_FILL0_wght400_GRAD0_opsz48%201.svg", label: "Espresso machine" },
+  { icon: "/images/6481f2ec64288ce2b7cd6449_coffee_FILL0_wght400_GRAD0_opsz48_1.svg", label: "Espresso machine" },
 ];
 
 const galleryImages = [
-  { url: "/images/6502eee83e4b0972276210f7_AAA_pohled_na_du%CC%8Am_2%20Large.jpeg", caption: "Cottage exterior", label: "Cottage exterior" },
-  { url: "/images/64fecd68d795d0489d94adaf_Sejkora_vchod%20Large.jpeg", caption: "Entrance", label: "Entrance" },
-  { url: "/images/64fec541385f1e55d5bdf3e7_Sejkora_oby%CC%81vaci%CC%81_pokoj_1%20Large.jpeg", caption: "Living room", label: "Common room" },
-  { url: "/images/64fec5c2385f1e55d5be7bf0_Sejkora_oby%CC%81vaci%CC%81_pokoj_2%20Large.jpeg", caption: "Living room", label: "Living room" },
-  { url: "/images/64fec62c880af21199abfd0f_Sejkora_loz%CC%8Cnice_1_1%20Large.jpeg", caption: "Bedroom 1", label: "Bedroom 1" },
-  { url: "/images/64fec68310ef6fb92a3d3e26_Sejkora_loz%CC%8Cnice_1_4%20Large.jpeg", caption: "Bedroom 1", label: "Bedroom 1" },
-  { url: "/images/6502b54d3ed0ae8b6d6876d2_AAA_loz%CC%8Cnice_2_1%20Large.jpeg", caption: "Bedroom 2", label: "Bedroom 2" },
-  { url: "/images/64fec740625c155c18475d8e_Sejkora_loz%CC%8Cnice_2_2%20Large.jpeg", caption: "Bedroom 2", label: "Bedroom 2" },
-  { url: "/images/6502b4da93b1197f48ba5851_AAA_loz%CC%8Cnice_3_1%20Large.jpeg", caption: "Bedroom 3", label: "Bedroom 3" },
-  { url: "/images/64fecaa67a1b0d48c9176f7b_Sejkora_kuchyne%CC%8C_1%20Large.jpeg", caption: "Kitchen", label: "Kitchen" },
-  { url: "/images/64fecafd126548ca6e8921ec_Sejkora_koupelna_2%20Large.jpeg", caption: "Bathroom 1", label: "Bathroom 1" },
-  { url: "/images/64fecb3aaef6acf8a9ece446_Sejkora_koupelna_1%20Large.jpeg", caption: "Bathroom 2", label: "Bathroom 2" },
-  { url: "/images/64fecb9ee214f2e762e44a71_Sejkora_de%CC%8Ctske%CC%81_hr%CC%8Cis%CC%8Cte%CC%8C_s_pi%CC%81skovis%CC%8Cte%CC%8Cm_1%20Large.jpeg", caption: "Children's playground", label: "Children's playground" },
-  { url: "/images/6502b5e1f91f4d27cd395c7b_AAA_zahrada_3%20Large.jpeg", caption: "Garden", label: "Garden" },
-  { url: "/images/64fecc2a2994b2723a1efd2f_Sejkora_posezeni%CC%81_ve_stodole_1%20Large.jpeg", caption: "Barn seating", label: "Barn seating" },
-  { url: "/images/64fecc4ef21d29c63f1f4590_Sejkora_herni%CC%81_stodola%20Large.jpeg", caption: "Games barn", label: "Games barn" },
-  { url: "/images/64fecc91d2ee83c0e2f02c57_Sejkora_finska%CC%81_sauna%20Large.jpeg", caption: "Finnish sauna", label: "Finnish sauna" },
-  { url: "/images/64fecccd16afe625341ca23a_Sejkora_kola%CC%81rna_lyz%CC%8Ca%CC%81rna_1%20Large.jpeg", caption: "Bike & ski storage", label: "Bike & ski storage" },
+  { url: "/images/6502eee83e4b0972276210f7_AAA_pohled_na_dum_2_Large.jpeg", caption: "Cottage exterior", label: "Cottage exterior" },
+  { url: "/images/64fecd68d795d0489d94adaf_Sejkora_vchod_Large.jpeg", caption: "Entrance", label: "Entrance" },
+  { url: "/images/64fec541385f1e55d5bdf3e7_Sejkora_obyvaci_pokoj_1_Large.jpeg", caption: "Living room", label: "Common room" },
+  { url: "/images/64fec5c2385f1e55d5be7bf0_Sejkora_obyvaci_pokoj_2_Large.jpeg", caption: "Living room", label: "Living room" },
+  { url: "/images/64fec62c880af21199abfd0f_Sejkora_loznice_1_1_Large.jpeg", caption: "Bedroom 1", label: "Bedroom 1" },
+  { url: "/images/64fec68310ef6fb92a3d3e26_Sejkora_loznice_1_4_Large.jpeg", caption: "Bedroom 1", label: "Bedroom 1" },
+  { url: "/images/6502b54d3ed0ae8b6d6876d2_AAA_loznice_2_1_Large.jpeg", caption: "Bedroom 2", label: "Bedroom 2" },
+  { url: "/images/64fec740625c155c18475d8e_Sejkora_loznice_2_2_Large.jpeg", caption: "Bedroom 2", label: "Bedroom 2" },
+  { url: "/images/6502b4da93b1197f48ba5851_AAA_loznice_3_1_Large.jpeg", caption: "Bedroom 3", label: "Bedroom 3" },
+  { url: "/images/64fecaa67a1b0d48c9176f7b_Sejkora_kuchyne_1_Large.jpeg", caption: "Kitchen", label: "Kitchen" },
+  { url: "/images/64fecafd126548ca6e8921ec_Sejkora_koupelna_2_Large.jpeg", caption: "Bathroom 1", label: "Bathroom 1" },
+  { url: "/images/64fecb3aaef6acf8a9ece446_Sejkora_koupelna_1_Large.jpeg", caption: "Bathroom 2", label: "Bathroom 2" },
+  { url: "/images/64fecb9ee214f2e762e44a71_Sejkora_detske_hriste_s_piskovistem_1_Large.jpeg", caption: "Children's playground", label: "Children's playground" },
+  { url: "/images/6502b5e1f91f4d27cd395c7b_AAA_zahrada_3_Large.jpeg", caption: "Garden", label: "Garden" },
+  { url: "/images/64fecc2a2994b2723a1efd2f_Sejkora_posezeni_ve_stodole_1_Large.jpeg", caption: "Barn seating", label: "Barn seating" },
+  { url: "/images/64fecc4ef21d29c63f1f4590_Sejkora_herni_stodola_Large.jpeg", caption: "Games barn", label: "Games barn" },
+  { url: "/images/64fecc91d2ee83c0e2f02c57_Sejkora_finska_sauna_Large.jpeg", caption: "Finnish sauna", label: "Finnish sauna" },
+  { url: "/images/64fecccd16afe625341ca23a_Sejkora_kolarna_lyzarna_1_Large.jpeg", caption: "Bike & ski storage", label: "Bike & ski storage" },
   { url: "/images/6502f482b91776de6f7d7c56_sejkora-pudorys.jpg", caption: "Floor plan", label: "Floor plan" },
 ];
 
@@ -65,7 +65,7 @@ const surroundingsImages = [
   { url: "/images/6476f1160a13cdc954617cd8_Stepanka_lookout_tower.jpeg", caption: "Štěpánka Lookout Tower", distance: "11.3 KM • 13 MIN. BY CAR" },
   { url: "/images/6476f2a1f6a8eff90695ab36_korenov-jaroslav-moravec-001.jpg", caption: "Kořenov", distance: "12.5 KM • 14 MIN. BY CAR" },
   { url: "/images/6485e76cdcc1f215a87f1b87_udoli-jizery-riegrova-stezka-2022_19_4-094401.jpg", caption: "Jizera Valley Nature Reserve", distance: "14 KM • 15 MIN. BY CAR" },
-  { url: "/images/6485ea447c7f3e612c64a581_harrachov%20(1).jpg", caption: "Harrachov", distance: "19.9 KM • 22 MIN. BY CAR" },
+  { url: "/images/6485ea447c7f3e612c64a581_harrachov_1.jpg", caption: "Harrachov", distance: "19.9 KM • 22 MIN. BY CAR" },
   { url: "/images/6485e988da5571598646a9bc_osada-jizera---jizerka258.jpg", caption: "Jizerka Village", distance: "20.2 KM • 24 MIN. BY CAR" },
   { url: "/images/6476f1b4b8cad4706f74cbed_sekce_leto_hero_final-min.webp", caption: "Špindlerův Mlýn", distance: "35.7 KM • 36 MIN. BY CAR" },
   { url: "/images/6476f2024de25b2b8b35e38e_prachovske-skaly-panorama.jpg", caption: "Bohemian Paradise", distance: "36.4 KM • 44 MIN. BY CAR" },
@@ -311,7 +311,7 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
                   </div>
                 </div>
                 <div class="layout_image-wrapper">
-                  <img src="/images/64fec541385f1e55d5bdf3e7_Sejkora_oby%CC%81vaci%CC%81_pokoj_1%20Large.jpeg" loading="lazy" alt="Living room" class="layout_image" />
+                  <img src="/images/64fec541385f1e55d5bdf3e7_Sejkora_obyvaci_pokoj_1_Large.jpeg" loading="lazy" alt="Living room" class="layout_image" />
                 </div>
               </div>
             </div>
@@ -325,7 +325,7 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
           <div class="container-large">
             <div class="layout_component">
               <div class="layout_image-wrapper">
-                <img src="/images/64fecc2a2994b2723a1efd2f_Sejkora_posezeni%CC%81_ve_stodole_1%20Large.jpeg" loading="lazy" alt="Barn" class="layout_image" />
+                <img src="/images/64fecc2a2994b2723a1efd2f_Sejkora_posezeni_ve_stodole_1_Large.jpeg" loading="lazy" alt="Barn" class="layout_image" />
               </div>
               <div class="layout_content">
                 <div class="margin-bottom margin-small"><div class="max-width-small"><h3>A <span class="text-highlight">unique</span> blend of relaxation and outdoor fun</h3></div></div>
