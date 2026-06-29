@@ -1,0 +1,610 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const web3formsAccessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
+
+const heroImages = [
+  { src: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecd68d795d0489d94adaf_Sejkora_vchod%20Large.jpeg", alt: "Entrance" },
+  { src: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fec541385f1e55d5bdf3e7_Sejkora_oby%CC%81vaci%CC%81_pokoj_1%20Large.jpeg", alt: "Living room" },
+  { src: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fec62c880af21199abfd0f_Sejkora_loz%CC%8Cnice_1_1%20Large.jpeg", alt: "Bedroom 1" },
+  { src: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecafd126548ca6e8921ec_Sejkora_koupelna_2%20Large.jpeg", alt: "Bathroom" },
+  { src: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecc2a2994b2723a1efd2f_Sejkora_posezeni%CC%81_ve_stodole_1%20Large.jpeg", alt: "Barn" },
+];
+
+const amenities = [
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e41126208a6804846f01e_users.svg", label: "12 beds" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6481f217eb6060b444d33650_dry_cleaning_FILL0_wght400_GRAD0_opsz48%201.svg", label: "Bed linen + towels" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e16b8cf58fdca2a37f710_moon.svg", label: "3 bedrooms" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e42274c0cd17102ad4c5b_sparkles.svg", label: "2 bathrooms" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e4246a96973549500817c_face-smile.svg", label: "Common room" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e3cb5caf85a6a5230fb25_check-circlegreen.svg", label: "Fully equipped kitchen" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e4202e07dba25a81d9d98_heart.svg", label: "Children's play corner" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e4137d1aafe1495d4657e_sun.svg", label: "Finnish sauna" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e4177c2e8a5002a538a30_fire.svg", label: "Fireplace stove" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e429d659fceed0ce16d0c_trophy.svg", label: "Table football" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e427d42ec6866215871f1_flag.svg", label: "Ping-pong table" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e4177c2e8a5002a538a30_fire.svg", label: "Outdoor BBQ grill" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/647320c11599f3a16b8cb000_rocket-launchblack.svg", label: "Sports equipment" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e42af945d3fe188d2e408_tv.svg", label: "TV + Netflix" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e41bc65826fe48fa1dbcf_wifi.svg", label: "Wi-Fi" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e4177c2e8a5002a538a30_fire.svg", label: "Fire pit" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6481f2d55078f9d6968535ae_viewfinder-dot.svg", label: "Children's playground" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6481f2e0f6d43dca1a50570f_local_parking_FILL0_wght400_GRAD0_opsz48%201.svg", label: "Free parking" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e42274c0cd17102ad4c5b_sparkles.svg", label: "Washing machine" },
+  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6481f2ec64288ce2b7cd6449_coffee_FILL0_wght400_GRAD0_opsz48%201.svg", label: "Espresso machine" },
+];
+
+const galleryImages = [
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6502eee83e4b0972276210f7_AAA_pohled_na_du%CC%8Am_2%20Large.jpeg", caption: "Cottage exterior", label: "Cottage exterior" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecd68d795d0489d94adaf_Sejkora_vchod%20Large.jpeg", caption: "Entrance", label: "Entrance" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fec541385f1e55d5bdf3e7_Sejkora_oby%CC%81vaci%CC%81_pokoj_1%20Large.jpeg", caption: "Living room", label: "Common room" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fec5c2385f1e55d5be7bf0_Sejkora_oby%CC%81vaci%CC%81_pokoj_2%20Large.jpeg", caption: "Living room", label: "Living room" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fec62c880af21199abfd0f_Sejkora_loz%CC%8Cnice_1_1%20Large.jpeg", caption: "Bedroom 1", label: "Bedroom 1" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fec68310ef6fb92a3d3e26_Sejkora_loz%CC%8Cnice_1_4%20Large.jpeg", caption: "Bedroom 1", label: "Bedroom 1" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6502b54d3ed0ae8b6d6876d2_AAA_loz%CC%8Cnice_2_1%20Large.jpeg", caption: "Bedroom 2", label: "Bedroom 2" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fec740625c155c18475d8e_Sejkora_loz%CC%8Cnice_2_2%20Large.jpeg", caption: "Bedroom 2", label: "Bedroom 2" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6502b4da93b1197f48ba5851_AAA_loz%CC%8Cnice_3_1%20Large.jpeg", caption: "Bedroom 3", label: "Bedroom 3" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecaa67a1b0d48c9176f7b_Sejkora_kuchyne%CC%8C_1%20Large.jpeg", caption: "Kitchen", label: "Kitchen" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecafd126548ca6e8921ec_Sejkora_koupelna_2%20Large.jpeg", caption: "Bathroom 1", label: "Bathroom 1" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecb3aaef6acf8a9ece446_Sejkora_koupelna_1%20Large.jpeg", caption: "Bathroom 2", label: "Bathroom 2" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecb9ee214f2e762e44a71_Sejkora_de%CC%8Ctske%CC%81_hr%CC%8Cis%CC%8Cte%CC%8C_s_pi%CC%81skovis%CC%8Cte%CC%8Cm_1%20Large.jpeg", caption: "Children's playground", label: "Children's playground" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6502b5e1f91f4d27cd395c7b_AAA_zahrada_3%20Large.jpeg", caption: "Garden", label: "Garden" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecc2a2994b2723a1efd2f_Sejkora_posezeni%CC%81_ve_stodole_1%20Large.jpeg", caption: "Barn seating", label: "Barn seating" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecc4ef21d29c63f1f4590_Sejkora_herni%CC%81_stodola%20Large.jpeg", caption: "Games barn", label: "Games barn" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecc91d2ee83c0e2f02c57_Sejkora_finska%CC%81_sauna%20Large.jpeg", caption: "Finnish sauna", label: "Finnish sauna" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecccd16afe625341ca23a_Sejkora_kola%CC%81rna_lyz%CC%8Ca%CC%81rna_1%20Large.jpeg", caption: "Bike & ski storage", label: "Bike & ski storage" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6502f482b91776de6f7d7c56_sejkora-pudorys.jpg", caption: "Floor plan", label: "Floor plan" },
+];
+
+const surroundingsImages = [
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e676880c678ba21ea6857_image-crop-200001022.jpeg", caption: "Paseky nad Jizerou", distance: "6.5 KM • 8 MIN. BY CAR" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6476f280b2510bb26a3ef2aa_Rokytnice-nad-Jizerou.jpg", caption: "Rokytnice nad Jizerou", distance: "8.4 KM • 10 MIN. BY CAR" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6485e70de8b0f28bdcb9bf9e_2022-08-14.jpg", caption: "Bozkov Dolomite Caves", distance: "10.1 KM • 13 MIN. BY CAR" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6476f1160a13cdc954617cd8_Stepanka_lookout_tower.jpeg", caption: "Štěpánka Lookout Tower", distance: "11.3 KM • 13 MIN. BY CAR" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6476f2a1f6a8eff90695ab36_korenov-jaroslav-moravec-001.jpg", caption: "Kořenov", distance: "12.5 KM • 14 MIN. BY CAR" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6485e76cdcc1f215a87f1b87_udoli-jizery-riegrova-stezka-2022_19_4-094401.jpg", caption: "Jizera Valley Nature Reserve", distance: "14 KM • 15 MIN. BY CAR" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6485ea447c7f3e612c64a581_harrachov%20(1).jpg", caption: "Harrachov", distance: "19.9 KM • 22 MIN. BY CAR" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6485e988da5571598646a9bc_osada-jizera---jizerka258.jpg", caption: "Jizerka Village", distance: "20.2 KM • 24 MIN. BY CAR" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6476f1b4b8cad4706f74cbed_sekce_leto_hero_final-min.webp", caption: "Špindlerův Mlýn", distance: "35.7 KM • 36 MIN. BY CAR" },
+  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6476f2024de25b2b8b35e38e_prachovske-skaly-panorama.jpg", caption: "Bohemian Paradise", distance: "36.4 KM • 44 MIN. BY CAR" },
+];
+
+const mapPinIcon = "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e67c221bf1a9b03208e1b_map-pin.svg";
+const eyeWhiteIcon = "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e0ccb6876000012814b0d_eyewhite.svg";
+const arrowRightIcon = "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6470a888c22911c855a58e7f_arrow-right-circle.svg";
+---
+
+<Layout title="Cottage accommodation in Vysoké nad Jizerou – Chalupa Sejkora" lang="en">
+  <div class="page-wrapper" id="top">
+    <Navbar lang="en" />
+
+    <main class="main-wrapper">
+
+      <!-- HERO -->
+      <header class="section side-flowers-hero">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-large no-bottom-padding">
+              <div class="header_component">
+                <div class="margin-bottom margin-xxlarge">
+                  <div class="text-align-center">
+                    <div class="max-width-large">
+                      <div class="margin-bottom margin-small">
+                        <div class="margin-bottom margin-small">
+                          <div class="text-note-icon">
+                            <div class="text-note">Accommodation in VYSOKÉ NAD&nbsp;JIZEROU</div>
+                          </div>
+                        </div>
+                        <h1>A country cottage for your unique <span class="text-highlight">holiday</span></h1>
+                      </div>
+                      <p class="text-size-medium">Chalupa Sejkora is located in the charming town of Vysoké nad Jizerou, perfectly situated on the border of the Krkonoše and Jizerské hory mountain ranges — an ideal base for exploring this beautiful region.</p>
+                      <div class="margin-top margin-medium">
+                        <div class="button-group is-center">
+                          <a href="#reservation" class="button">Book now</a>
+                          <a href="#amenities" class="button is-secondary">Amenities</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Image Slider -->
+                <div class="header_image-wrapper">
+                  <div class="hp-slider">
+                    <div class="hp-slider-mask">
+                      {heroImages.map((img, i) => (
+                        <div class={`hp-slider-slide${i === 0 ? " active" : ""}`}>
+                          <img src={img.src} loading="eager" alt={img.alt} class="header_slider_image" />
+                        </div>
+                      ))}
+                    </div>
+                    <div class="hide">
+                      {heroImages.map((_, i) => (
+                        <button class={`w-slider-dot${i === 0 ? " w-active" : ""}`} aria-label={`Slide ${i + 1}`}></button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- AMENITIES -->
+      <header id="amenities" class="section">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-large">
+              <div class="flex-center-vertical">
+                <div class="margin-bottom margin-large">
+                  <div class="text-align-center">
+                    <div class="max-width-large">
+                      <div class="margin-bottom margin-small">
+                        <div class="margin-bottom margin-small">
+                          <div class="text-note">cottage amenities</div>
+                        </div>
+                        <div class="margin-bottom margin-small">
+                          <h2>Experience the blend of historic <span class="text-highlight">charm</span> and modern comfort</h2>
+                        </div>
+                        <p class="text-size-medium">We want you to feel better here than in a hotel — we place great emphasis on cleanliness and a comfortable sleep for every guest.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="amenities-grid">
+                {amenities.map(a => (
+                  <div class="amenities-item">
+                    <img src={a.icon} loading="lazy" alt="" class="icon-1x1-small" />
+                    <div>{a.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              <!-- FAQ -->
+              <div class="grid-additional">
+                <div class="flex-center-vertical">
+                  <div class="max-width-large">
+                    <div class="faq_accordion">
+                      <div class="faq_question">
+                        <div class="faq_question-left">
+                          <img src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e600d322cc34ef3a5bde7_information-circle.svg" loading="lazy" alt="" class="icon-1x1-xsmall" />
+                          <div class="text-size-medium text-weight-bold">More amenities &amp; information</div>
+                        </div>
+                        <div class="faq_icon">
+                          <svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.5303 20.8839C16.2374 21.1768 15.7626 21.1768 15.4697 20.8839L7.82318 13.2374C7.53029 12.9445 7.53029 12.4697 7.82318 12.1768L8.17674 11.8232C8.46963 11.5303 8.9445 11.5303 9.2374 11.8232L16 18.5858L22.7626 11.8232C23.0555 11.5303 23.5303 11.5303 23.8232 11.8232L24.1768 12.1768C24.4697 12.4697 24.4697 12.9445 24.1768 13.2374L16.5303 20.8839Z" fill="currentColor"></path></svg>
+                        </div>
+                      </div>
+                      <div class="faq_answer">
+                        <div class="faq_answer-wrap">
+                          <ul class="faq-answer-list">
+                            <li>The cottage has 10 beds + 2 full-size extra beds (for adults), with the option of adding children's cots.</li>
+                            <li>Bedroom 1 – double bed, bunk bed (adult-size), fold-out sofa (Karup futon)</li>
+                            <li>Bedroom 2 – double bed, bunk bed (adult-size), sofa</li>
+                            <li>Bedroom 3 – double bed, children's cot</li>
+                            <li>2 bathrooms with toilets and washing machine – one with shower, one with bathtub</li>
+                            <li>Fully equipped kitchen: fridge-freezer, dishwasher, induction hob, espresso machine, crockery, cutlery and much more.</li>
+                            <li>Common room – the vaulted heart of the cottage with a dining table and bar, fireplace stove, smart TV with Netflix, soundbar, and board games.</li>
+                            <li>Dedicated ski storage with heated boot holders.</li>
+                          </ul>
+                          <div class="divider"></div>
+                          <ul class="faq-answer-list">
+                            <li>Relaxation barn with a Finnish sauna for 4 people, ping-pong, table football, and an outdoor seating area with BBQ grill.</li>
+                            <li>The entire enclosed garden is exclusively yours. It features a children's playground with a slide, swings and sandpit, a fire pit, and space for outdoor games.</li>
+                            <li>Parking for up to 3 cars directly at the cottage.</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="faq_accordion">
+                      <div class="faq_question">
+                        <div class="faq_question-left">
+                          <img src={mapPinIcon} loading="lazy" alt="" class="icon-1x1-xsmall" />
+                          <div class="text-size-medium text-weight-bold">Nearby services</div>
+                        </div>
+                        <div class="faq_icon">
+                          <svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.5303 20.8839C16.2374 21.1768 15.7626 21.1768 15.4697 20.8839L7.82318 13.2374C7.53029 12.9445 7.53029 12.4697 7.82318 12.1768L8.17674 11.8232C8.46963 11.5303 8.9445 11.5303 9.2374 11.8232L16 18.5858L22.7626 11.8232C23.0555 11.5303 23.5303 11.5303 23.8232 11.8232L24.1768 12.1768C24.4697 12.4697 24.4697 12.9445 24.1768 13.2374L16.5303 20.8839Z" fill="currentColor"></path></svg>
+                        </div>
+                      </div>
+                      <div class="faq_answer">
+                        <div class="faq_answer-wrap">
+                          <ul class="faq-answer-list">
+                            <li>COOP grocery store – 150 m</li>
+                            <li>Krakonošovo pekařství bakery – 200 m</li>
+                            <li>Cukrárna U Bachtíků patisserie – 130 m</li>
+                            <li>U Medvěda restaurant – 170 m</li>
+                            <li>Crazy restaurant – 90 m</li>
+                            <li>Poets' Park – 190 m</li>
+                            <li>Krakonoš Theatre – 160 m</li>
+                            <li>Pharmacy – 80 m</li>
+                            <li>Šachty ski area – 900 m</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ABOUT -->
+      <section id="about" class="section background-color-darkgreen">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-large no-bottom-padding">
+              <div class="margin-bottom margin-xxlarge">
+                <div class="max-width-large">
+                  <div class="margin-bottom margin-small">
+                    <div class="margin-bottom margin-small">
+                      <div class="text-note">about the cottage</div>
+                    </div>
+                    <div class="max-width-medium">
+                      <h2>Peace and <span class="text-highlight">relaxation</span> in the heart of Vysoké nad&nbsp;Jizerou</h2>
+                    </div>
+                  </div>
+                  <div class="margin-bottom margin-medium">
+                    <p class="text-size-medium">Our cottage, whose history dates back to 1800, offers accommodation for up to 12 people. It features 3 bedrooms, 2 bathrooms, a fully equipped kitchen, a spacious common room with a fireplace stove, and a relaxation barn.<br /><br />Parking for up to 3 cars directly at the cottage; additional vehicles can park for free in the square 100 metres away.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Gallery -->
+              <div class="gallery_component">
+                <div class="gallery_slider" id="gallery-main">
+                  <div class="gallery_mask">
+                    {galleryImages.map((img, i) => (
+                      <div class="gallery_slide">
+                        <div class="slide-overlay"></div>
+                        <a href="#" class="gallery_lightbox-link" data-url={img.url} data-caption={img.caption}>
+                          <div class="gallery_image-wrapper">
+                            <img src={img.url} loading="lazy" alt={img.caption} class="gallery_image" />
+                            <div class="gallery-hover-overlay">
+                              <img src={eyeWhiteIcon} loading="lazy" alt="" class="icon-1x1-small" />
+                            </div>
+                          </div>
+                        </a>
+                        <div class="gallery_text-wrap">
+                          <div class="margin-bottom margin-tiny"><div class="text-note">cottage</div></div>
+                          <div class="max-width-small"><div>{img.label}</div></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div class="gallery21_arrow is-left" role="button" aria-label="Previous slide">
+                    <div class="gallery21_arrow-icon"><svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.31066 8.75001L9.03033 14.4697L7.96967 15.5303L0.439339 8.00001L7.96967 0.469676L9.03033 1.53034L3.31066 7.25001L15.5 7.25L15.5 8.75L3.31066 8.75001Z" fill="currentColor"></path></svg></div>
+                  </div>
+                  <div class="gallery21_arrow" role="button" aria-label="Next slide">
+                    <div class="gallery21_arrow-icon"><svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.6893 7.25L6.96967 1.53033L8.03033 0.469666L15.5607 8L8.03033 15.5303L6.96967 14.4697L12.6893 8.75H0.5V7.25H12.6893Z" fill="currentColor"></path></svg></div>
+                  </div>
+                  <div class="gallery_slide-nav">
+                    {galleryImages.map((_, i) => (
+                      <button class={`w-slider-dot${i === 0 ? " w-active" : ""}`} aria-label={`Slide ${i + 1}`}></button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAMILIES -->
+      <section class="section background-color-darkgreen">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-large">
+              <div class="layout_component">
+                <div class="layout_content">
+                  <div class="margin-bottom margin-small"><h3>We think of <span class="text-highlight">families</span> with children</h3></div>
+                  <div class="margin-bottom margin-small"><img src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/647321a78126600a5a05bde0_flower.svg" loading="lazy" alt="" class="flower-divider" /></div>
+                  <div class="margin-bottom margin-small"><p class="text-size-medium">The entire cottage is set up for a comfortable stay for families with children, making it your perfect base for a carefree holiday. You will have access to a changing table, board games, books, sports equipment and much more.</p></div>
+                  <div class="margin-top margin-medium">
+                    <div class="button-group"><a href="#reservation" class="button">Book now</a></div>
+                  </div>
+                </div>
+                <div class="layout_image-wrapper">
+                  <img src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fec541385f1e55d5bdf3e7_Sejkora_oby%CC%81vaci%CC%81_pokoj_1%20Large.jpeg" loading="lazy" alt="Living room" class="layout_image" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BARN -->
+      <section class="section background-color-darkgreen">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="layout_component">
+              <div class="layout_image-wrapper">
+                <img src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecc2a2994b2723a1efd2f_Sejkora_posezeni%CC%81_ve_stodole_1%20Large.jpeg" loading="lazy" alt="Barn" class="layout_image" />
+              </div>
+              <div class="layout_content">
+                <div class="margin-bottom margin-small"><div class="max-width-small"><h3>A <span class="text-highlight">unique</span> blend of relaxation and outdoor fun</h3></div></div>
+                <div class="margin-bottom margin-small"><img src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/647321a78126600a5a05bde0_flower.svg" loading="lazy" alt="" class="flower-divider" /></div>
+                <div class="margin-bottom margin-small"><p class="text-size-medium">Enjoy perfect relaxation in our recreation barn with a Finnish sauna, outdoor seating, BBQ grill, and fun at the ping-pong table and table football.</p></div>
+                <div class="margin-top margin-medium">
+                  <div class="button-group"><a href="#reservation" class="button">Book now</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SURROUNDINGS -->
+      <section id="surroundings" class="section background-color-darkgreen">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-large">
+              <div class="margin-bottom margin-xxlarge">
+                <div class="max-width-large">
+                  <div class="margin-bottom margin-small">
+                    <div class="margin-bottom margin-small"><div class="text-note">surroundings &amp; trip tips</div></div>
+                    <h2>Experience the <span class="text-highlight">magic</span> of the Czech mountain paradise</h2>
+                  </div>
+                  <p class="text-size-medium">Right behind the cottage you'll find views of the Krkonoše, Jizerské hory, Kozákov and Bezděz. Within walking distance: ski lifts, Poets' Park, several restaurants, the Krakonoš Theatre and a great bakery.</p>
+                </div>
+              </div>
+
+              <div class="gallery_component">
+                <div class="gallery_slider" id="gallery-surroundings">
+                  <div class="gallery_mask">
+                    {surroundingsImages.map((img, i) => (
+                      <div class="gallery_slide">
+                        <div class="slide-overlay"></div>
+                        <a href="#" class="gallery_lightbox-link" data-url={img.url} data-caption={img.caption}>
+                          <div class="gallery_image-wrapper">
+                            <img src={img.url} loading="lazy" alt={img.caption} class="gallery_image" />
+                            <div class="gallery-hover-overlay">
+                              <img src={eyeWhiteIcon} loading="lazy" alt="" class="icon-1x1-small" />
+                            </div>
+                          </div>
+                        </a>
+                        <div class="gallery_text-wrap">
+                          <div class="margin-bottom margin-tiny"><div class="text-note">{img.distance}</div></div>
+                          <div class="icon-tag">
+                            <img src={mapPinIcon} loading="lazy" alt="" class="icon-1x1-xxsmall" />
+                            <div>{img.caption}</div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div class="gallery21_arrow is-left" role="button" aria-label="Previous">
+                    <div class="gallery21_arrow-icon"><svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.31066 8.75001L9.03033 14.4697L7.96967 15.5303L0.439339 8.00001L7.96967 0.469676L9.03033 1.53034L3.31066 7.25001L15.5 7.25L15.5 8.75L3.31066 8.75001Z" fill="currentColor"></path></svg></div>
+                  </div>
+                  <div class="gallery21_arrow" role="button" aria-label="Next">
+                    <div class="gallery21_arrow-icon"><svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.6893 7.25L6.96967 1.53033L8.03033 0.469666L15.5607 8L8.03033 15.5303L6.96967 14.4697L12.6893 8.75H0.5V7.25H12.6893Z" fill="currentColor"></path></svg></div>
+                  </div>
+                  <div class="gallery_slide-nav">
+                    {surroundingsImages.map((_, i) => (
+                      <button class={`w-slider-dot${i === 0 ? " w-active" : ""}`} aria-label={`Slide ${i + 1}`}></button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section id="pricing" class="section">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-large no-bottom-padding">
+              <div class="margin-bottom margin-xxlarge">
+                <div class="text-align-center">
+                  <div class="max-width-large align-center">
+                    <div class="margin-bottom margin-small">
+                      <div class="margin-bottom margin-small"><div class="text-note">pricing</div></div>
+                      <h2>Reasonable prices for your dream <span class="text-highlight">holiday</span></h2>
+                    </div>
+                    <p class="text-size-medium">Depending on the season, the cottage can be booked with different minimum night requirements.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pricing_components">
+                <div class="pricing_plan" style="grid-column: span 2">
+                  <div class="pricing18_content">
+                    <div class="pricing_content-top">
+                      <div class="pricing-name-wrap"><div class="heading-style-h5">Low season</div><div class="small-tag big">Min. 2 nights</div></div>
+                      <div class="divider"></div>
+                      <div class="tags-wrapper"><div class="small-tag">March</div><div class="small-tag">April</div><div class="small-tag">October</div><div class="small-tag">November</div></div>
+                      <div class="divider"></div>
+                      <div class="pricing_feature-list">
+                        <div class="pricing_feature"><div class="text-weight-bold">2 nights</div><div><span class="text-weight-bold">5,500 CZK</span> / night</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">3–4 nights</div><div><span class="text-weight-bold">4,500 CZK</span> / night</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">5+ nights</div><div><span class="text-weight-bold">4,000 CZK</span> / night</div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pricing_plan" style="grid-column: span 2">
+                  <div class="pricing18_content">
+                    <div class="pricing_content-top">
+                      <div class="pricing-name-wrap"><div class="heading-style-h5">Mid season</div><div class="small-tag big">Min. 2 nights</div></div>
+                      <div class="divider"></div>
+                      <div class="tags-wrapper"><div class="small-tag">May</div><div class="small-tag">June</div><div class="small-tag">September</div><div class="small-tag">December</div></div>
+                      <div class="divider"></div>
+                      <div class="pricing_feature-list">
+                        <div class="pricing_feature"><div class="text-weight-bold">2 nights</div><div><span class="text-weight-bold">6,000 CZK</span> / night</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">3–4 nights</div><div><span class="text-weight-bold">5,000 CZK</span> / night</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">5+ nights</div><div><span class="text-weight-bold">4,000 CZK</span> / night</div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pricing_plan" style="grid-column: span 2">
+                  <div class="pricing18_content">
+                    <div class="pricing_content-top">
+                      <div class="pricing-name-wrap"><div class="heading-style-h5">Peak season</div><div class="small-tag big">Saturday–Saturday</div></div>
+                      <div class="divider"></div>
+                      <div class="tags-wrapper"><div class="small-tag">January</div><div class="small-tag">February</div><div class="small-tag">July</div><div class="small-tag">August</div></div>
+                      <div class="divider"></div>
+                      <div class="pricing_feature-list">
+                        <div class="pricing_feature"><div class="text-weight-bold">Summer / Winter</div><div><span class="text-weight-bold">5,000 CZK</span> / night</div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid-additional">
+                <div class="flex-center-vertical">
+                  <div class="max-width-large">
+                    <div class="faq_accordion">
+                      <div class="faq_question">
+                        <div class="faq_question-left">
+                          <img src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e3cb5caf85a6a5230fb25_check-circlegreen.svg" loading="lazy" alt="" class="icon-1x1-xsmall" />
+                          <div class="text-size-medium text-weight-bold">What's included</div>
+                        </div>
+                        <div class="faq_icon"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.5303 20.8839C16.2374 21.1768 15.7626 21.1768 15.4697 20.8839L7.82318 13.2374C7.53029 12.9445 7.53029 12.4697 7.82318 12.1768L8.17674 11.8232C8.46963 11.5303 8.9445 11.5303 9.2374 11.8232L16 18.5858L22.7626 11.8232C23.0555 11.5303 23.5303 11.5303 23.8232 11.8232L24.1768 12.1768C24.4697 12.4697 24.4697 12.9445 24.1768 13.2374L16.5303 20.8839Z" fill="currentColor"></path></svg></div>
+                      </div>
+                      <div class="faq_answer">
+                        <div class="faq_answer-wrap">
+                          <ul class="faq-answer-list">
+                            <li>Prices are valid for up to 8 guests. From the 9th guest, an additional 200 CZK / night / person applies.</li>
+                            <li>Rental of the entire cottage including equipment and fast internet</li>
+                            <li>Bed linen and towels for all guests</li>
+                            <li>Electricity up to 100 kWh / night</li>
+                            <li>Kitchen basics (salt, spices, tea, coffee)</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="faq_accordion">
+                      <div class="faq_question">
+                        <div class="faq_question-left">
+                          <img src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/647332ad89a246e55eaab85a_x-circle.svg" loading="lazy" alt="" class="icon-1x1-xsmall" />
+                          <div class="text-size-medium text-weight-bold">What's not included</div>
+                        </div>
+                        <div class="faq_icon"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.5303 20.8839C16.2374 21.1768 15.7626 21.1768 15.4697 20.8839L7.82318 13.2374C7.53029 12.9445 7.53029 12.4697 7.82318 12.1768L8.17674 11.8232C8.46963 11.5303 8.9445 11.5303 9.2374 11.8232L16 18.5858L22.7626 11.8232C23.0555 11.5303 23.5303 11.5303 23.8232 11.8232L24.1768 12.1768C24.4697 12.4697 24.4697 12.9445 24.1768 13.2374L16.5303 20.8839Z" fill="currentColor"></path></svg></div>
+                      </div>
+                      <div class="faq_answer">
+                        <div class="faq_answer-wrap">
+                          <ul class="faq-answer-list">
+                            <li>Local municipal fee – 18 CZK / adult / night</li>
+                            <li>Final cleaning 1,500 CZK</li>
+                            <li>Sauna electricity consumption</li>
+                            <li>Electricity above 100 kWh / night</li>
+                            <li>Dog by prior arrangement – 200 CZK / night</li>
+                            <li>Refundable deposit 5,000 CZK (collected on arrival in cash)</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESERVATION -->
+      <section id="reservation" class="section side-flowers">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-large">
+              <div class="margin-bottom margin-large">
+                <div class="text-align-center">
+                  <div class="max-width-large align-center">
+                    <div class="margin-bottom margin-small">
+                      <div class="margin-bottom margin-small"><div class="text-note">Reservation</div></div>
+                      <h2>Book <span class="text-highlight">your</span> dates</h2>
+                    </div>
+                    <p class="text-size-medium">If you have any questions, contact us at <a href="mailto:ahoj@chalupasejkora.cz" class="text-style-link">ahoj@chalupasejkora.cz</a>.<br />We confirm reservations within 24 hours.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="calendar-wrapper">
+                <div class="w-form">
+                  <form id="wf-form-Rezerva-n-formul" class="form-wrapper">
+                    <input type="hidden" name="access_key" value="9763ef18-f282-4f78-a9ba-d96df5fe00e4" />
+                    <input type="hidden" name="subject" value="New reservation – Chalupa Sejkora" />
+                    <input type="hidden" name="from_name" value="Chalupa Sejkora" />
+                    <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" autocomplete="off" />
+                    <div class="reservation-date-wrap">
+                      <label class="field-label">Availability calendar</label>
+                      <div class="calendar-margin">
+                        <div class="faq_accordion outlined">
+                          <div class="faq_question in-form">
+                            <div class="faq_question-left">
+                              <img alt="" loading="lazy" src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6473783f8126600a5a41bf4b_eye.svg" class="icon-1x1-xsmall" />
+                              <div>Show available dates</div>
+                            </div>
+                            <div class="faq_icon"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.5303 20.8839C16.2374 21.1768 15.7626 21.1768 15.4697 20.8839L7.82318 13.2374C7.53029 12.9445 7.53029 12.4697 7.82318 12.1768L8.17674 11.8232C8.46963 11.5303 8.9445 11.5303 9.2374 11.8232L16 18.5858L22.7626 11.8232C23.0555 11.5303 23.5303 11.5303 23.8232 11.8232L24.1768 12.1768C24.4697 12.4697 24.4697 12.9445 24.1768 13.2374L16.5303 20.8839Z" fill="currentColor"></path></svg></div>
+                          </div>
+                          <div class="faq_answer">
+                            <div class="faq_answer-wrap is-relative">
+                              <div style="position: relative;">
+                                <iframe src="https://obsazenost.e-chalupy.cz/kalendar.php?id=10684&pocetMesicu=12&velikost=3&legenda=ne&jazyk=en&fontFamily=Source%20Sans%20Pro" height="460px" width="100%" frameborder="0" style="width:100%;"></iframe>
+                                <div class="empty-overlay"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <label for="check-in" class="field-label">Stay dates</label>
+                      <div class="date-picker-inputs">
+                        <input class="flatpickr-input" name="Datum-prijezdu" placeholder="Check-in date" type="text" id="check-in" autocomplete="off" />
+                        <img src={arrowRightIcon} alt="" class="dates-icon" />
+                        <input class="flatpickr-input" name="Datum-odjezdu" placeholder="Check-out date" type="text" id="check-out" autocomplete="off" />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label for="Name" class="field-label">Name</label>
+                      <input class="form-input" name="Jmeno" placeholder="Your name" type="text" id="Name" required />
+                    </div>
+                    <div>
+                      <label for="Email" class="field-label">E-mail</label>
+                      <input class="form-input" name="Email" placeholder="name@email.com" type="email" id="Email" required />
+                    </div>
+                    <div>
+                      <label for="Phone" class="field-label">Phone</label>
+                      <input class="form-input" name="Telefon" placeholder="+1" type="tel" id="Phone" required />
+                    </div>
+                    <div>
+                      <label for="Notes" class="field-label">Notes</label>
+                      <textarea id="Notes" name="Poznamka" placeholder="Any notes or special requests" class="form-input is-text-area"></textarea>
+                    </div>
+                    <button type="submit" class="button">Send</button>
+                  </form>
+
+                  <div class="success-message">
+                    <div class="success-message-inner">
+                      <img src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e3cb5caf85a6a5230fb25_check-circlegreen.svg" loading="lazy" alt="" class="icon-1x1-small" />
+                      <div>Thank you! We will confirm your reservation within 24 hours.</div>
+                    </div>
+                  </div>
+                  <div class="w-form-fail">
+                    <div>Something went wrong. Please try again or contact us directly.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <Footer lang="en" />
+  </div>
+</Layout>

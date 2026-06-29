@@ -115,13 +115,9 @@ function closeLightbox() {
 document.querySelectorAll('.gallery_lightbox-link').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
-    const jsonEl = link.querySelector('.w-json');
-    if (!jsonEl) return;
-    try {
-      const data = JSON.parse(jsonEl.textContent);
-      const item = data.items?.[0];
-      if (item) openLightbox(item.url, item.caption);
-    } catch {}
+    const url = link.dataset.url;
+    const caption = link.dataset.caption;
+    if (url) openLightbox(url, caption);
   });
 });
 
