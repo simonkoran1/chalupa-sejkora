@@ -30,43 +30,34 @@ document.querySelectorAll('.hp-slider').forEach(initSlider);
 // ===== GALLERY SLIDER =====
 function initGallery(galleryEl) {
   const mask = galleryEl.querySelector('.gallery_mask');
-  const slides = galleryEl.querySelectorAll('.gallery_slide');
-  const dots = galleryEl.querySelectorAll('.w-slider-dot');
+  const slides = Array.from(galleryEl.querySelectorAll('.gallery_slide'));
+  const dots = Array.from(galleryEl.querySelectorAll('.w-slider-dot'));
   const prevBtn = galleryEl.querySelector('.gallery21_arrow.is-left');
   const nextBtn = galleryEl.querySelector('.gallery21_arrow:not(.is-left)');
   if (!slides.length || !mask) return;
 
-  let perView = 3;
   let current = 0;
+  const total = slides.length;
 
-  function getPerView() {
-    const w = window.innerWidth;
-    if (w <= 767) return 1;
-    if (w <= 991) return 2;
-    return 3;
-  }
-
-  function update() {
-    perView = getPerView();
-    const slideW = 100 / perView;
-    slides.forEach(s => { s.style.width = slideW + '%'; });
-    const maxIndex = Math.max(0, slides.length - perView);
-    if (current > maxIndex) current = maxIndex;
-    mask.style.transform = `translateX(-${current * slideW}%)`;
+  function goTo(index) {
+    current = Math.max(0, Math.min(index, total - 1));
+    mask.style.transform = `translateX(-${current * 100}%)`;
     dots.forEach((d, i) => d.classList.toggle('w-active', i === current));
-    // Show/hide slide overlays
-    slides.forEach((s, i) => {
-      const overlay = s.querySelector('.slide-overlay');
-      if (overlay) overlay.style.display = i !== current ? 'block' : 'none';
-    });
   }
 
-  prevBtn?.addEventListener('click', () => { if (current > 0) { current--; update(); } });
-  nextBtn?.addEventListener('click', () => { const max = Math.max(0, slides.length - getPerView()); if (current < max) { current++; update(); } });
-  dots.forEach((dot, i) => { dot.addEventListener('click', () => { current = i; update(); }); });
+  prevBtn?.addEventListener('click', () => goTo(current - 1));
+  nextBtn?.addEventListener('click', () => goTo(current + 1));
+  dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
 
-  update();
-  window.addEventListener('resize', update);
+  // Touch/swipe support
+  let touchStartX = 0;
+  galleryEl.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  galleryEl.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) goTo(current + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
+  goTo(0);
 }
 
 document.querySelectorAll('.gallery_slider').forEach(initGallery);
