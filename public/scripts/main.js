@@ -121,6 +121,34 @@ document.querySelectorAll('.gallery_lightbox-link').forEach(link => {
   });
 });
 
+// ===== DATE PICKERS =====
+if (typeof flatpickr !== 'undefined') {
+  const lang = document.documentElement.lang;
+  const isCs = lang === 'cs';
+
+  const sharedConfig = {
+    dateFormat: 'd.m.Y',
+    minDate: 'today',
+    locale: isCs ? 'cs' : 'default',
+    disableMobile: false,
+  };
+
+  const checkIn = flatpickr('#check-in', {
+    ...sharedConfig,
+    onChange([date]) {
+      if (date) {
+        const next = new Date(date);
+        next.setDate(next.getDate() + 1);
+        checkOut.set('minDate', next);
+      }
+    },
+  });
+
+  const checkOut = flatpickr('#check-out', {
+    ...sharedConfig,
+  });
+}
+
 // ===== RESERVATION FORM (Web3Forms) =====
 const form = document.querySelector('#wf-form-Rezerva-n-formul');
 const successMsg = document.querySelector('.success-message');

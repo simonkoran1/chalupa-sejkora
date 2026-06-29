@@ -6,74 +6,74 @@ import Footer from '../components/Footer.astro';
 const web3formsAccessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
 
 const heroImages = [
-  { src: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecd68d795d0489d94adaf_Sejkora_vchod%20Large.jpeg", alt: "Vchod" },
-  { src: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fec541385f1e55d5bdf3e7_Sejkora_oby%CC%81vaci%CC%81_pokoj_1%20Large.jpeg", alt: "Obývací pokoj" },
-  { src: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fec62c880af21199abfd0f_Sejkora_loz%CC%8Cnice_1_1%20Large.jpeg", alt: "Ložnice 1" },
-  { src: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecafd126548ca6e8921ec_Sejkora_koupelna_2%20Large.jpeg", alt: "Koupelna" },
-  { src: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecc2a2994b2723a1efd2f_Sejkora_posezeni%CC%81_ve_stodole_1%20Large.jpeg", alt: "Stodola" },
+  { src: "/images/64fecd68d795d0489d94adaf_Sejkora_vchod%20Large.jpeg", alt: "Vchod" },
+  { src: "/images/64fec541385f1e55d5bdf3e7_Sejkora_oby%CC%81vaci%CC%81_pokoj_1%20Large.jpeg", alt: "Obývací pokoj" },
+  { src: "/images/64fec62c880af21199abfd0f_Sejkora_loz%CC%8Cnice_1_1%20Large.jpeg", alt: "Ložnice 1" },
+  { src: "/images/64fecafd126548ca6e8921ec_Sejkora_koupelna_2%20Large.jpeg", alt: "Koupelna" },
+  { src: "/images/64fecc2a2994b2723a1efd2f_Sejkora_posezeni%CC%81_ve_stodole_1%20Large.jpeg", alt: "Stodola" },
 ];
 
 const amenities = [
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e41126208a6804846f01e_users.svg", label: "12 lůžek" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6481f217eb6060b444d33650_dry_cleaning_FILL0_wght400_GRAD0_opsz48%201.svg", label: "Ložní prádlo + ručníky" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e16b8cf58fdca2a37f710_moon.svg", label: "3 ložnice" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e42274c0cd17102ad4c5b_sparkles.svg", label: "2 koupelny" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e4246a96973549500817c_face-smile.svg", label: "Společenská místnost" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e3cb5caf85a6a5230fb25_check-circlegreen.svg", label: "Vybavená kuchyně" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e4202e07dba25a81d9d98_heart.svg", label: "Herní koutek pro děti" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e4137d1aafe1495d4657e_sun.svg", label: "Finská sauna" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e4177c2e8a5002a538a30_fire.svg", label: "Krbová kamna" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e429d659fceed0ce16d0c_trophy.svg", label: "Stolní fotbálek" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e427d42ec6866215871f1_flag.svg", label: "Pingpongový stůl" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e4177c2e8a5002a538a30_fire.svg", label: "Venkovní gril" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/647320c11599f3a16b8cb000_rocket-launchblack.svg", label: "Sportovní vybavení" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e42af945d3fe188d2e408_tv.svg", label: "TV + Netflix" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e41bc65826fe48fa1dbcf_wifi.svg", label: "Wi-Fi" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e4177c2e8a5002a538a30_fire.svg", label: "Ohniště" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6481f2d55078f9d6968535ae_viewfinder-dot.svg", label: "Dětské hřiště" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6481f2e0f6d43dca1a50570f_local_parking_FILL0_wght400_GRAD0_opsz48%201.svg", label: "Parkování zdarma" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e42274c0cd17102ad4c5b_sparkles.svg", label: "Pračka" },
-  { icon: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6481f2ec64288ce2b7cd6449_coffee_FILL0_wght400_GRAD0_opsz48%201.svg", label: "Espresso kávovar" },
+  { icon: "/images/646e41126208a6804846f01e_users.svg", label: "12 lůžek" },
+  { icon: "/images/6481f217eb6060b444d33650_dry_cleaning_FILL0_wght400_GRAD0_opsz48%201.svg", label: "Ložní prádlo + ručníky" },
+  { icon: "/images/646e16b8cf58fdca2a37f710_moon.svg", label: "3 ložnice" },
+  { icon: "/images/646e42274c0cd17102ad4c5b_sparkles.svg", label: "2 koupelny" },
+  { icon: "/images/646e4246a96973549500817c_face-smile.svg", label: "Společenská místnost" },
+  { icon: "/images/646e3cb5caf85a6a5230fb25_check-circlegreen.svg", label: "Vybavená kuchyně" },
+  { icon: "/images/646e4202e07dba25a81d9d98_heart.svg", label: "Herní koutek pro děti" },
+  { icon: "/images/646e4137d1aafe1495d4657e_sun.svg", label: "Finská sauna" },
+  { icon: "/images/646e4177c2e8a5002a538a30_fire.svg", label: "Krbová kamna" },
+  { icon: "/images/646e429d659fceed0ce16d0c_trophy.svg", label: "Stolní fotbálek" },
+  { icon: "/images/646e427d42ec6866215871f1_flag.svg", label: "Pingpongový stůl" },
+  { icon: "/images/646e4177c2e8a5002a538a30_fire.svg", label: "Venkovní gril" },
+  { icon: "/images/647320c11599f3a16b8cb000_rocket-launchblack.svg", label: "Sportovní vybavení" },
+  { icon: "/images/646e42af945d3fe188d2e408_tv.svg", label: "TV + Netflix" },
+  { icon: "/images/646e41bc65826fe48fa1dbcf_wifi.svg", label: "Wi-Fi" },
+  { icon: "/images/646e4177c2e8a5002a538a30_fire.svg", label: "Ohniště" },
+  { icon: "/images/6481f2d55078f9d6968535ae_viewfinder-dot.svg", label: "Dětské hřiště" },
+  { icon: "/images/6481f2e0f6d43dca1a50570f_local_parking_FILL0_wght400_GRAD0_opsz48%201.svg", label: "Parkování zdarma" },
+  { icon: "/images/646e42274c0cd17102ad4c5b_sparkles.svg", label: "Pračka" },
+  { icon: "/images/6481f2ec64288ce2b7cd6449_coffee_FILL0_wght400_GRAD0_opsz48%201.svg", label: "Espresso kávovar" },
 ];
 
 const galleryImages = [
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6502eee83e4b0972276210f7_AAA_pohled_na_du%CC%8Am_2%20Large.jpeg", caption: "Pohled na chalupu", label: "Pohled na chalupu" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecd68d795d0489d94adaf_Sejkora_vchod%20Large.jpeg", caption: "Vchod", label: "Vchod" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fec541385f1e55d5bdf3e7_Sejkora_oby%CC%81vaci%CC%81_pokoj_1%20Large.jpeg", caption: "Obývací pokoj", label: "Společenská místnost" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fec5c2385f1e55d5be7bf0_Sejkora_oby%CC%81vaci%CC%81_pokoj_2%20Large.jpeg", caption: "Obývací pokoj", label: "Obývací pokoj" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fec62c880af21199abfd0f_Sejkora_loz%CC%8Cnice_1_1%20Large.jpeg", caption: "Ložnice 1", label: "Ložnice 1" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fec68310ef6fb92a3d3e26_Sejkora_loz%CC%8Cnice_1_4%20Large.jpeg", caption: "Ložnice 1", label: "Ložnice 1" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6502b54d3ed0ae8b6d6876d2_AAA_loz%CC%8Cnice_2_1%20Large.jpeg", caption: "Ložnice 2", label: "Ložnice 2" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fec740625c155c18475d8e_Sejkora_loz%CC%8Cnice_2_2%20Large.jpeg", caption: "Ložnice 2", label: "Ložnice 2" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6502b4da93b1197f48ba5851_AAA_loz%CC%8Cnice_3_1%20Large.jpeg", caption: "Ložnice 3", label: "Ložnice 3" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecaa67a1b0d48c9176f7b_Sejkora_kuchyne%CC%8C_1%20Large.jpeg", caption: "Kuchyně", label: "Kuchyně" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecafd126548ca6e8921ec_Sejkora_koupelna_2%20Large.jpeg", caption: "Koupelna 1", label: "Koupelna 1" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecb3aaef6acf8a9ece446_Sejkora_koupelna_1%20Large.jpeg", caption: "Koupelna 2", label: "Koupelna 2" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecb9ee214f2e762e44a71_Sejkora_de%CC%8Ctske%CC%81_hr%CC%8Cis%CC%8Cte%CC%8C_s_pi%CC%81skovis%CC%8Cte%CC%8Cm_1%20Large.jpeg", caption: "Dětské hřiště", label: "Dětské hřiště" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6502b5e1f91f4d27cd395c7b_AAA_zahrada_3%20Large.jpeg", caption: "Zahrada", label: "Zahrada" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecc2a2994b2723a1efd2f_Sejkora_posezeni%CC%81_ve_stodole_1%20Large.jpeg", caption: "Posezení ve stodole", label: "Posezení ve stodole" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecc4ef21d29c63f1f4590_Sejkora_herni%CC%81_stodola%20Large.jpeg", caption: "Herní stodola", label: "Herní stodola" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecc91d2ee83c0e2f02c57_Sejkora_finska%CC%81_sauna%20Large.jpeg", caption: "Finská sauna", label: "Finská sauna" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecccd16afe625341ca23a_Sejkora_kola%CC%81rna_lyz%CC%8Ca%CC%81rna_1%20Large.jpeg", caption: "Kolárna & Lyžárna", label: "Kolárna & Lyžárna" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6502f482b91776de6f7d7c56_sejkora-pudorys.jpg", caption: "Půdorys", label: "Půdorys" },
+  { url: "/images/6502eee83e4b0972276210f7_AAA_pohled_na_du%CC%8Am_2%20Large.jpeg", caption: "Pohled na chalupu", label: "Pohled na chalupu" },
+  { url: "/images/64fecd68d795d0489d94adaf_Sejkora_vchod%20Large.jpeg", caption: "Vchod", label: "Vchod" },
+  { url: "/images/64fec541385f1e55d5bdf3e7_Sejkora_oby%CC%81vaci%CC%81_pokoj_1%20Large.jpeg", caption: "Obývací pokoj", label: "Společenská místnost" },
+  { url: "/images/64fec5c2385f1e55d5be7bf0_Sejkora_oby%CC%81vaci%CC%81_pokoj_2%20Large.jpeg", caption: "Obývací pokoj", label: "Obývací pokoj" },
+  { url: "/images/64fec62c880af21199abfd0f_Sejkora_loz%CC%8Cnice_1_1%20Large.jpeg", caption: "Ložnice 1", label: "Ložnice 1" },
+  { url: "/images/64fec68310ef6fb92a3d3e26_Sejkora_loz%CC%8Cnice_1_4%20Large.jpeg", caption: "Ložnice 1", label: "Ložnice 1" },
+  { url: "/images/6502b54d3ed0ae8b6d6876d2_AAA_loz%CC%8Cnice_2_1%20Large.jpeg", caption: "Ložnice 2", label: "Ložnice 2" },
+  { url: "/images/64fec740625c155c18475d8e_Sejkora_loz%CC%8Cnice_2_2%20Large.jpeg", caption: "Ložnice 2", label: "Ložnice 2" },
+  { url: "/images/6502b4da93b1197f48ba5851_AAA_loz%CC%8Cnice_3_1%20Large.jpeg", caption: "Ložnice 3", label: "Ložnice 3" },
+  { url: "/images/64fecaa67a1b0d48c9176f7b_Sejkora_kuchyne%CC%8C_1%20Large.jpeg", caption: "Kuchyně", label: "Kuchyně" },
+  { url: "/images/64fecafd126548ca6e8921ec_Sejkora_koupelna_2%20Large.jpeg", caption: "Koupelna 1", label: "Koupelna 1" },
+  { url: "/images/64fecb3aaef6acf8a9ece446_Sejkora_koupelna_1%20Large.jpeg", caption: "Koupelna 2", label: "Koupelna 2" },
+  { url: "/images/64fecb9ee214f2e762e44a71_Sejkora_de%CC%8Ctske%CC%81_hr%CC%8Cis%CC%8Cte%CC%8C_s_pi%CC%81skovis%CC%8Cte%CC%8Cm_1%20Large.jpeg", caption: "Dětské hřiště", label: "Dětské hřiště" },
+  { url: "/images/6502b5e1f91f4d27cd395c7b_AAA_zahrada_3%20Large.jpeg", caption: "Zahrada", label: "Zahrada" },
+  { url: "/images/64fecc2a2994b2723a1efd2f_Sejkora_posezeni%CC%81_ve_stodole_1%20Large.jpeg", caption: "Posezení ve stodole", label: "Posezení ve stodole" },
+  { url: "/images/64fecc4ef21d29c63f1f4590_Sejkora_herni%CC%81_stodola%20Large.jpeg", caption: "Herní stodola", label: "Herní stodola" },
+  { url: "/images/64fecc91d2ee83c0e2f02c57_Sejkora_finska%CC%81_sauna%20Large.jpeg", caption: "Finská sauna", label: "Finská sauna" },
+  { url: "/images/64fecccd16afe625341ca23a_Sejkora_kola%CC%81rna_lyz%CC%8Ca%CC%81rna_1%20Large.jpeg", caption: "Kolárna & Lyžárna", label: "Kolárna & Lyžárna" },
+  { url: "/images/6502f482b91776de6f7d7c56_sejkora-pudorys.jpg", caption: "Půdorys", label: "Půdorys" },
 ];
 
 const surroundingsImages = [
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e676880c678ba21ea6857_image-crop-200001022.jpeg", caption: "Paseky nad Jizerou", distance: "6,5 KM • 8 MIN. AUTEM" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6476f280b2510bb26a3ef2aa_Rokytnice-nad-Jizerou.jpg", caption: "Rokytnice nad Jizerou", distance: "8,4 KM • 10 MIN. AUTEM" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6485e70de8b0f28bdcb9bf9e_2022-08-14.jpg", caption: "Bozkovské dolomitové jeskyně", distance: "10,1 KM • 13 MIN. AUTEM" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6476f1160a13cdc954617cd8_Stepanka_lookout_tower.jpeg", caption: "Rozhledna Štěpánka", distance: "11,3 KM • 13 MIN. AUTEM" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6476f2a1f6a8eff90695ab36_korenov-jaroslav-moravec-001.jpg", caption: "Kořenov", distance: "12,5 KM • 14 MIN. AUTEM" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6485e76cdcc1f215a87f1b87_udoli-jizery-riegrova-stezka-2022_19_4-094401.jpg", caption: "Přírodní rezervace údolí Jizery", distance: "14 KM • 15 MIN. AUTEM" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6485ea447c7f3e612c64a581_harrachov%20(1).jpg", caption: "Harrachov", distance: "19,9 KM • 22 MIN. AUTEM" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6485e988da5571598646a9bc_osada-jizera---jizerka258.jpg", caption: "Osada Jizerka", distance: "20,2 KM • 24 MIN. AUTEM" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6476f1b4b8cad4706f74cbed_sekce_leto_hero_final-min.webp", caption: "Špindlerův Mlýn", distance: "35,7 KM • 36 MIN. AUTEM" },
-  { url: "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6476f2024de25b2b8b35e38e_prachovske-skaly-panorama.jpg", caption: "Český ráj", distance: "36,4 KM • 44 MIN. AUTEM" },
+  { url: "/images/646e676880c678ba21ea6857_image-crop-200001022.jpeg", caption: "Paseky nad Jizerou", distance: "6,5 KM • 8 MIN. AUTEM" },
+  { url: "/images/6476f280b2510bb26a3ef2aa_Rokytnice-nad-Jizerou.jpg", caption: "Rokytnice nad Jizerou", distance: "8,4 KM • 10 MIN. AUTEM" },
+  { url: "/images/6485e70de8b0f28bdcb9bf9e_2022-08-14.jpg", caption: "Bozkovské dolomitové jeskyně", distance: "10,1 KM • 13 MIN. AUTEM" },
+  { url: "/images/6476f1160a13cdc954617cd8_Stepanka_lookout_tower.jpeg", caption: "Rozhledna Štěpánka", distance: "11,3 KM • 13 MIN. AUTEM" },
+  { url: "/images/6476f2a1f6a8eff90695ab36_korenov-jaroslav-moravec-001.jpg", caption: "Kořenov", distance: "12,5 KM • 14 MIN. AUTEM" },
+  { url: "/images/6485e76cdcc1f215a87f1b87_udoli-jizery-riegrova-stezka-2022_19_4-094401.jpg", caption: "Přírodní rezervace údolí Jizery", distance: "14 KM • 15 MIN. AUTEM" },
+  { url: "/images/6485ea447c7f3e612c64a581_harrachov%20(1).jpg", caption: "Harrachov", distance: "19,9 KM • 22 MIN. AUTEM" },
+  { url: "/images/6485e988da5571598646a9bc_osada-jizera---jizerka258.jpg", caption: "Osada Jizerka", distance: "20,2 KM • 24 MIN. AUTEM" },
+  { url: "/images/6476f1b4b8cad4706f74cbed_sekce_leto_hero_final-min.webp", caption: "Špindlerův Mlýn", distance: "35,7 KM • 36 MIN. AUTEM" },
+  { url: "/images/6476f2024de25b2b8b35e38e_prachovske-skaly-panorama.jpg", caption: "Český ráj", distance: "36,4 KM • 44 MIN. AUTEM" },
 ];
 
-const mapPinIcon = "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e67c221bf1a9b03208e1b_map-pin.svg";
-const eyeWhiteIcon = "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e0ccb6876000012814b0d_eyewhite.svg";
-const arrowRightIcon = "https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6470a888c22911c855a58e7f_arrow-right-circle.svg";
+const mapPinIcon = "/images/646e67c221bf1a9b03208e1b_map-pin.svg";
+const eyeWhiteIcon = "/images/646e0ccb6876000012814b0d_eyewhite.svg";
+const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg";
 ---
 
 <Layout title="Ubytování ve Vysokém nad Jizerou – Chalupa Sejkora" lang="cs">
@@ -172,7 +172,7 @@ const arrowRightIcon = "https://cdn.prod.website-files.com/646de4cb577f2075ac136
                     <div class="faq_accordion">
                       <div class="faq_question">
                         <div class="faq_question-left">
-                          <img src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e600d322cc34ef3a5bde7_information-circle.svg" loading="lazy" alt="" class="icon-1x1-xsmall" />
+                          <img src="/images/646e600d322cc34ef3a5bde7_information-circle.svg" loading="lazy" alt="" class="icon-1x1-xsmall" />
                           <div class="text-size-medium text-weight-bold">Další&nbsp;vybavení a&nbsp;informace</div>
                         </div>
                         <div class="faq_icon">
@@ -304,14 +304,14 @@ const arrowRightIcon = "https://cdn.prod.website-files.com/646de4cb577f2075ac136
               <div class="layout_component">
                 <div class="layout_content">
                   <div class="margin-bottom margin-small"><h3>Myslíme na <span class="text-highlight">rodiny</span> s&nbsp;dětmi</h3></div>
-                  <div class="margin-bottom margin-small"><img src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/647321a78126600a5a05bde0_flower.svg" loading="lazy" alt="" class="flower-divider" /></div>
+                  <div class="margin-bottom margin-small"><img src="/images/647321a78126600a5a05bde0_flower.svg" loading="lazy" alt="" class="flower-divider" /></div>
                   <div class="margin-bottom margin-small"><p class="text-size-medium">Celá chalupa je zařízena pro příjemný pobyt rodin s dětmi, aby se stala vaším výborným zázemím pro bezstarostnou dovolenou. K dispozici budete mít přebalovací pult, deskové hry, knížky, sportovní vybavení a mnoho dalšího.</p></div>
                   <div class="margin-top margin-medium">
                     <div class="button-group"><a href="#rezervace" class="button">Rezervace</a></div>
                   </div>
                 </div>
                 <div class="layout_image-wrapper">
-                  <img src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fec541385f1e55d5bdf3e7_Sejkora_oby%CC%81vaci%CC%81_pokoj_1%20Large.jpeg" loading="lazy" alt="Obývací pokoj" class="layout_image" />
+                  <img src="/images/64fec541385f1e55d5bdf3e7_Sejkora_oby%CC%81vaci%CC%81_pokoj_1%20Large.jpeg" loading="lazy" alt="Obývací pokoj" class="layout_image" />
                 </div>
               </div>
             </div>
@@ -325,11 +325,11 @@ const arrowRightIcon = "https://cdn.prod.website-files.com/646de4cb577f2075ac136
           <div class="container-large">
             <div class="layout_component">
               <div class="layout_image-wrapper">
-                <img src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/64fecc2a2994b2723a1efd2f_Sejkora_posezeni%CC%81_ve_stodole_1%20Large.jpeg" loading="lazy" alt="Stodola" class="layout_image" />
+                <img src="/images/64fecc2a2994b2723a1efd2f_Sejkora_posezeni%CC%81_ve_stodole_1%20Large.jpeg" loading="lazy" alt="Stodola" class="layout_image" />
               </div>
               <div class="layout_content">
                 <div class="margin-bottom margin-small"><div class="max-width-small"><h3><span class="text-highlight">Unikátní</span> kombinace odpočinku a&nbsp;venkovního vyžití</h3></div></div>
-                <div class="margin-bottom margin-small"><img src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/647321a78126600a5a05bde0_flower.svg" loading="lazy" alt="" class="flower-divider" /></div>
+                <div class="margin-bottom margin-small"><img src="/images/647321a78126600a5a05bde0_flower.svg" loading="lazy" alt="" class="flower-divider" /></div>
                 <div class="margin-bottom margin-small"><p class="text-size-medium">Vychutnejte si dokonalý relax v naší odpočinkové stodole s finskou saunou, venkovním posezením, grilem a zábavou u ping-pongového stolu a fotbálku.</p></div>
                 <div class="margin-top margin-medium">
                   <div class="button-group"><a href="#rezervace" class="button">Rezervace</a></div>
@@ -468,7 +468,7 @@ const arrowRightIcon = "https://cdn.prod.website-files.com/646de4cb577f2075ac136
                     <div class="faq_accordion">
                       <div class="faq_question">
                         <div class="faq_question-left">
-                          <img src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e3cb5caf85a6a5230fb25_check-circlegreen.svg" loading="lazy" alt="" class="icon-1x1-xsmall" />
+                          <img src="/images/646e3cb5caf85a6a5230fb25_check-circlegreen.svg" loading="lazy" alt="" class="icon-1x1-xsmall" />
                           <div class="text-size-medium text-weight-bold">Co ceny zahrnují</div>
                         </div>
                         <div class="faq_icon"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.5303 20.8839C16.2374 21.1768 15.7626 21.1768 15.4697 20.8839L7.82318 13.2374C7.53029 12.9445 7.53029 12.4697 7.82318 12.1768L8.17674 11.8232C8.46963 11.5303 8.9445 11.5303 9.2374 11.8232L16 18.5858L22.7626 11.8232C23.0555 11.5303 23.5303 11.5303 23.8232 11.8232L24.1768 12.1768C24.4697 12.4697 24.4697 12.9445 24.1768 13.2374L16.5303 20.8839Z" fill="currentColor"></path></svg></div>
@@ -489,7 +489,7 @@ const arrowRightIcon = "https://cdn.prod.website-files.com/646de4cb577f2075ac136
                     <div class="faq_accordion">
                       <div class="faq_question">
                         <div class="faq_question-left">
-                          <img src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/647332ad89a246e55eaab85a_x-circle.svg" loading="lazy" alt="" class="icon-1x1-xsmall" />
+                          <img src="/images/647332ad89a246e55eaab85a_x-circle.svg" loading="lazy" alt="" class="icon-1x1-xsmall" />
                           <div class="text-size-medium text-weight-bold">Co ceny nezahrnují</div>
                         </div>
                         <div class="faq_icon"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.5303 20.8839C16.2374 21.1768 15.7626 21.1768 15.4697 20.8839L7.82318 13.2374C7.53029 12.9445 7.53029 12.4697 7.82318 12.1768L8.17674 11.8232C8.46963 11.5303 8.9445 11.5303 9.2374 11.8232L16 18.5858L22.7626 11.8232C23.0555 11.5303 23.5303 11.5303 23.8232 11.8232L24.1768 12.1768C24.4697 12.4697 24.4697 12.9445 24.1768 13.2374L16.5303 20.8839Z" fill="currentColor"></path></svg></div>
@@ -545,7 +545,7 @@ const arrowRightIcon = "https://cdn.prod.website-files.com/646de4cb577f2075ac136
                         <div class="faq_accordion outlined">
                           <div class="faq_question in-form">
                             <div class="faq_question-left">
-                              <img alt="" loading="lazy" src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6473783f8126600a5a41bf4b_eye.svg" class="icon-1x1-xsmall" />
+                              <img alt="" loading="lazy" src="/images/6473783f8126600a5a41bf4b_eye.svg" class="icon-1x1-xsmall" />
                               <div>Zobrazit volné termíny</div>
                             </div>
                             <div class="faq_icon"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.5303 20.8839C16.2374 21.1768 15.7626 21.1768 15.4697 20.8839L7.82318 13.2374C7.53029 12.9445 7.53029 12.4697 7.82318 12.1768L8.17674 11.8232C8.46963 11.5303 8.9445 11.5303 9.2374 11.8232L16 18.5858L22.7626 11.8232C23.0555 11.5303 23.5303 11.5303 23.8232 11.8232L24.1768 12.1768C24.4697 12.4697 24.4697 12.9445 24.1768 13.2374L16.5303 20.8839Z" fill="currentColor"></path></svg></div>
@@ -589,7 +589,7 @@ const arrowRightIcon = "https://cdn.prod.website-files.com/646de4cb577f2075ac136
 
                   <div class="success-message">
                     <div class="success-message-inner">
-                      <img src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646e3cb5caf85a6a5230fb25_check-circlegreen.svg" loading="lazy" alt="" class="icon-1x1-small" />
+                      <img src="/images/646e3cb5caf85a6a5230fb25_check-circlegreen.svg" loading="lazy" alt="" class="icon-1x1-small" />
                       <div>Děkujeme! Rezervaci potvrdíme nejpozději do&nbsp;24&nbsp;hodin.</div>
                     </div>
                   </div>

@@ -13,9 +13,9 @@ const isCzech = lang === "cs";
         <div class="padding-bottom padding-xxlarge">
           <div class="footer3_top-wrapper">
             <div class="footer3_left-wrapper">
-              <a href={isCzech ? "/" : "/en/home"} class="footer3_logo-link">
+              <a href={isCzech ? "/" : "/en/"} class="footer3_logo-link">
                 <img
-                  src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6471c066e59c749687ddcd5b_sejkora-rounded.svg"
+                  src="/images/6471c066e59c749687ddcd5b_sejkora-rounded.svg"
                   loading="lazy"
                   alt="Chalupa Sejkora"
                   class="logo-footer"
@@ -34,10 +34,10 @@ const isCzech = lang === "cs";
                 </>
               ) : (
                 <>
-                  <a href="/en/home#about" class="footer_link">About</a>
-                  <a href="/en/home#surroundings" class="footer_link">Surroundings</a>
-                  <a href="/en/home#prices" class="footer_link">Prices</a>
-                  <a href="/en/home#reservation" class="footer_link">Make a&nbsp;reservation</a>
+                  <a href="/en/#about" class="footer_link">About</a>
+                  <a href="/en/#surroundings" class="footer_link">Surroundings</a>
+                  <a href="/en/#prices" class="footer_link">Prices</a>
+                  <a href="/en/#reservation" class="footer_link">Make a&nbsp;reservation</a>
                   <a href="/en/contact" class="footer_link">Contact</a>
                 </>
               )}
@@ -65,7 +65,7 @@ const isCzech = lang === "cs";
         <div class="padding-top padding-medium">
           <div class="footer3_bottom-wrapper">
             <div class="footer3_credit-text">
-              © 2023 Chalupa Sejkora. {isCzech ? "Všechna práva vyhrazena." : "All rights reserved."}
+              © {new Date().getFullYear()} Chalupa Sejkora. {isCzech ? "Všechna práva vyhrazena." : "All rights reserved."}
             </div>
           </div>
         </div>

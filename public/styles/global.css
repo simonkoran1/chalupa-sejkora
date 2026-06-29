@@ -89,7 +89,7 @@ label { margin-bottom: .25rem; font-weight: 500; display: block; }
 
 /* Language dropdown */
 .language-dropdown { position: relative; }
-.language-toggle { background: none; border: 1px solid #9b9eb838; border-radius: .5rem; padding: 10px 28px 10px 10px; cursor: pointer; display: flex; align-items: center; }
+.language-toggle { background: none; border: 1px solid #9b9eb838; border-radius: .5rem; padding: 6px 10px; cursor: pointer; display: flex; align-items: center; gap: 4px; }
 .language-list { position: absolute; top: calc(100% + 8px); right: 0; z-index: 999; }
 .language-list[hidden] { display: none; }
 .language-list-inner { background-color: #fff; border-radius: .5rem; padding: 0 16px; box-shadow: 0 2px 20px #0000001a; min-width: 140px; }

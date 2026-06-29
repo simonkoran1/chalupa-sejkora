@@ -14,22 +14,22 @@ const navLinks = isCzech
       { href: "/kontakt", label: "Kontakt" },
     ]
   : [
-      { href: "/en/home#about", label: "About" },
-      { href: "/en/home#surroundings", label: "Surroundings" },
-      { href: "/en/home#prices", label: "Prices" },
+      { href: "/en/#about", label: "About" },
+      { href: "/en/#surroundings", label: "Surroundings" },
+      { href: "/en/#pricing", label: "Prices" },
       { href: "/en/contact", label: "Contact" },
     ];
 
-const reservationHref = isCzech ? "/#rezervace" : "/en/home#reservation";
+const reservationHref = isCzech ? "/#rezervace" : "/en/#reservation";
 const reservationLabel = isCzech ? "Rezervace" : "Make a\u00a0reservation";
-const logoHref = isCzech ? "/" : "/en/home";
+const logoHref = isCzech ? "/" : "/en/";
 ---
 
 <nav class="navbar_component" role="banner">
   <div class="navbar_container">
     <a href={logoHref} class="navbar2_logo-link" aria-label="home">
       <img
-        src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646df948098830aa252059de_sejkora-horizontal.svg"
+        src="/images/646df948098830aa252059de_sejkora-horizontal.svg"
         loading="lazy"
         alt="Chalupa Sejkora"
         class="navbar2_logo"
@@ -58,11 +58,12 @@ const logoHref = isCzech ? "/" : "/en/home";
       <!-- Language switcher -->
       <div class="language-dropdown">
         <button class="language-toggle" id="lang-toggle" aria-expanded="false">
-          <div class={`flag-1 in-dropdown${!isCzech ? " czech" : ""}`}></div>
+          <div class={isCzech ? "flag-2" : "flag-1"}></div>
+          <svg class="lang-chevron" width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.558 6.295a.667.667 0 0 1 .943 0L8 10.78l4.499-4.485a.667.667 0 0 1 .943.943l-5 4.999a.667.667 0 0 1-.942 0l-5-4.999a.667.667 0 0 1 0-.943z" fill="currentColor"/></svg>
         </button>
         <div class="language-list" id="lang-list" hidden>
           <div class="language-list-inner">
-            <a href="/en/home" class={`language-link${!isCzech ? " w--current" : ""}`}>
+            <a href="/en/" class={`language-link${!isCzech ? " w--current" : ""}`}>
               <div class="flag-1"></div><div>English</div>
             </a>
             <a href="/" class={`language-link${isCzech ? " w--current" : ""}`}>

@@ -21,11 +21,11 @@ const {
   <meta name="description" content={description} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/647386d463040bdcf0d4e98f_og-chalupa-sejkora.jpg" />
+  <meta property="og:image" content="/images/647386d463040bdcf0d4e98f_og-chalupa-sejkora.jpg" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" href="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6471bc9e651cee234dd91fbf_favicon.png" type="image/png" />
-  <link rel="apple-touch-icon" href="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6471bc4b651cee234dd8f4c6_webclip.png" />
+  <link rel="icon" href="/images/6471bc9e651cee234dd91fbf_favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/images/6471bc4b651cee234dd8f4c6_webclip.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,500,600,700,800,900" />
@@ -38,9 +38,13 @@ const {
     gtag('config', 'G-MLR0ED9RFN');
   </script>
   <link rel="stylesheet" href="/styles/global.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+  <style>html { scroll-behavior: smooth; }</style>
 </head>
 <body>
   <slot />
+  <script is:inline src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script is:inline src="https://npmcdn.com/flatpickr/dist/l10n/cs.js"></script>
   <script is:inline src="/scripts/main.js"></script>
 </body>
 </html>
