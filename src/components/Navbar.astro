@@ -1,0 +1,119 @@
+---
+export interface Props {
+  lang?: string;
+  currentPath?: string;
+}
+const { lang = "cs", currentPath = "/" } = Astro.props;
+
+const isCzech = lang === "cs";
+const navLinks = isCzech
+  ? [
+      { href: "/#o-chalupe", label: "O\u00a0chalupě" },
+      { href: "/#okoli", label: "Okolí" },
+      { href: "/#cenik", label: "Ceník" },
+      { href: "/kontakt", label: "Kontakt" },
+    ]
+  : [
+      { href: "/en/home#about", label: "About" },
+      { href: "/en/home#surroundings", label: "Surroundings" },
+      { href: "/en/home#prices", label: "Prices" },
+      { href: "/en/contact", label: "Contact" },
+    ];
+
+const reservationHref = isCzech ? "/#rezervace" : "/en/home#reservation";
+const reservationLabel = isCzech ? "Rezervace" : "Make a\u00a0reservation";
+const logoHref = isCzech ? "/" : "/en/home";
+---
+
+<nav class="navbar_component" role="banner">
+  <div class="navbar_container">
+    <a href={logoHref} class="navbar2_logo-link" aria-label="home">
+      <img
+        src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/646df948098830aa252059de_sejkora-horizontal.svg"
+        loading="lazy"
+        alt="Chalupa Sejkora"
+        class="navbar2_logo"
+      />
+    </a>
+
+    <div class="navbar2_menu" id="nav-menu">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class={`navbar_link close-navbar-on-click${currentPath === link.href ? " w--current" : ""}`}
+        >
+          {link.label}
+        </a>
+      ))}
+      <div class="mobile-cta">
+        <div class="margin-top margin-medium">
+          <div class="button-group is-center">
+            <a href={reservationHref} class="button close-navbar-on-click">{reservationLabel}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar2_button-wrapper">
+      <!-- Language switcher -->
+      <div class="language-dropdown">
+        <button class="language-toggle" id="lang-toggle" aria-expanded="false">
+          <div class={`flag-1 in-dropdown${!isCzech ? " czech" : ""}`}></div>
+        </button>
+        <div class="language-list" id="lang-list" hidden>
+          <div class="language-list-inner">
+            <a href="/en/home" class={`language-link${!isCzech ? " w--current" : ""}`}>
+              <div class="flag-1"></div><div>English</div>
+            </a>
+            <a href="/" class={`language-link${isCzech ? " w--current" : ""}`}>
+              <div class="flag-2"></div><div>Czech</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a href={reservationHref} class="button is-navbar2-button">{reservationLabel}</a>
+
+      <button class="navbar_menu-button" id="menu-toggle" aria-label="menu" aria-expanded="false" aria-controls="nav-menu">
+        <div class="menu-icon2">
+          <div class="menu-icon2_line-top"></div>
+          <div class="menu-icon2_line-middle"><div class="menu-icon_line-middle-inner"></div></div>
+          <div class="menu-icon2_line-bottom"></div>
+        </div>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menu-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  menuToggle?.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', String(!expanded));
+    navMenu?.classList.toggle('is-open');
+  });
+
+  // Close menu on link click (mobile)
+  document.querySelectorAll('.close-navbar-on-click').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu?.classList.remove('is-open');
+      menuToggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Language dropdown
+  const langToggle = document.getElementById('lang-toggle');
+  const langList = document.getElementById('lang-list');
+  langToggle?.addEventListener('click', () => {
+    const hidden = langList?.hidden;
+    if (langList) langList.hidden = !hidden;
+    langToggle.setAttribute('aria-expanded', String(!!hidden));
+  });
+  document.addEventListener('click', (e) => {
+    if (!langToggle?.contains(e.target as Node) && !langList?.contains(e.target as Node)) {
+      if (langList) langList.hidden = true;
+    }
+  });
+</script>

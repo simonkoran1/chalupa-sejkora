@@ -1,0 +1,75 @@
+---
+export interface Props {
+  lang?: string;
+}
+const { lang = "cs" } = Astro.props;
+const isCzech = lang === "cs";
+---
+
+<footer class="footer">
+  <div class="padding-global">
+    <div class="container-large">
+      <div class="padding-vertical padding-xxlarge">
+        <div class="padding-bottom padding-xxlarge">
+          <div class="footer3_top-wrapper">
+            <div class="footer3_left-wrapper">
+              <a href={isCzech ? "/" : "/en/home"} class="footer3_logo-link">
+                <img
+                  src="https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6471c066e59c749687ddcd5b_sejkora-rounded.svg"
+                  loading="lazy"
+                  alt="Chalupa Sejkora"
+                  class="logo-footer"
+                />
+              </a>
+            </div>
+
+            <div class="footer3_link-list">
+              {isCzech ? (
+                <>
+                  <a href="/#o-chalupe" class="footer_link">O chalupě</a>
+                  <a href="/#okoli" class="footer_link">Okolí</a>
+                  <a href="/#cenik" class="footer_link">Ceník</a>
+                  <a href="/#rezervace" class="footer_link">Rezervace</a>
+                  <a href="/kontakt" class="footer_link">Kontakt</a>
+                </>
+              ) : (
+                <>
+                  <a href="/en/home#about" class="footer_link">About</a>
+                  <a href="/en/home#surroundings" class="footer_link">Surroundings</a>
+                  <a href="/en/home#prices" class="footer_link">Prices</a>
+                  <a href="/en/home#reservation" class="footer_link">Make a&nbsp;reservation</a>
+                  <a href="/en/contact" class="footer_link">Contact</a>
+                </>
+              )}
+            </div>
+
+            <div class="footer3_details-wrapper">
+              <div class="margin-bottom margin-medium">
+                <div>
+                  <span class="text-weight-bold text-size-medium">{isCzech ? "Adresa:" : "Address"}<br /></span>
+                  Vysoké nad Jizerou 50,<br />
+                  512 11 Vysoké nad Jizerou<br />
+                  {isCzech ? "Česká republika" : "Czech Republic"}<br />
+                  <br />
+                  <span class="text-weight-bold text-size-medium">{isCzech ? "Kontakt:" : "Contact"}<br /></span>
+                  <a href="tel:+420777356678" class="text-style-link">+420 777 356 678<br /></a>
+                  <a href="mailto:ahoj@chalupasejkora.cz" class="text-style-link">ahoj@chalupasejkora.cz</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="line-divider"></div>
+
+        <div class="padding-top padding-medium">
+          <div class="footer3_bottom-wrapper">
+            <div class="footer3_credit-text">
+              © 2023 Chalupa Sejkora. {isCzech ? "Všechna práva vyhrazena." : "All rights reserved."}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

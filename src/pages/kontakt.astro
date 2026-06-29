@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Kontakt – Chalupa Sejkora" lang="cs">
+  <div class="page-wrapper" id="uvod">
+    <Navbar lang="cs" currentPath="/kontakt" />
+
+    <main class="main-wrapper">
+      <header class="section side-flowers">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-large">
+              <div class="header_component">
+                <div class="text-align-center">
+                  <div class="max-width-large">
+                    <div class="margin-bottom margin-small">
+                      <div class="margin-bottom margin-small">
+                        <div class="text-note-icon">
+                          <div class="text-note">kontakt</div>
+                        </div>
+                      </div>
+                      <h1>Jak <span class="text-highlight">vám</span> můžeme pomoci?</h1>
+                    </div>
+                    <div>
+                      <span class="text-weight-bold text-size-medium">Adresa: <br /></span>
+                      Vysoké nad Jizerou 50,<br />
+                      512 11 Vysoké nad Jizerou<br />
+                      Česká republika<br /><br />
+                      <span class="text-weight-bold text-size-medium">Kontakt:<br /></span>
+                      <a href="tel:+420777356678" class="text-style-link">+420 777 356 678<br /></a>
+                      <a href="mailto:ahoj@chalupasejkora.cz" class="text-style-link">ahoj@chalupasejkora.cz</a><br /><br />
+                      <span class="text-weight-bold text-size-medium">Provozovatel: <br /></span>
+                      KOJA invest, s.r.o.<br />
+                      IČ: 076 07 571 • DIČ: CZ07607571<br />
+                      Plzákova 1139/6, 197 00 Praha 9 – Kbely
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="section background-color-white">
+        <iframe
+          style="border:none; display:block; width:100%;"
+          src="https://frame.mapy.cz/s/gatosucumu"
+          width="100%"
+          height="600"
+          frameborder="0"
+          title="Mapa"
+        ></iframe>
+      </section>
+    </main>
+
+    <Footer lang="cs" />
+  </div>
+</Layout>
