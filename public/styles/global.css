@@ -80,7 +80,7 @@ label { margin-bottom: .25rem; font-weight: 500; display: block; }
 .navbar_link { padding: .5rem 1.4rem; text-decoration: none; color: var(--text); transition: opacity .2s; }
 .navbar_link:hover { opacity: .4; }
 .navbar_link.w--current { color: var(--black); }
-.navbar2_button-wrapper { display: flex; align-items: center; gap: 1rem; }
+.navbar2_button-wrapper { display: flex; align-items: center; gap: 0.5rem; }
 .navbar_menu-button { display: none; background: none; border: none; cursor: pointer; padding: 0; }
 .menu-icon2 { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 48px; height: 48px; }
 .menu-icon2_line-top, .menu-icon2_line-bottom { background-color: var(--black); width: 24px; height: 2px; display: block; }
@@ -186,7 +186,7 @@ label { margin-bottom: .25rem; font-weight: 500; display: block; }
 .gallery_text-wrap { margin-top: 1.2rem; margin-left: 1.2rem; display: flex; flex-direction: column; gap: .4rem; }
 .gallery-hover-overlay { position: absolute; inset: 0; background-color: rgba(0,0,0,.66); display: none; justify-content: center; align-items: center; }
 .gallery_image-wrapper:hover .gallery-hover-overlay { display: flex; }
-.gallery_slide-nav { position: absolute; bottom: 1rem; left: 1.2rem; display: flex; gap: 4px; height: 1.75rem; align-items: center; flex-wrap: wrap; max-width: calc(100% - 8rem); }
+.gallery_slide-nav { position: absolute; bottom: 1rem; left: 1.2rem; display: none; gap: 4px; height: 1.75rem; align-items: center; flex-wrap: wrap; max-width: calc(100% - 8rem); }
 .w-slider-dot { width: 20px; height: 2px; background-color: #C0CDC8; border: none; cursor: pointer; padding: 0; transition: background-color .1s; }
 .w-slider-dot.w-active { background-color: #13141f; }
 .gallery21_arrow { position: absolute; bottom: 0; right: 1rem; background-color: #1f1b17; border: 1px solid #1f1b17; border-radius: 100%; display: flex; justify-content: center; align-items: center; width: 2.75rem; height: 2.75rem; cursor: pointer; transition: opacity .2s; color: white; z-index: 1; }
