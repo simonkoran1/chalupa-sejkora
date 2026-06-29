@@ -178,7 +178,7 @@ label { margin-bottom: .25rem; font-weight: 500; display: block; }
 
 /* ===== GALLERY ===== */
 .gallery_slider { position: relative; padding-bottom: 5rem; }
-.gallery_mask { display: flex; overflow: hidden; }
+.gallery_mask { display: flex; overflow: hidden; transition: transform 500ms ease; }
 .gallery_slide { flex-shrink: 0; width: 33.333%; padding-right: 1rem; position: relative; }
 .gallery_lightbox-link { display: block; text-decoration: none; }
 .gallery_image-wrapper { border-radius: 1rem; width: 100%; padding-top: 80%; position: relative; overflow: hidden; min-height: 20rem; }
