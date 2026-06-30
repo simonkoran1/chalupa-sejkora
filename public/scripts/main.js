@@ -169,7 +169,7 @@ if (typeof flatpickr !== 'undefined' && document.getElementById('date-range')) {
       minDate: 'today',
       locale: isCs ? 'cs' : 'default',
       disableMobile: true,
-      // Only disable fully booked interior days; arrival/departure days stay clickable
+      showMonths: window.innerWidth >= 768 ? 2 : 1,
       disable: [(date) => bookedSet.has(toISO(date))],
       onDayCreate(_, __, ___, dayElem) {
         const iso = toISO(dayElem.dateObj);

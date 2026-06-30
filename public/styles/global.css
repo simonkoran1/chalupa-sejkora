@@ -233,45 +233,58 @@ label { margin-bottom: .25rem; font-weight: 500; display: block; }
 .form-note { text-align: center; border: 1px solid #233022; border-radius: .35rem; margin-top: 1rem; padding: 1rem; display: none; }
 .flatpickr-range { background-image: url("https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6470af2f041bb767ea0e2406_calendar.svg"); background-position: 12px center; background-repeat: no-repeat; background-size: 20px 20px; padding-left: 2.5rem; cursor: pointer; }
 
-/* ===== FLATPICKR CALENDAR REDESIGN ===== */
-.flatpickr-calendar { font-family: inherit; border-radius: 1.25rem; box-shadow: 0 8px 40px rgba(0,0,0,0.14); border: 1px solid #dce8e2; padding: 1rem 1rem 1.25rem; width: auto; }
-.flatpickr-months { padding: 0 .1rem .6rem; align-items: center; }
-.flatpickr-month { color: var(--text); height: 2rem; }
-.flatpickr-current-month { font-size: 1.05rem; font-weight: 600; padding-top: .2rem; }
-.flatpickr-current-month .cur-month { font-weight: 600; }
-.flatpickr-current-month input.cur-year { font-weight: 500; }
-.flatpickr-prev-month, .flatpickr-next-month { height: 2rem; padding: 4px 10px; line-height: 1.6rem; color: var(--text) !important; fill: var(--text) !important; }
-.flatpickr-prev-month svg, .flatpickr-next-month svg { width: 13px; height: 13px; }
-@media (hover: hover) { .flatpickr-prev-month:hover, .flatpickr-next-month:hover { opacity: .45; background: none; } }
+/* ===== FLATPICKR — AIRBNB STYLE ===== */
+.flatpickr-calendar { font-family: inherit; background: #fff; border-radius: 1.5rem; box-shadow: 0 6px 36px rgba(0,0,0,0.16); border: 1px solid #e0e0e0; padding: 1.5rem 1.75rem 1.75rem; width: auto !important; }
+.flatpickr-months { padding-bottom: 1rem; }
+.flatpickr-month { color: var(--text); height: 2.5rem; }
+.flatpickr-current-month { font-size: 1rem; font-weight: 700; padding-top: .4rem; }
+.flatpickr-current-month .cur-month { font-weight: 700; }
+.flatpickr-current-month input.cur-year { font-weight: 700; }
+.flatpickr-prev-month, .flatpickr-next-month { height: 2.5rem; line-height: 2.5rem; padding: 0 .75rem; color: var(--text) !important; fill: var(--text) !important; top: 1.5rem; }
+.flatpickr-prev-month svg, .flatpickr-next-month svg { width: 12px; height: 12px; }
+@media (hover: hover) { .flatpickr-prev-month:hover, .flatpickr-next-month:hover { background: #f5f5f5; border-radius: 50%; } }
+/* Hide internal month nav on second month in two-month view */
+.flatpickr-calendar.multiMonth .flatpickr-months .flatpickr-month:not(:first-child) .flatpickr-prev-month { display: none; }
 
-.flatpickr-weekdays { margin-bottom: .2rem; }
-span.flatpickr-weekday { color: var(--text); font-weight: 600; font-size: .78rem; opacity: .45; }
+.flatpickr-rContainer { display: inline-block; }
+.flatpickr-weekdays { margin-bottom: .4rem; }
+span.flatpickr-weekday { font-size: .75rem; font-weight: 600; color: #717171; }
+.flatpickr-weekdaycontainer { gap: 0; }
 
 .flatpickr-days { border: none; }
-.dayContainer { padding: 0; min-width: 0; max-width: none; width: auto; }
-.flatpickr-day { border-radius: .6rem; border: none; height: 2.75rem; line-height: 2.75rem; max-width: 2.75rem; width: 2.75rem; font-size: .92rem; color: var(--text); margin: 1.5px; transition: background .12s; }
-@media (hover: hover) { .flatpickr-day:not(.flatpickr-disabled):not(.startRange):not(.endRange):not(.inRange):hover { background: #eef5f1; border-color: transparent; } }
+.flatpickr-innerContainer { border: none; }
+.dayContainer { padding: 0; min-width: 0; max-width: none; width: auto; gap: 0; }
+/* Two-month separator */
+.flatpickr-calendar.multiMonth .flatpickr-days .dayContainer:first-child { padding-right: 1.75rem; border-right: 1px solid #e8e8e8; }
+.flatpickr-calendar.multiMonth .flatpickr-days .dayContainer:last-child { padding-left: 1.75rem; }
+
+.flatpickr-day { border-radius: 50%; border: none; height: 3rem; line-height: 3rem; max-width: 3rem; width: 3rem; font-size: .95rem; font-weight: 400; color: var(--text); margin: 1px; transition: background .1s; }
+@media (hover: hover) { .flatpickr-day:not(.flatpickr-disabled):not(.startRange):not(.endRange):not(.inRange):hover { background: #f0f0f0; border-color: transparent; font-weight: 600; } }
 
 /* Today */
-.flatpickr-day.today:not(.startRange):not(.endRange) { box-shadow: inset 0 0 0 1.5px var(--text); font-weight: 600; background: none; }
+.flatpickr-day.today:not(.startRange):not(.endRange):not(.inRange) { font-weight: 800; text-decoration: underline; background: none; box-shadow: none; border: none; }
 
-/* Other month */
-.flatpickr-day.prevMonthDay, .flatpickr-day.nextMonthDay { opacity: .2; }
+/* Other month — hidden like Airbnb */
+.flatpickr-day.prevMonthDay, .flatpickr-day.nextMonthDay { visibility: hidden; }
 
-/* Selected range */
-.flatpickr-day.inRange { background: #d6f0e4 !important; border-color: transparent !important; border-radius: 0 !important; box-shadow: -4px 0 0 #d6f0e4, 4px 0 0 #d6f0e4 !important; color: var(--text); }
-.flatpickr-day.startRange, .flatpickr-day.endRange { background: var(--text) !important; border-color: var(--text) !important; color: #fff !important; border-radius: .6rem !important; box-shadow: none !important; }
-.flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange { border-radius: .6rem !important; }
-.flatpickr-day.startRange + .inRange { box-shadow: -4px 0 0 #d6f0e4, 4px 0 0 #d6f0e4 !important; }
+/* Range fill */
+.flatpickr-day.inRange { background: #f0f0f0 !important; border-color: transparent !important; border-radius: 0 !important; box-shadow: -5px 0 0 #f0f0f0, 5px 0 0 #f0f0f0 !important; color: var(--text); }
+.flatpickr-day.startRange, .flatpickr-day.startRange:hover, .flatpickr-day.endRange, .flatpickr-day.endRange:hover { background: var(--text) !important; border-color: var(--text) !important; color: #fff !important; border-radius: 50% !important; font-weight: 600; box-shadow: none !important; }
+.flatpickr-day.startRange + .inRange, .flatpickr-day.endRange.inRange { box-shadow: -5px 0 0 #f0f0f0, 5px 0 0 #f0f0f0 !important; }
+/* Blend range into start/end caps */
+.flatpickr-day.startRange ~ .inRange { box-shadow: -5px 0 0 #f0f0f0, 5px 0 0 #f0f0f0 !important; }
+.flatpickr-day.endRange.inRange { border-radius: 50% !important; }
 
-/* Booked / disabled */
-.flatpickr-day.flatpickr-disabled, .flatpickr-day.flatpickr-disabled:hover { color: #bbb !important; background: repeating-linear-gradient(135deg, #faf0f0, #faf0f0 3px, #f5dede 3px, #f5dede 6px) !important; border-color: transparent !important; cursor: not-allowed !important; }
+/* Disabled / fully booked — Airbnb uses strikethrough */
+.flatpickr-day.flatpickr-disabled, .flatpickr-day.flatpickr-disabled:hover { color: #b0b0b0 !important; text-decoration: line-through !important; background: none !important; border: none !important; cursor: not-allowed !important; }
 
-/* Split-day: arrival — top-left white (checkout ok), bottom-right hatched (new guests arriving) */
+/* Split-day: arrival — top-left white (checkout ok), bottom-right hatched (new guests arriving afternoon) */
 .flatpickr-day.is-arrival-day {
   background:
     linear-gradient(135deg, #fff 50%, transparent 50%),
-    repeating-linear-gradient(135deg, transparent, transparent 3px, #f5dede 3px, #f5dede 6px) !important;
+    repeating-linear-gradient(135deg, transparent, transparent 3px, #e8e8e8 3px, #e8e8e8 6px) !important;
+  border-radius: 50% !important;
+  overflow: hidden;
 }
 .flatpickr-day.is-arrival-day.endRange { background: var(--text) !important; }
 
@@ -279,7 +292,9 @@ span.flatpickr-weekday { color: var(--text); font-weight: 600; font-size: .78rem
 .flatpickr-day.is-departure-day {
   background:
     linear-gradient(135deg, transparent 50%, #fff 50%),
-    repeating-linear-gradient(135deg, transparent, transparent 3px, #f5dede 3px, #f5dede 6px) !important;
+    repeating-linear-gradient(135deg, transparent, transparent 3px, #e8e8e8 3px, #e8e8e8 6px) !important;
+  border-radius: 50% !important;
+  overflow: hidden;
 }
 .flatpickr-day.is-departure-day.startRange { background: var(--text) !important; }
 .faq_answer-wrap.is-relative { position: relative; }
