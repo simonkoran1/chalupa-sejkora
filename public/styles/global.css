@@ -267,15 +267,21 @@ span.flatpickr-weekday { color: var(--text); font-weight: 600; font-size: .78rem
 /* Booked / disabled */
 .flatpickr-day.flatpickr-disabled, .flatpickr-day.flatpickr-disabled:hover { color: #bbb !important; background: repeating-linear-gradient(135deg, #faf0f0, #faf0f0 3px, #f5dede 3px, #f5dede 6px) !important; border-color: transparent !important; cursor: not-allowed !important; }
 
-/* Split-day: arrival (left half free / right half booked) */
-.flatpickr-day.is-arrival-day { background: linear-gradient(135deg, #d6f0e4 50%, #f5dede 50%); }
+/* Split-day: arrival — top-left white (checkout ok), bottom-right hatched (new guests arriving) */
+.flatpickr-day.is-arrival-day {
+  background:
+    linear-gradient(135deg, #fff 50%, transparent 50%),
+    repeating-linear-gradient(135deg, transparent, transparent 3px, #f5dede 3px, #f5dede 6px) !important;
+}
 .flatpickr-day.is-arrival-day.endRange { background: var(--text) !important; }
-@media (hover: hover) { .flatpickr-day.is-arrival-day:hover { background: linear-gradient(135deg, #c4e8d7 50%, #edcaca 50%); } }
 
-/* Split-day: departure (left half booked / right half free) */
-.flatpickr-day.is-departure-day { background: linear-gradient(135deg, #f5dede 50%, #d6f0e4 50%); }
+/* Split-day: departure — top-left hatched (previous guests), bottom-right white (checkin ok) */
+.flatpickr-day.is-departure-day {
+  background:
+    linear-gradient(135deg, transparent 50%, #fff 50%),
+    repeating-linear-gradient(135deg, transparent, transparent 3px, #f5dede 3px, #f5dede 6px) !important;
+}
 .flatpickr-day.is-departure-day.startRange { background: var(--text) !important; }
-@media (hover: hover) { .flatpickr-day.is-departure-day:hover { background: linear-gradient(135deg, #edcaca 50%, #c4e8d7 50%); } }
 .faq_answer-wrap.is-relative { position: relative; }
 .empty-overlay { position: absolute; inset: 0; z-index: 1; }
 .success-message { background-color: #fff; border-radius: .35rem; padding: 2rem; display: none; }
