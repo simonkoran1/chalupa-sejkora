@@ -270,6 +270,8 @@ label { margin-bottom: .25rem; font-weight: 500; display: block; }
   .footer3_top-wrapper { grid-template-columns: 1fr; gap: 2rem; }
   .navbar_menu-button { display: flex; }
   .navbar_container { position: relative; z-index: 1001; }
+  .navbar2_logo-link { position: relative; z-index: 1001; }
+  .navbar2_button-wrapper { position: relative; z-index: 1001; }
   .navbar2_menu { display: none; flex-direction: column; align-items: center; justify-content: center; position: fixed; inset: 0; background: white; padding: 2rem 5%; z-index: 999; gap: 0.25rem; overflow-y: auto; }
   .navbar2_menu.is-open { display: flex; }
   .button.is-navbar2-button { display: none; }
