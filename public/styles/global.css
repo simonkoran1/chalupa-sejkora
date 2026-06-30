@@ -260,9 +260,9 @@ label { margin-bottom: .25rem; font-weight: 500; display: block; }
 .flatpickr-months .flatpickr-next-month:hover svg path { fill: var(--text) !important; }
 
 .flatpickr-rContainer { display: inline-block; }
-.flatpickr-weekdays { margin-bottom: .5rem; }
-span.flatpickr-weekday { font-size: .78rem; font-weight: 600; color: #888; }
-.flatpickr-weekdaycontainer { gap: 0; }
+.flatpickr-weekdays { margin-bottom: .5rem; width: auto; }
+.flatpickr-weekdaycontainer { flex: none !important; gap: 0; }
+span.flatpickr-weekday { flex: none !important; width: 3.5rem; font-size: .78rem; font-weight: 600; color: #888; }
 
 .flatpickr-days { border: none; }
 .flatpickr-innerContainer { border: none; }
@@ -283,34 +283,15 @@ span.flatpickr-weekday { font-size: .78rem; font-weight: 600; color: #888; }
 /* Range fill — continuous grey band, generous box-shadow to eliminate any cell gaps */
 .flatpickr-day.inRange { background: #f0f0f0 !important; border-color: transparent !important; border-radius: 0 !important; box-shadow: -10px 0 0 #f0f0f0, 10px 0 0 #f0f0f0 !important; color: var(--text); }
 
-/* Start cap: large dark circle, grey extends right to meet inRange */
-.flatpickr-day.startRange, .flatpickr-day.startRange:hover {
-  background:
-    radial-gradient(circle at center, var(--text) 50%, transparent 50%),
-    linear-gradient(to right, transparent 50%, #f0f0f0 50%) !important;
-  border-radius: 0 !important;
-  color: #fff !important;
-  font-weight: 600;
-  box-shadow: none !important;
-  border: none !important;
-}
-
-/* End cap: large dark circle, grey extends left to meet inRange */
+/* Start / end cap: plain dark circle */
+.flatpickr-day.startRange, .flatpickr-day.startRange:hover,
 .flatpickr-day.endRange, .flatpickr-day.endRange:hover {
-  background:
-    radial-gradient(circle at center, var(--text) 50%, transparent 50%),
-    linear-gradient(to right, #f0f0f0 50%, transparent 50%) !important;
-  border-radius: 0 !important;
+  background: #141b13 !important;
+  border-radius: 50% !important;
   color: #fff !important;
   font-weight: 600;
   box-shadow: none !important;
   border: none !important;
-}
-
-/* Single day selected (start = end) — just a circle, no grey */
-.flatpickr-day.startRange.endRange, .flatpickr-day.startRange.endRange:hover {
-  background: var(--text) !important;
-  border-radius: 50% !important;
 }
 
 /* Disabled / fully booked */
