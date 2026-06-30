@@ -234,36 +234,42 @@ label { margin-bottom: .25rem; font-weight: 500; display: block; }
 .flatpickr-range { background-image: url("https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6470af2f041bb767ea0e2406_calendar.svg"); background-position: 12px center; background-repeat: no-repeat; background-size: 20px 20px; padding-left: 2.5rem; cursor: pointer; }
 
 /* ===== FLATPICKR — AIRBNB STYLE ===== */
-.flatpickr-calendar { font-family: inherit; background: #fff; border-radius: 1.5rem; box-shadow: 0 6px 36px rgba(0,0,0,0.16); border: 1px solid #e0e0e0; padding: 1.5rem 1.75rem 1.75rem; width: auto !important; }
-.flatpickr-months { padding-bottom: 1rem; }
-.flatpickr-month { color: var(--text); height: 2.5rem; }
-.flatpickr-current-month { font-size: 1rem; font-weight: 700; padding-top: .4rem; }
+.flatpickr-calendar { font-family: inherit; background: #fff; border-radius: 1.5rem; box-shadow: 0 6px 36px rgba(0,0,0,0.16); border: 1px solid #e0e0e0; padding: 2rem 2.25rem 2.25rem; width: auto !important; }
+.flatpickr-months { padding-bottom: 1.25rem; position: relative; }
+.flatpickr-month { color: var(--text); height: 2.25rem; }
+.flatpickr-current-month { font-size: 1rem; font-weight: 700; padding-top: .3rem; }
 .flatpickr-current-month .cur-month { font-weight: 700; }
 .flatpickr-current-month input.cur-year { font-weight: 700; }
+
+/* Arrow buttons: perfectly centered circle around the icon */
 .flatpickr-months .flatpickr-prev-month,
-.flatpickr-months .flatpickr-next-month { width: 2rem; height: 2rem; padding: 0; top: 0; line-height: 2rem; text-align: center; color: var(--text) !important; fill: var(--text) !important; border-radius: 50%; }
+.flatpickr-months .flatpickr-next-month {
+  width: 2.25rem; height: 2.25rem; padding: 0;
+  top: 0; bottom: 0; margin: auto;
+  display: flex !important; align-items: center; justify-content: center;
+  color: var(--text) !important; fill: var(--text) !important;
+  border-radius: 50%;
+}
 .flatpickr-months .flatpickr-prev-month svg,
-.flatpickr-months .flatpickr-next-month svg { width: 12px; height: 12px; vertical-align: middle; }
+.flatpickr-months .flatpickr-next-month svg { width: 11px; height: 11px; display: block; flex-shrink: 0; }
 .flatpickr-months .flatpickr-prev-month svg path,
 .flatpickr-months .flatpickr-next-month svg path { fill: var(--text) !important; transition: none; }
 .flatpickr-months .flatpickr-prev-month:hover,
-.flatpickr-months .flatpickr-next-month:hover { color: var(--text) !important; fill: var(--text) !important; background: #f0f0f0; }
-.flatpickr-months .flatpickr-prev-month:hover svg,
-.flatpickr-months .flatpickr-next-month:hover svg { fill: var(--text) !important; }
+.flatpickr-months .flatpickr-next-month:hover { color: var(--text) !important; background: #ebebeb; }
 .flatpickr-months .flatpickr-prev-month:hover svg path,
 .flatpickr-months .flatpickr-next-month:hover svg path { fill: var(--text) !important; }
 
 .flatpickr-rContainer { display: inline-block; }
-.flatpickr-weekdays { margin-bottom: .4rem; }
-span.flatpickr-weekday { font-size: .75rem; font-weight: 600; color: #717171; }
+.flatpickr-weekdays { margin-bottom: .5rem; }
+span.flatpickr-weekday { font-size: .78rem; font-weight: 600; color: #888; }
 .flatpickr-weekdaycontainer { gap: 0; }
 
 .flatpickr-days { border: none; }
 .flatpickr-innerContainer { border: none; }
 .dayContainer { padding: 0; min-width: 0; max-width: none; width: auto; gap: 0; }
 /* Two-month separator */
-.flatpickr-calendar.multiMonth .flatpickr-days .dayContainer:first-child { padding-right: 1.75rem; border-right: 1px solid #e8e8e8; }
-.flatpickr-calendar.multiMonth .flatpickr-days .dayContainer:last-child { padding-left: 1.75rem; }
+.flatpickr-calendar.multiMonth .flatpickr-days .dayContainer:first-child { padding-right: 2rem; border-right: 1px solid #e8e8e8; }
+.flatpickr-calendar.multiMonth .flatpickr-days .dayContainer:last-child { padding-left: 2rem; }
 
 .flatpickr-day { border-radius: 50%; border: none; height: 3.5rem; line-height: 3.5rem; max-width: 3.5rem; width: 3.5rem; font-size: 1rem; font-weight: 400; color: var(--text); margin: 0; transition: background .1s; }
 @media (hover: hover) { .flatpickr-day:not(.flatpickr-disabled):not(.startRange):not(.endRange):not(.inRange):hover { background: #f0f0f0; border-color: transparent; font-weight: 600; } }
