@@ -5,10 +5,13 @@
 	"name": "my-site",
 	"main": "@astrojs/cloudflare/entrypoints/server",
 	"assets": {
-		"directory": "./dist",
+		"directory": "./dist/client",
 		"binding": "ASSETS"
 	},
 	"observability": {
 		"enabled": true
+	},
+	"build": {
+		"command": "npm run build"
 	}
 }
