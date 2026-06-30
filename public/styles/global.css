@@ -83,8 +83,11 @@ label { margin-bottom: .25rem; font-weight: 500; display: block; }
 .navbar2_button-wrapper { display: flex; align-items: center; gap: 0.5rem; }
 .navbar_menu-button { display: none; background: none; border: none; cursor: pointer; padding: 0; }
 .menu-icon2 { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 48px; height: 48px; }
-.menu-icon2_line-top, .menu-icon2_line-bottom { background-color: var(--black); width: 24px; height: 2px; display: block; }
-.menu-icon2_line-middle { background-color: var(--black); width: 24px; height: 2px; margin: 6px 0; }
+.menu-icon2_line-top, .menu-icon2_line-bottom { background-color: var(--black); width: 24px; height: 2px; display: block; transition: transform .2s ease; }
+.menu-icon2_line-middle { background-color: var(--black); width: 24px; height: 2px; margin: 6px 0; transition: opacity .15s ease; }
+#menu-toggle[aria-expanded="true"] .menu-icon2_line-top { transform: translateY(8px) rotate(45deg); }
+#menu-toggle[aria-expanded="true"] .menu-icon2_line-middle { opacity: 0; }
+#menu-toggle[aria-expanded="true"] .menu-icon2_line-bottom { transform: translateY(-8px) rotate(-45deg); }
 .mobile-cta { display: none; }
 
 /* Language dropdown */
@@ -197,10 +200,10 @@ label { margin-bottom: .25rem; font-weight: 500; display: block; }
 .lightbox-backdrop.open { display: flex; }
 .lightbox-img { max-width: 90vw; max-height: 85vh; border-radius: 12px; object-fit: contain; }
 .lightbox-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; z-index: 1; line-height: 1; }
-.lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.15); border: none; color: white; font-size: 1.5rem; cursor: pointer; z-index: 1; width: 3rem; height: 3rem; border-radius: 100%; display: flex; align-items: center; justify-content: center; transition: background .2s; }
+.lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); background: white; border: none; color: var(--text); cursor: pointer; z-index: 1; width: 2.75rem; height: 2.75rem; border-radius: 100%; display: flex; align-items: center; justify-content: center; transition: opacity .2s; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
 .lightbox-prev { left: 1rem; }
 .lightbox-next { right: 1rem; }
-@media (hover: hover) { .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.3); } }
+@media (hover: hover) { .lightbox-prev:hover, .lightbox-next:hover { opacity: .7; } }
 .lightbox-caption { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.7); font-size: .875rem; white-space: nowrap; text-align: center; }
 
 /* ===== PRICING ===== */
@@ -214,7 +217,8 @@ label { margin-bottom: .25rem; font-weight: 500; display: block; }
 .tags-wrapper { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
 .small-tag { white-space: nowrap; background-color: #e5efeb; border: 1px solid #e5efeb; border-radius: .15rem; padding: .2rem .6rem; font-size: .875rem; font-weight: 500; }
 .small-tag.big { color: var(--white); background-color: #192218; border-color: #233022; }
-.small-tag.big.orange { color: #182217; background-color: #eed597; border-color: #eed597; }
+.small-tag.big.green { color: #0d2b1e; background-color: rgb(121, 227, 184); border-color: rgb(121, 227, 184); }
+.small-tag.big.orange { color: #182217; background-color: rgb(238, 213, 151); border-color: rgb(238, 213, 151); }
 
 /* ===== FORM ===== */
 .form-wrapper { display: grid; gap: 1.5rem; background-color: #fff; border-radius: .35rem; padding: 2rem; overflow: hidden; width: 100%; }
@@ -265,7 +269,7 @@ label { margin-bottom: .25rem; font-weight: 500; display: block; }
   .pricing_components { grid-template-columns: 1fr; }
   .footer3_top-wrapper { grid-template-columns: 1fr; gap: 2rem; }
   .navbar_menu-button { display: flex; }
-  .navbar2_menu { display: none; flex-direction: column; align-items: center; position: absolute; top: 4.5rem; left: 0; right: 0; background: white; padding: 1rem 5% 2.5rem; border-bottom: 1px solid #000; z-index: 999; max-height: 100dvh; overflow-y: auto; }
+  .navbar2_menu { display: none; flex-direction: column; align-items: center; justify-content: center; position: fixed; inset: 0; background: white; padding: 2rem 5%; z-index: 999; gap: 0.25rem; overflow-y: auto; }
   .navbar2_menu.is-open { display: flex; }
   .button.is-navbar2-button { display: none; }
   .mobile-cta { display: block; width: 100%; text-align: center; }
