@@ -267,36 +267,41 @@ span.flatpickr-weekday { font-size: .75rem; font-weight: 600; color: #717171; }
 /* Other month — hidden like Airbnb */
 .flatpickr-day.prevMonthDay, .flatpickr-day.nextMonthDay { visibility: hidden; }
 
-/* Range fill */
+/* Range fill — continuous grey band */
 .flatpickr-day.inRange { background: #f0f0f0 !important; border-color: transparent !important; border-radius: 0 !important; box-shadow: -5px 0 0 #f0f0f0, 5px 0 0 #f0f0f0 !important; color: var(--text); }
-.flatpickr-day.startRange, .flatpickr-day.startRange:hover, .flatpickr-day.endRange, .flatpickr-day.endRange:hover { background: var(--text) !important; border-color: var(--text) !important; color: #fff !important; border-radius: 50% !important; font-weight: 600; box-shadow: none !important; }
-.flatpickr-day.startRange + .inRange, .flatpickr-day.endRange.inRange { box-shadow: -5px 0 0 #f0f0f0, 5px 0 0 #f0f0f0 !important; }
-/* Blend range into start/end caps */
-.flatpickr-day.startRange ~ .inRange { box-shadow: -5px 0 0 #f0f0f0, 5px 0 0 #f0f0f0 !important; }
-.flatpickr-day.endRange.inRange { border-radius: 50% !important; }
 
-/* Disabled / fully booked — Airbnb uses strikethrough */
+/* Start cap: dark circle via radial-gradient, grey extends right to meet inRange */
+.flatpickr-day.startRange, .flatpickr-day.startRange:hover {
+  background:
+    radial-gradient(circle at center, var(--text) 45%, transparent 46%),
+    linear-gradient(to right, transparent 50%, #f0f0f0 50%) !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+  font-weight: 600;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* End cap: dark circle, grey extends left to meet inRange */
+.flatpickr-day.endRange, .flatpickr-day.endRange:hover {
+  background:
+    radial-gradient(circle at center, var(--text) 45%, transparent 46%),
+    linear-gradient(to right, #f0f0f0 50%, transparent 50%) !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+  font-weight: 600;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Single day selected (start = end) — just a circle, no grey */
+.flatpickr-day.startRange.endRange, .flatpickr-day.startRange.endRange:hover {
+  background: var(--text) !important;
+  border-radius: 50% !important;
+}
+
+/* Disabled / fully booked */
 .flatpickr-day.flatpickr-disabled, .flatpickr-day.flatpickr-disabled:hover { color: #b0b0b0 !important; text-decoration: line-through !important; background: none !important; border: none !important; cursor: not-allowed !important; }
-
-/* Split-day: arrival — top-left white (checkout ok), bottom-right hatched (new guests arriving afternoon) */
-.flatpickr-day.is-arrival-day {
-  background:
-    linear-gradient(135deg, #fff 50%, transparent 50%),
-    repeating-linear-gradient(135deg, transparent, transparent 3px, #e8e8e8 3px, #e8e8e8 6px) !important;
-  border-radius: 50% !important;
-  overflow: hidden;
-}
-.flatpickr-day.is-arrival-day.endRange { background: var(--text) !important; }
-
-/* Split-day: departure — top-left hatched (previous guests), bottom-right white (checkin ok) */
-.flatpickr-day.is-departure-day {
-  background:
-    linear-gradient(135deg, transparent 50%, #fff 50%),
-    repeating-linear-gradient(135deg, transparent, transparent 3px, #e8e8e8 3px, #e8e8e8 6px) !important;
-  border-radius: 50% !important;
-  overflow: hidden;
-}
-.flatpickr-day.is-departure-day.startRange { background: var(--text) !important; }
 .faq_answer-wrap.is-relative { position: relative; }
 .empty-overlay { position: absolute; inset: 0; z-index: 1; }
 .success-message { background-color: #fff; border-radius: .35rem; padding: 2rem; display: none; }

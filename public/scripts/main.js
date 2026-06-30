@@ -171,14 +171,7 @@ if (typeof flatpickr !== 'undefined' && document.getElementById('date-range')) {
       disableMobile: true,
       showMonths: window.innerWidth >= 768 ? 2 : 1,
       disable: [(date) => bookedSet.has(toISO(date))],
-      onDayCreate(_, __, ___, dayElem) {
-        const iso = toISO(dayElem.dateObj);
-        // Arrival: left = free (checkout ok), right = blocked (new guests arriving)
-        if (arrivalSet.has(iso)) dayElem.classList.add('is-arrival-day');
-        // Departure: left = blocked (previous guests), right = free (checkin ok)
-        if (departureSet.has(iso)) dayElem.classList.add('is-departure-day');
-      },
-      onChange(dates) {
+onChange(dates) {
         if (dates.length === 1) {
           // Prevent starting a range on an arrival day (guests arriving that afternoon)
           if (arrivalSet.has(toISO(dates[0]))) { this.clear(); return; }
