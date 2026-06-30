@@ -159,7 +159,9 @@ if (typeof flatpickr !== 'undefined' && document.getElementById('date-range')) {
     // arrivalSet: new guests arrive this day — previous leave morning, so usable as checkout
     const bookedSet = new Set(data.booked || []);
     const arrivalSet = new Set(data.arrivals || []);
-    const allBlockedSet = new Set([...bookedSet, ...arrivalSet]);
+    const departureSet = new Set(data.departures || []);
+    // Days that block interior of a range (not departure/arrival edges)
+    const interiorBlockedSet = new Set([...bookedSet, ...arrivalSet]);
 
     flatpickr(rangeInput, {
       mode: 'range',
@@ -167,32 +169,35 @@ if (typeof flatpickr !== 'undefined' && document.getElementById('date-range')) {
       minDate: 'today',
       locale: isCs ? 'cs' : 'default',
       disableMobile: true,
-      // Only disable fully booked days (not arrival days — they're valid checkout dates)
+      // Only disable fully booked interior days; arrival/departure days stay clickable
       disable: [(date) => bookedSet.has(toISO(date))],
       onDayCreate(_, __, ___, dayElem) {
-        // Mark arrival days visually so users know they're checkout-only
         const iso = toISO(dayElem.dateObj);
+        // Arrival: left = free (checkout ok), right = blocked (new guests arriving)
         if (arrivalSet.has(iso)) dayElem.classList.add('is-arrival-day');
+        // Departure: left = blocked (previous guests), right = free (checkin ok)
+        if (departureSet.has(iso)) dayElem.classList.add('is-departure-day');
       },
       onChange(dates) {
+        if (dates.length === 1) {
+          // Prevent starting a range on an arrival day (guests arriving that afternoon)
+          if (arrivalSet.has(toISO(dates[0]))) { this.clear(); return; }
+          if (checkInHidden) checkInHidden.value = '';
+          if (checkOutHidden) checkOutHidden.value = '';
+          return;
+        }
         if (dates.length === 2) {
-          const startIso = toISO(dates[0]);
-          // Cannot start on an arrival day (someone is checking in that afternoon)
-          if (arrivalSet.has(startIso)) { this.clear(); return; }
-          // Validate no blocked days between start (exclusive) and end (exclusive)
+          // Validate no blocked days strictly between start and end
           let valid = true;
           const cur = new Date(dates[0]);
           cur.setDate(cur.getDate() + 1);
           while (cur < dates[1]) {
-            if (allBlockedSet.has(toISO(cur))) { valid = false; break; }
+            if (interiorBlockedSet.has(toISO(cur))) { valid = false; break; }
             cur.setDate(cur.getDate() + 1);
           }
           if (!valid) { this.clear(); return; }
           if (checkInHidden) checkInHidden.value = toCZ(dates[0]);
           if (checkOutHidden) checkOutHidden.value = toCZ(dates[1]);
-        } else {
-          if (checkInHidden) checkInHidden.value = '';
-          if (checkOutHidden) checkOutHidden.value = '';
         }
       },
     });

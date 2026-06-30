@@ -6,8 +6,9 @@ const MONTH_MAP = {
 function pad(n) { return String(n).padStart(2, '0'); }
 
 function parseCalendar(html) {
-  const booked = [];   // fully occupied days (cannot enter or exit)
-  const arrivals = []; // arrival days — previous guests depart morning, new arrive afternoon
+  const booked = [];     // fully occupied days
+  const arrivals = [];   // new guests arrive this day (checkout ok, checkin blocked)
+  const departures = []; // previous guests leave this day (checkin ok, half-blocked visually)
   let currentYear = null;
   let currentMonth = null;
 
@@ -22,15 +23,16 @@ function parseCalendar(html) {
       const cls = m[2];
       const day = parseInt(m[3], 10);
       if (cls.includes('day-shdw')) continue;
-      if (cls.includes('day-full') && cls.includes('k')) continue; // departure = free checkin
-      if (cls.includes('day-full') && cls.includes('z')) {
+      if (cls.includes('day-full') && cls.includes('k')) {
+        departures.push(`${currentYear}-${pad(currentMonth)}-${pad(day)}`);
+      } else if (cls.includes('day-full') && cls.includes('z')) {
         arrivals.push(`${currentYear}-${pad(currentMonth)}-${pad(day)}`);
       } else if (cls.includes('day-full')) {
         booked.push(`${currentYear}-${pad(currentMonth)}-${pad(day)}`);
       }
     }
   }
-  return { booked, arrivals };
+  return { booked, arrivals, departures };
 }
 
 export default {
@@ -44,8 +46,8 @@ export default {
           { headers: { 'User-Agent': 'Mozilla/5.0' } }
         );
         const html = await resp.text();
-        const { booked, arrivals } = parseCalendar(html);
-        return Response.json({ booked, arrivals }, {
+        const { booked, arrivals, departures } = parseCalendar(html);
+        return Response.json({ booked, arrivals, departures }, {
           headers: {
             'Cache-Control': 'public, max-age=3600',
             'Access-Control-Allow-Origin': '*',
