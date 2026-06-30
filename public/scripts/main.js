@@ -67,23 +67,56 @@ document.querySelectorAll('.faq_question').forEach(question => {
 
 // ===== LIGHTBOX =====
 let lightboxEl = null;
+let lightboxLinks = [];
+let lightboxIndex = 0;
 
-function openLightbox(url, caption) {
-  if (!lightboxEl) {
-    lightboxEl = document.createElement('div');
-    lightboxEl.className = 'lightbox-backdrop';
-    lightboxEl.innerHTML = `
-      <button class="lightbox-close" aria-label="Close">✕</button>
-      <img class="lightbox-img" src="" alt="" />
-      <div class="lightbox-caption"></div>
-    `;
-    lightboxEl.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-    lightboxEl.addEventListener('click', e => { if (e.target === lightboxEl) closeLightbox(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-    document.body.appendChild(lightboxEl);
-  }
-  lightboxEl.querySelector('.lightbox-img').src = url;
-  lightboxEl.querySelector('.lightbox-caption').textContent = caption || '';
+function buildLightbox() {
+  lightboxEl = document.createElement('div');
+  lightboxEl.className = 'lightbox-backdrop';
+  lightboxEl.innerHTML = `
+    <button class="lightbox-close" aria-label="Close">✕</button>
+    <button class="lightbox-prev" aria-label="Previous">&#8592;</button>
+    <img class="lightbox-img" src="" alt="" />
+    <button class="lightbox-next" aria-label="Next">&#8594;</button>
+    <div class="lightbox-caption"></div>
+  `;
+  lightboxEl.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+  lightboxEl.querySelector('.lightbox-prev').addEventListener('click', e => { e.stopPropagation(); lightboxNav(-1); });
+  lightboxEl.querySelector('.lightbox-next').addEventListener('click', e => { e.stopPropagation(); lightboxNav(1); });
+  lightboxEl.addEventListener('click', e => { if (e.target === lightboxEl) closeLightbox(); });
+
+  let touchStartX = 0;
+  lightboxEl.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  lightboxEl.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) lightboxNav(dx < 0 ? 1 : -1);
+  }, { passive: true });
+
+  document.addEventListener('keydown', e => {
+    if (!lightboxEl?.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') lightboxNav(1);
+    if (e.key === 'ArrowLeft') lightboxNav(-1);
+  });
+  document.body.appendChild(lightboxEl);
+}
+
+function lightboxShow(index) {
+  lightboxIndex = (index + lightboxLinks.length) % lightboxLinks.length;
+  const link = lightboxLinks[lightboxIndex];
+  lightboxEl.querySelector('.lightbox-img').src = link.dataset.url;
+  lightboxEl.querySelector('.lightbox-caption').textContent = link.dataset.caption || '';
+  const hasSiblings = lightboxLinks.length > 1;
+  lightboxEl.querySelector('.lightbox-prev').style.display = hasSiblings ? '' : 'none';
+  lightboxEl.querySelector('.lightbox-next').style.display = hasSiblings ? '' : 'none';
+}
+
+function lightboxNav(dir) { lightboxShow(lightboxIndex + dir); }
+
+function openLightbox(links, index) {
+  if (!lightboxEl) buildLightbox();
+  lightboxLinks = links;
+  lightboxShow(index);
   lightboxEl.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -93,12 +126,14 @@ function closeLightbox() {
   document.body.style.overflow = '';
 }
 
-document.querySelectorAll('.gallery_lightbox-link').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const url = link.dataset.url;
-    const caption = link.dataset.caption;
-    if (url) openLightbox(url, caption);
+// Group links by their parent .gallery_slider so each gallery navigates independently
+document.querySelectorAll('.gallery_slider').forEach(slider => {
+  const links = Array.from(slider.querySelectorAll('.gallery_lightbox-link'));
+  links.forEach((link, i) => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      if (link.dataset.url) openLightbox(links, i);
+    });
   });
 });
 
