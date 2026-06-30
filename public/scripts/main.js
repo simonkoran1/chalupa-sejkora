@@ -141,32 +141,60 @@ document.querySelectorAll('.gallery_slider').forEach(slider => {
   });
 });
 
-// ===== DATE PICKERS =====
-if (typeof flatpickr !== 'undefined') {
+// ===== DATE RANGE PICKER =====
+if (typeof flatpickr !== 'undefined' && document.getElementById('date-range')) {
   const lang = document.documentElement.lang;
   const isCs = lang === 'cs';
 
-  const sharedConfig = {
-    dateFormat: 'd.m.Y',
-    minDate: 'today',
-    locale: isCs ? 'cs' : 'default',
-    disableMobile: false,
-  };
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function toISO(d) { return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
+  function toCZ(d) { return `${pad(d.getDate())}.${pad(d.getMonth()+1)}.${d.getFullYear()}`; }
 
-  const checkIn = flatpickr('#check-in', {
-    ...sharedConfig,
-    onChange([date]) {
-      if (date) {
-        const next = new Date(date);
-        next.setDate(next.getDate() + 1);
-        checkOut.set('minDate', next);
-      }
-    },
-  });
+  async function initDatePicker(bookedDates) {
+    const rangeInput = document.getElementById('date-range');
+    const checkInHidden = document.getElementById('check-in');
+    const checkOutHidden = document.getElementById('check-out');
 
-  const checkOut = flatpickr('#check-out', {
-    ...sharedConfig,
-  });
+    // Build a Set for quick lookup
+    const bookedSet = new Set(bookedDates || []);
+
+    flatpickr(rangeInput, {
+      mode: 'range',
+      dateFormat: 'd.m.Y',
+      minDate: 'today',
+      locale: isCs ? 'cs' : 'default',
+      disableMobile: true,
+      disable: bookedDates || [],
+      onChange(dates) {
+        if (dates.length === 2) {
+          // Validate no booked dates inside range
+          let valid = true;
+          const cur = new Date(dates[0]);
+          cur.setDate(cur.getDate() + 1); // skip start (check-in day ok)
+          while (cur < dates[1]) {
+            if (bookedSet.has(toISO(cur))) { valid = false; break; }
+            cur.setDate(cur.getDate() + 1);
+          }
+          if (!valid) {
+            this.clear();
+            if (checkInHidden) checkInHidden.value = '';
+            if (checkOutHidden) checkOutHidden.value = '';
+            return;
+          }
+          if (checkInHidden) checkInHidden.value = toCZ(dates[0]);
+          if (checkOutHidden) checkOutHidden.value = toCZ(dates[1]);
+        } else {
+          if (checkInHidden) checkInHidden.value = '';
+          if (checkOutHidden) checkOutHidden.value = '';
+        }
+      },
+    });
+  }
+
+  fetch('/api/availability')
+    .then(r => r.json())
+    .then(data => initDatePicker(data.booked))
+    .catch(() => initDatePicker([]));
 }
 
 // ===== RESERVATION FORM (Web3Forms) =====

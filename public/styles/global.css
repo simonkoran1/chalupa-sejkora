@@ -227,13 +227,16 @@ label { margin-bottom: .25rem; font-weight: 500; display: block; }
 .form-input::placeholder { color: rgba(0,0,0,.5); }
 .form-input.is-text-area { height: auto; min-height: 11.25rem; padding: .75rem; resize: vertical; }
 .field-label { margin-bottom: .5rem; font-weight: 500; display: block; }
-.date-picker-inputs { display: grid; grid-template-columns: 1fr .25fr 1fr; width: 100%; min-width: 0; }
-.dates-icon { width: 1.5rem; height: 1.5rem; margin: auto; }
 .reservation-date-wrap { border-bottom: 1px solid #c8d6d1; margin-bottom: .5rem; padding-bottom: 2.5rem; }
 .calendar-wrapper { max-width: 43.2rem; margin: auto; }
 .calendar-margin { margin-bottom: 1.5rem; }
 .form-note { text-align: center; border: 1px solid #233022; border-radius: .35rem; margin-top: 1rem; padding: 1rem; display: none; }
-.flatpickr-input { height: auto; min-height: 3.75rem; color: var(--black); background-color: #fff; background-image: url("https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6470af2f041bb767ea0e2406_calendar.svg"); background-position: 12px; background-repeat: no-repeat; background-size: 20px 20px; border: 1px solid #c8d6d1; border-radius: .35rem; padding: .5rem .75rem .5rem 2.5rem; font-size: 1rem; line-height: 1.6; width: 100%; min-width: 0; max-width: 100%; font-family: inherit; box-sizing: border-box; -webkit-appearance: none; appearance: none; }
+.flatpickr-range { background-image: url("https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6470af2f041bb767ea0e2406_calendar.svg"); background-position: 12px center; background-repeat: no-repeat; background-size: 20px 20px; padding-left: 2.5rem; cursor: pointer; }
+/* Flatpickr calendar booked day styling */
+.flatpickr-day.flatpickr-disabled, .flatpickr-day.flatpickr-disabled:hover { color: #c4c4c4 !important; background: repeating-linear-gradient(135deg, transparent, transparent 4px, #f0e8e8 4px, #f0e8e8 5px) !important; border-color: transparent !important; cursor: not-allowed !important; text-decoration: none !important; }
+.flatpickr-day.inRange { background: #e0f0eb !important; border-color: #e0f0eb !important; box-shadow: -5px 0 0 #e0f0eb, 5px 0 0 #e0f0eb; }
+.flatpickr-day.startRange, .flatpickr-day.endRange { background: var(--text) !important; border-color: var(--text) !important; color: #fff !important; }
+.flatpickr-day.startRange.endRange { border-radius: 50px !important; }
 .faq_answer-wrap.is-relative { position: relative; }
 .empty-overlay { position: absolute; inset: 0; z-index: 1; }
 .success-message { background-color: #fff; border-radius: .35rem; padding: 2rem; display: none; }
@@ -287,9 +290,7 @@ label { margin-bottom: .25rem; font-weight: 500; display: block; }
   .gallery_slider { padding-bottom: 1.5rem; }
   .gallery21_arrow { width: 2rem !important; height: 2rem !important; }
   .gallery21_arrow-icon { width: .75rem; height: .75rem; }
-  .date-picker-inputs { grid-template-columns: 1fr; gap: .6rem; }
-  .dates-icon { transform: rotate(90deg); }
-  .footer3_bottom-wrapper { flex-direction: column-reverse; }
+.footer3_bottom-wrapper { flex-direction: column-reverse; }
   .footer3_credit-text { margin-top: 2rem; }
   .text-size-medium { font-size: 1rem; }
 }

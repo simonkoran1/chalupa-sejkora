@@ -601,12 +601,10 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
                           </div>
                         </div>
                       </div>
-                      <label for="check-in" class="field-label">Stay dates</label>
-                      <div class="date-picker-inputs">
-                        <input class="flatpickr-input" name="Datum-prijezdu" placeholder="Check-in date" type="text" id="check-in" autocomplete="off" />
-                        <img src={arrowRightIcon} alt="" class="dates-icon" />
-                        <input class="flatpickr-input" name="Datum-odjezdu" placeholder="Check-out date" type="text" id="check-out" autocomplete="off" />
-                      </div>
+                      <label for="date-range" class="field-label">Stay dates</label>
+                      <input class="form-input flatpickr-range" name="Termin" placeholder="Check-in – Check-out" type="text" id="date-range" autocomplete="off" readonly />
+                      <input type="hidden" name="Datum-prijezdu" id="check-in" />
+                      <input type="hidden" name="Datum-odjezdu" id="check-out" />
                     </div>
 
                     <div>

@@ -2,8 +2,10 @@
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"compatibility_date": "2026-06-30",
 	"name": "my-site",
+	"main": "worker.js",
 	"assets": {
-		"directory": "./dist"
+		"directory": "./dist",
+		"binding": "ASSETS"
 	},
 	"build": {
 		"command": "npm run build"
