@@ -5,34 +5,32 @@ const MONTH_MAP = {
 
 function pad(n) { return String(n).padStart(2, '0'); }
 
-function parseBookedDates(html) {
-  const booked = [];
+function parseCalendar(html) {
+  const booked = [];   // fully occupied days (cannot enter or exit)
+  const arrivals = []; // arrival days — previous guests depart morning, new arrive afternoon
   let currentYear = null;
   let currentMonth = null;
 
-  // Tokenize month headers and day cells
   const tokenRe = /class='month-name'>([^<]+)<|<TD class='([^']+)'[^>]*>(\d+)</g;
   let m;
   while ((m = tokenRe.exec(html)) !== null) {
     if (m[1]) {
-      // Month header like "Červen 2026"
       const parts = m[1].trim().split(/\s+/);
       currentMonth = MONTH_MAP[parts[0]] || null;
       currentYear = parseInt(parts[1], 10) || null;
     } else if (m[2] && currentYear && currentMonth) {
       const cls = m[2];
       const day = parseInt(m[3], 10);
-      // day-shdw = other month, skip
       if (cls.includes('day-shdw')) continue;
-      // day-full k = checkout day, free for new arrivals, skip
-      if (cls.includes('day-full') && cls.includes('k')) continue;
-      // day-full (including z = arrival) = booked
-      if (cls.includes('day-full')) {
+      if (cls.includes('day-full') && cls.includes('k')) continue; // departure = free checkin
+      if (cls.includes('day-full') && cls.includes('z')) {
+        arrivals.push(`${currentYear}-${pad(currentMonth)}-${pad(day)}`);
+      } else if (cls.includes('day-full')) {
         booked.push(`${currentYear}-${pad(currentMonth)}-${pad(day)}`);
       }
     }
   }
-  return booked;
+  return { booked, arrivals };
 }
 
 export default {
@@ -46,8 +44,8 @@ export default {
           { headers: { 'User-Agent': 'Mozilla/5.0' } }
         );
         const html = await resp.text();
-        const booked = parseBookedDates(html);
-        return Response.json({ booked }, {
+        const { booked, arrivals } = parseCalendar(html);
+        return Response.json({ booked, arrivals }, {
           headers: {
             'Cache-Control': 'public, max-age=3600',
             'Access-Control-Allow-Origin': '*',

@@ -232,11 +232,46 @@ label { margin-bottom: .25rem; font-weight: 500; display: block; }
 .calendar-margin { margin-bottom: 1.5rem; }
 .form-note { text-align: center; border: 1px solid #233022; border-radius: .35rem; margin-top: 1rem; padding: 1rem; display: none; }
 .flatpickr-range { background-image: url("https://cdn.prod.website-files.com/646de4cb577f2075ac136431/6470af2f041bb767ea0e2406_calendar.svg"); background-position: 12px center; background-repeat: no-repeat; background-size: 20px 20px; padding-left: 2.5rem; cursor: pointer; }
-/* Flatpickr calendar booked day styling */
-.flatpickr-day.flatpickr-disabled, .flatpickr-day.flatpickr-disabled:hover { color: #c4c4c4 !important; background: repeating-linear-gradient(135deg, transparent, transparent 4px, #f0e8e8 4px, #f0e8e8 5px) !important; border-color: transparent !important; cursor: not-allowed !important; text-decoration: none !important; }
-.flatpickr-day.inRange { background: #e0f0eb !important; border-color: #e0f0eb !important; box-shadow: -5px 0 0 #e0f0eb, 5px 0 0 #e0f0eb; }
-.flatpickr-day.startRange, .flatpickr-day.endRange { background: var(--text) !important; border-color: var(--text) !important; color: #fff !important; }
-.flatpickr-day.startRange.endRange { border-radius: 50px !important; }
+
+/* ===== FLATPICKR CALENDAR REDESIGN ===== */
+.flatpickr-calendar { font-family: inherit; border-radius: 1rem; box-shadow: 0 4px 32px rgba(0,0,0,0.13); border: 1px solid #e2ebe7; padding: .75rem; width: auto; }
+.flatpickr-months { padding: 0 .25rem .5rem; }
+.flatpickr-month { color: var(--text); }
+.flatpickr-current-month { font-size: 1rem; font-weight: 600; }
+.flatpickr-current-month .cur-month { font-weight: 600; }
+.flatpickr-current-month input.cur-year { font-weight: 400; }
+.flatpickr-prev-month svg, .flatpickr-next-month svg { width: 14px; height: 14px; }
+.flatpickr-prev-month, .flatpickr-next-month { padding: 6px 10px; color: var(--text) !important; fill: var(--text) !important; }
+@media (hover: hover) { .flatpickr-prev-month:hover, .flatpickr-next-month:hover { opacity: .5; background: none; } }
+
+.flatpickr-weekdays { margin-bottom: .25rem; }
+span.flatpickr-weekday { color: var(--text); font-weight: 600; font-size: .8rem; opacity: .5; }
+
+.flatpickr-days { border: none; }
+.dayContainer { padding: 0; gap: 2px; }
+.flatpickr-day { border-radius: .5rem; border: none; height: 2.5rem; line-height: 2.5rem; max-width: 2.5rem; width: 2.5rem; font-size: .9rem; color: var(--text); margin: 1px; transition: background .15s; }
+@media (hover: hover) { .flatpickr-day:hover:not(.flatpickr-disabled):not(.flatpickr-day.selected):not(.startRange):not(.endRange) { background: #eef5f1; border-color: transparent; } }
+
+/* Today */
+.flatpickr-day.today { border: 1.5px solid var(--text) !important; font-weight: 600; }
+.flatpickr-day.today:hover { background: #eef5f1; }
+
+/* Other month */
+.flatpickr-day.prevMonthDay, .flatpickr-day.nextMonthDay { opacity: .25; }
+
+/* Selected range */
+.flatpickr-day.inRange { background: #ddf0e8 !important; border-color: transparent !important; border-radius: 0 !important; box-shadow: -3px 0 0 #ddf0e8, 3px 0 0 #ddf0e8; color: var(--text); }
+.flatpickr-day.startRange, .flatpickr-day.startRange:hover, .flatpickr-day.endRange, .flatpickr-day.endRange:hover { background: var(--text) !important; border-color: var(--text) !important; color: #fff !important; border-radius: .5rem !important; }
+.flatpickr-day.startRange.endRange { border-radius: .5rem !important; }
+.flatpickr-day.startRange + .inRange { box-shadow: -3px 0 0 #ddf0e8, 3px 0 0 #ddf0e8; }
+
+/* Booked / disabled */
+.flatpickr-day.flatpickr-disabled, .flatpickr-day.flatpickr-disabled:hover { color: #ccc !important; background: repeating-linear-gradient(135deg, transparent, transparent 4px, #f5eded 4px, #f5eded 5px) !important; border-color: transparent !important; cursor: not-allowed !important; }
+
+/* Arrival day (checkout-only) — available but marked with a dot */
+.flatpickr-day.is-arrival-day { position: relative; }
+.flatpickr-day.is-arrival-day::after { content: ''; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: #e07a5f; }
+.flatpickr-day.is-arrival-day.endRange::after { background: #fff; }
 .faq_answer-wrap.is-relative { position: relative; }
 .empty-overlay { position: absolute; inset: 0; z-index: 1; }
 .success-message { background-color: #fff; border-radius: .35rem; padding: 2rem; display: none; }

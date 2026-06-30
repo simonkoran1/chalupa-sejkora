@@ -150,13 +150,16 @@ if (typeof flatpickr !== 'undefined' && document.getElementById('date-range')) {
   function toISO(d) { return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
   function toCZ(d) { return `${pad(d.getDate())}.${pad(d.getMonth()+1)}.${d.getFullYear()}`; }
 
-  async function initDatePicker(bookedDates) {
+  async function initDatePicker(data) {
     const rangeInput = document.getElementById('date-range');
     const checkInHidden = document.getElementById('check-in');
     const checkOutHidden = document.getElementById('check-out');
 
-    // Build a Set for quick lookup
-    const bookedSet = new Set(bookedDates || []);
+    // bookedSet: fully occupied — cannot checkin OR checkout
+    // arrivalSet: new guests arrive this day — previous leave morning, so usable as checkout
+    const bookedSet = new Set(data.booked || []);
+    const arrivalSet = new Set(data.arrivals || []);
+    const allBlockedSet = new Set([...bookedSet, ...arrivalSet]);
 
     flatpickr(rangeInput, {
       mode: 'range',
@@ -164,23 +167,27 @@ if (typeof flatpickr !== 'undefined' && document.getElementById('date-range')) {
       minDate: 'today',
       locale: isCs ? 'cs' : 'default',
       disableMobile: true,
+      // Only disable fully booked days (not arrival days — they're valid checkout dates)
       disable: [(date) => bookedSet.has(toISO(date))],
+      onDayCreate(_, __, ___, dayElem) {
+        // Mark arrival days visually so users know they're checkout-only
+        const iso = toISO(dayElem.dateObj);
+        if (arrivalSet.has(iso)) dayElem.classList.add('is-arrival-day');
+      },
       onChange(dates) {
         if (dates.length === 2) {
-          // Validate no booked dates inside range
+          const startIso = toISO(dates[0]);
+          // Cannot start on an arrival day (someone is checking in that afternoon)
+          if (arrivalSet.has(startIso)) { this.clear(); return; }
+          // Validate no blocked days between start (exclusive) and end (exclusive)
           let valid = true;
           const cur = new Date(dates[0]);
-          cur.setDate(cur.getDate() + 1); // skip start (check-in day ok)
+          cur.setDate(cur.getDate() + 1);
           while (cur < dates[1]) {
-            if (bookedSet.has(toISO(cur))) { valid = false; break; }
+            if (allBlockedSet.has(toISO(cur))) { valid = false; break; }
             cur.setDate(cur.getDate() + 1);
           }
-          if (!valid) {
-            this.clear();
-            if (checkInHidden) checkInHidden.value = '';
-            if (checkOutHidden) checkOutHidden.value = '';
-            return;
-          }
+          if (!valid) { this.clear(); return; }
           if (checkInHidden) checkInHidden.value = toCZ(dates[0]);
           if (checkOutHidden) checkOutHidden.value = toCZ(dates[1]);
         } else {
@@ -193,8 +200,8 @@ if (typeof flatpickr !== 'undefined' && document.getElementById('date-range')) {
 
   fetch('/api/availability')
     .then(r => r.json())
-    .then(data => initDatePicker(data.booked))
-    .catch(() => initDatePicker([]));
+    .then(data => initDatePicker(data))
+    .catch(() => initDatePicker({}));
 }
 
 // ===== RESERVATION FORM (Web3Forms) =====
