@@ -63,8 +63,8 @@ const ogImage = `${siteUrl}/images/647386d463040bdcf0d4e98f_og-chalupa-sejkora.j
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,500,600,700,800,900" />
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLR0ED9RFN"></script>
-  <script>
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-MLR0ED9RFN"></script>
+  <script is:inline>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
@@ -79,7 +79,7 @@ const ogImage = `${siteUrl}/images/647386d463040bdcf0d4e98f_og-chalupa-sejkora.j
   <slot />
   <script is:inline src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script is:inline src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script is:inline src="https://npmcdn.com/flatpickr/dist/l10n/cs.js"></script>
+  <script is:inline src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
   <script is:inline src="/scripts/main.js"></script>
 </body>
 </html>
