@@ -164,7 +164,7 @@ if (typeof flatpickr !== 'undefined' && document.getElementById('date-range')) {
       minDate: 'today',
       locale: isCs ? 'cs' : 'default',
       disableMobile: true,
-      disable: bookedDates || [],
+      disable: [(date) => bookedSet.has(toISO(date))],
       onChange(dates) {
         if (dates.length === 2) {
           // Validate no booked dates inside range
