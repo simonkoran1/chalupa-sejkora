@@ -3,13 +3,23 @@ export interface Props {
   title: string;
   description?: string;
   lang?: string;
+  canonicalPath?: string;
+  alternateUrl?: string;
 }
 
-const { 
-  title, 
+const {
+  title,
   description = "Venkovská chalupa pro vaši jedinečnou dovolenou ve Vysokém nad Jizerou.",
-  lang = "cs"
+  lang = "cs",
+  canonicalPath,
+  alternateUrl,
 } = Astro.props;
+
+const siteUrl = 'https://chalupasejkora.cz';
+const pagePath = canonicalPath ?? Astro.url.pathname;
+const canonicalUrl = `${siteUrl}${pagePath}`;
+const ogLocale = lang === 'cs' ? 'cs_CZ' : 'en_US';
+const ogImage = `${siteUrl}/images/647386d463040bdcf0d4e98f_og-chalupa-sejkora.jpg`;
 ---
 
 <!DOCTYPE html>
@@ -19,11 +29,34 @@ const {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+
+  <!-- Open Graph -->
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content="/images/647386d463040bdcf0d4e98f_og-chalupa-sejkora.jpg" />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:locale" content={ogLocale} />
+  <meta property="og:site_name" content="Chalupa Sejkora" />
+
+  <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <!-- hreflang -->
+  {alternateUrl && lang === 'cs' && <link rel="alternate" hreflang="en" href={`${siteUrl}${alternateUrl}`} />}
+  {alternateUrl && lang === 'en' && <link rel="alternate" hreflang="cs" href={`${siteUrl}${alternateUrl}`} />}
+  {alternateUrl && lang === 'cs' && <link rel="alternate" hreflang="cs" href={canonicalUrl} />}
+  {alternateUrl && lang === 'en' && <link rel="alternate" hreflang="en" href={canonicalUrl} />}
+  {alternateUrl && <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />}
+
+  <meta name="robots" content="index, follow" />
+
   <link rel="icon" href="/images/6471bc9e651cee234dd91fbf_favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="/images/6471bc4b651cee234dd8f4c6_webclip.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
