@@ -3,8 +3,7 @@
 	"compatibility_date": "2026-06-30",
 	"name": "my-site",
 	"assets": {
-		"directory": "./dist",
-		"binding": "ASSETS"
+		"directory": "./dist"
 	},
 	"observability": {
 		"enabled": true
