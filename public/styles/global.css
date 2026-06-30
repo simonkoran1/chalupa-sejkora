@@ -280,7 +280,7 @@ span.flatpickr-weekday { font-size: .75rem; font-weight: 600; color: #717171; }
 /* Start cap: large dark circle, grey extends right to meet inRange */
 .flatpickr-day.startRange, .flatpickr-day.startRange:hover {
   background:
-    radial-gradient(circle at center, var(--text) 48%, transparent 49%),
+    radial-gradient(circle at center, var(--text) 50%, transparent 50%),
     linear-gradient(to right, transparent 50%, #f0f0f0 50%) !important;
   border-radius: 0 !important;
   color: #fff !important;
@@ -292,7 +292,7 @@ span.flatpickr-weekday { font-size: .75rem; font-weight: 600; color: #717171; }
 /* End cap: large dark circle, grey extends left to meet inRange */
 .flatpickr-day.endRange, .flatpickr-day.endRange:hover {
   background:
-    radial-gradient(circle at center, var(--text) 48%, transparent 49%),
+    radial-gradient(circle at center, var(--text) 50%, transparent 50%),
     linear-gradient(to right, #f0f0f0 50%, transparent 50%) !important;
   border-radius: 0 !important;
   color: #fff !important;
