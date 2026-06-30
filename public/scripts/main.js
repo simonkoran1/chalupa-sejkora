@@ -27,40 +27,30 @@ function initSlider(sliderEl) {
 
 document.querySelectorAll('.hp-slider').forEach(initSlider);
 
-// ===== GALLERY SLIDER =====
-function initGallery(galleryEl) {
-  const mask = galleryEl.querySelector('.gallery_mask');
-  const slides = Array.from(galleryEl.querySelectorAll('.gallery_slide'));
-  const dots = Array.from(galleryEl.querySelectorAll('.w-slider-dot'));
-  const prevBtn = galleryEl.querySelector('.gallery21_arrow.is-left');
-  const nextBtn = galleryEl.querySelector('.gallery21_arrow:not(.is-left)');
-  if (!slides.length || !mask) return;
+// ===== GALLERY SLIDERS (Swiper) =====
+const swiperConfig = {
+  slidesPerView: 1,
+  spaceBetween: 16,
+  navigation: { prevEl: '.swiper-button-prev', nextEl: '.swiper-button-next' },
+  breakpoints: {
+    768: { slidesPerView: 2 },
+    1024: { slidesPerView: 3 },
+  },
+};
 
-  let current = 0;
-  const total = slides.length;
-
-  function goTo(index) {
-    current = Math.max(0, Math.min(index, total - 1));
-    mask.style.transform = `translateX(-${current * 100}%)`;
-    dots.forEach((d, i) => d.classList.toggle('w-active', i === current));
-  }
-
-  prevBtn?.addEventListener('click', () => goTo(current - 1));
-  nextBtn?.addEventListener('click', () => goTo(current + 1));
-  dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
-
-  // Touch/swipe support
-  let touchStartX = 0;
-  galleryEl.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  galleryEl.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 50) goTo(current + (dx < 0 ? 1 : -1));
-  }, { passive: true });
-
-  goTo(0);
+if (document.getElementById('gallery-main')) {
+  new Swiper('#gallery-main', {
+    ...swiperConfig,
+    navigation: { prevEl: '#gallery-main .swiper-button-prev', nextEl: '#gallery-main .swiper-button-next' },
+  });
 }
 
-document.querySelectorAll('.gallery_slider').forEach(initGallery);
+if (document.getElementById('gallery-surroundings')) {
+  new Swiper('#gallery-surroundings', {
+    ...swiperConfig,
+    navigation: { prevEl: '#gallery-surroundings .swiper-button-prev', nextEl: '#gallery-surroundings .swiper-button-next' },
+  });
+}
 
 // ===== FAQ ACCORDIONS =====
 document.querySelectorAll('.faq_question').forEach(question => {

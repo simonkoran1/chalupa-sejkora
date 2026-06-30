@@ -267,11 +267,10 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
 
               <!-- Gallery -->
               <div class="gallery_component">
-                <div class="gallery_slider" id="gallery-main">
-                  <div class="gallery_mask">
-                    {galleryImages.map((img, i) => (
-                      <div class="gallery_slide">
-                        <div class="slide-overlay"></div>
+                <div class="gallery_slider swiper" id="gallery-main">
+                  <div class="gallery_mask swiper-wrapper">
+                    {galleryImages.map((img) => (
+                      <div class="gallery_slide swiper-slide">
                         <a href="#" class="gallery_lightbox-link" data-url={img.url} data-caption={img.caption}>
                           <div class="gallery_image-wrapper">
                             <img src={img.url} alt={img.caption} class="gallery_image" />
@@ -287,16 +286,11 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
                       </div>
                     ))}
                   </div>
-                  <div class="gallery21_arrow is-left" role="button" aria-label="Previous slide">
+                  <div class="gallery21_arrow is-left swiper-button-prev" aria-label="Previous slide">
                     <div class="gallery21_arrow-icon"><svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.31066 8.75001L9.03033 14.4697L7.96967 15.5303L0.439339 8.00001L7.96967 0.469676L9.03033 1.53034L3.31066 7.25001L15.5 7.25L15.5 8.75L3.31066 8.75001Z" fill="currentColor"></path></svg></div>
                   </div>
-                  <div class="gallery21_arrow" role="button" aria-label="Next slide">
+                  <div class="gallery21_arrow swiper-button-next" aria-label="Next slide">
                     <div class="gallery21_arrow-icon"><svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.6893 7.25L6.96967 1.53033L8.03033 0.469666L15.5607 8L8.03033 15.5303L6.96967 14.4697L12.6893 8.75H0.5V7.25H12.6893Z" fill="currentColor"></path></svg></div>
-                  </div>
-                  <div class="gallery_slide-nav">
-                    {galleryImages.map((_, i) => (
-                      <button class={`w-slider-dot${i === 0 ? " w-active" : ""}`} aria-label={`Slide ${i + 1}`}></button>
-                    ))}
                   </div>
                 </div>
               </div>
@@ -365,11 +359,10 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
               </div>
 
               <div class="gallery_component">
-                <div class="gallery_slider" id="gallery-surroundings">
-                  <div class="gallery_mask">
-                    {surroundingsImages.map((img, i) => (
-                      <div class="gallery_slide">
-                        <div class="slide-overlay"></div>
+                <div class="gallery_slider swiper" id="gallery-surroundings">
+                  <div class="gallery_mask swiper-wrapper">
+                    {surroundingsImages.map((img) => (
+                      <div class="gallery_slide swiper-slide">
                         <a href="#" class="gallery_lightbox-link" data-url={img.url} data-caption={img.caption}>
                           <div class="gallery_image-wrapper">
                             <img src={img.url} alt={img.caption} class="gallery_image" />
@@ -388,16 +381,11 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
                       </div>
                     ))}
                   </div>
-                  <div class="gallery21_arrow is-left" role="button" aria-label="Previous">
+                  <div class="gallery21_arrow is-left swiper-button-prev" aria-label="Previous">
                     <div class="gallery21_arrow-icon"><svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.31066 8.75001L9.03033 14.4697L7.96967 15.5303L0.439339 8.00001L7.96967 0.469676L9.03033 1.53034L3.31066 7.25001L15.5 7.25L15.5 8.75L3.31066 8.75001Z" fill="currentColor"></path></svg></div>
                   </div>
-                  <div class="gallery21_arrow" role="button" aria-label="Next">
+                  <div class="gallery21_arrow swiper-button-next" aria-label="Next">
                     <div class="gallery21_arrow-icon"><svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.6893 7.25L6.96967 1.53033L8.03033 0.469666L15.5607 8L8.03033 15.5303L6.96967 14.4697L12.6893 8.75H0.5V7.25H12.6893Z" fill="currentColor"></path></svg></div>
-                  </div>
-                  <div class="gallery_slide-nav">
-                    {surroundingsImages.map((_, i) => (
-                      <button class={`w-slider-dot${i === 0 ? " w-active" : ""}`} aria-label={`Slide ${i + 1}`}></button>
-                    ))}
                   </div>
                 </div>
               </div>
@@ -465,6 +453,44 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
                       <div class="divider"></div>
                       <div class="pricing_feature-list">
                         <div class="pricing_feature"><div class="text-weight-bold">Summer / Winter</div><div><span class="text-weight-bold">5,000 CZK</span> / night</div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pricing_plan" style="grid-column: span 3">
+                  <div class="pricing18_content">
+                    <div class="pricing_content-top">
+                      <div class="pricing-name-wrap">
+                        <div class="heading-style-h5">Christmas 2025</div>
+                        <div class="tags-wrapper">
+                          <div class="small-tag big green">Available</div>
+                          <div class="small-tag big">Min. 4 nights</div>
+                        </div>
+                      </div>
+                      <div class="divider"></div>
+                      <div class="pricing_feature-list">
+                        <div class="pricing_feature"><div class="text-weight-bold">Price</div><div><span class="text-weight-bold">6,000 CZK</span> / night</div></div>
+                        <div class="pricing_feature"><div>*Discount for longer stays</div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pricing_plan" style="grid-column: span 3">
+                  <div class="pricing18_content">
+                    <div class="pricing_content-top">
+                      <div class="pricing-name-wrap">
+                        <div class="heading-style-h5">New Year's Eve 2025</div>
+                        <div class="tags-wrapper">
+                          <div class="small-tag big green">Available</div>
+                          <div class="small-tag big">Min. 4 nights</div>
+                        </div>
+                      </div>
+                      <div class="divider"></div>
+                      <div class="pricing_feature-list">
+                        <div class="pricing_feature"><div class="text-weight-bold">Price</div><div><span class="text-weight-bold">10,000 CZK</span> / night</div></div>
+                        <div class="pricing_feature"><div>*Discount for longer stays</div></div>
                       </div>
                     </div>
                   </div>
