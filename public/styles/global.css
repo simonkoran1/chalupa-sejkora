@@ -271,7 +271,7 @@ span.flatpickr-weekday { flex: none !important; width: 3.5rem; font-size: .78rem
 .flatpickr-calendar.multiMonth .flatpickr-days .dayContainer:first-child { padding-right: 2rem; border-right: 1px solid #e8e8e8; }
 .flatpickr-calendar.multiMonth .flatpickr-days .dayContainer:last-child { padding-left: 2rem; }
 
-.flatpickr-day { border-radius: 50%; border: none; height: 3.5rem; line-height: 3.5rem; max-width: 3.5rem; width: 3.5rem; font-size: 1rem; font-weight: 400; color: var(--text); margin: 0; transition: background .1s; }
+.flatpickr-day { flex: 0 0 3.5rem !important; border-radius: 50%; border: none; height: 3.5rem; line-height: 3.5rem; max-width: 3.5rem; width: 3.5rem; font-size: 1rem; font-weight: 400; color: var(--text); margin: 0; transition: background .1s; }
 @media (hover: hover) { .flatpickr-day:not(.flatpickr-disabled):not(.startRange):not(.endRange):not(.inRange):hover { background: #f0f0f0; border-color: transparent; font-weight: 600; } }
 
 /* Today */
@@ -283,7 +283,7 @@ span.flatpickr-weekday { flex: none !important; width: 3.5rem; font-size: .78rem
 /* Range fill — continuous grey band, generous box-shadow to eliminate any cell gaps */
 .flatpickr-day.inRange { background: #f0f0f0 !important; border-color: transparent !important; border-radius: 0 !important; box-shadow: -10px 0 0 #f0f0f0, 10px 0 0 #f0f0f0 !important; color: var(--text); }
 
-/* Start / end cap: plain dark circle */
+/* Start / end cap: plain dark circle, raised above adjacent inRange box-shadow */
 .flatpickr-day.startRange, .flatpickr-day.startRange:hover,
 .flatpickr-day.endRange, .flatpickr-day.endRange:hover {
   background: #141b13 !important;
@@ -292,6 +292,8 @@ span.flatpickr-weekday { flex: none !important; width: 3.5rem; font-size: .78rem
   font-weight: 600;
   box-shadow: none !important;
   border: none !important;
+  position: relative;
+  z-index: 2;
 }
 
 /* Disabled / fully booked */
