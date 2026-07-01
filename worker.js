@@ -73,7 +73,7 @@ async function requireAuth(request, env) {
 }
 
 function cmsEnabled(env) {
-  return !!(env.CMS_PASSWORD && env.CMS_SESSION_SECRET && env.ANTHROPIC_API_KEY && env.GITHUB_TOKEN && env.GITHUB_REPO);
+  return !!(env.CMS_PASSWORD && env.CMS_EMAIL && env.CMS_SESSION_SECRET && env.ANTHROPIC_API_KEY && env.GITHUB_TOKEN && env.GITHUB_REPO);
 }
 
 // ============================================================================
@@ -215,19 +215,22 @@ export default {
     if (url.pathname.startsWith('/api/cms/')) {
       if (!cmsEnabled(env)) return new Response('Not found', { status: 404 });
 
+      const isHttps = url.protocol === 'https:';
+      const cookieFlags = `Path=/; HttpOnly; SameSite=Lax${isHttps ? '; Secure' : ''}`;
+
       if (url.pathname === '/api/cms/login' && request.method === 'POST') {
-        const { password } = await request.json().catch(() => ({}));
-        if (password !== env.CMS_PASSWORD) return json({ ok: false }, { status: 401 });
+        const { email, password } = await request.json().catch(() => ({}));
+        if (!email || email.trim().toLowerCase() !== env.CMS_EMAIL.trim().toLowerCase() || password !== env.CMS_PASSWORD) return json({ ok: false }, { status: 401 });
         const exp = Math.floor(Date.now() / 1000) + SESSION_TTL_SEC;
         const token = await signSession(env.CMS_SESSION_SECRET, exp);
         return json({ ok: true }, {
-          headers: { 'Set-Cookie': `${COOKIE_NAME}=${token}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${SESSION_TTL_SEC}` },
+          headers: { 'Set-Cookie': `${COOKIE_NAME}=${token}; ${cookieFlags}; Max-Age=${SESSION_TTL_SEC}` },
         });
       }
 
       if (url.pathname === '/api/cms/logout' && request.method === 'POST') {
         return json({ ok: true }, {
-          headers: { 'Set-Cookie': `${COOKIE_NAME}=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0` },
+          headers: { 'Set-Cookie': `${COOKIE_NAME}=; ${cookieFlags}; Max-Age=0` },
         });
       }
 
