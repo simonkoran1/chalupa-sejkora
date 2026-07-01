@@ -6,11 +6,11 @@ import Footer from '../components/Footer.astro';
 const web3formsAccessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
 
 const heroImages = [
-  { src: "/images/64fecd68d795d0489d94adaf_Sejkora_vchod_Large.jpeg", alt: "Vchod" },
-  { src: "/images/64fec541385f1e55d5bdf3e7_Sejkora_obyvaci_pokoj_1_Large.jpeg", alt: "Obývací pokoj" },
-  { src: "/images/64fec62c880af21199abfd0f_Sejkora_loznice_1_1_Large.jpeg", alt: "Ložnice 1" },
-  { src: "/images/64fecafd126548ca6e8921ec_Sejkora_koupelna_2_Large.jpeg", alt: "Koupelna" },
-  { src: "/images/64fecc2a2994b2723a1efd2f_Sejkora_posezeni_ve_stodole_1_Large.jpeg", alt: "Stodola" },
+  { src: "/images/64fecd68d795d0489d94adaf_Sejkora_vchod_Large.webp", alt: "Vchod" },
+  { src: "/images/64fec541385f1e55d5bdf3e7_Sejkora_obyvaci_pokoj_1_Large.webp", alt: "Obývací pokoj" },
+  { src: "/images/64fec62c880af21199abfd0f_Sejkora_loznice_1_1_Large.webp", alt: "Ložnice 1" },
+  { src: "/images/64fecafd126548ca6e8921ec_Sejkora_koupelna_2_Large.webp", alt: "Koupelna" },
+  { src: "/images/64fecc2a2994b2723a1efd2f_Sejkora_posezeni_ve_stodole_1_Large.webp", alt: "Stodola" },
 ];
 
 const amenities = [
@@ -37,47 +37,47 @@ const amenities = [
 ];
 
 const galleryImages = [
-  { url: "/images/6502eee83e4b0972276210f7_AAA_pohled_na_dum_2_Large.jpeg", caption: "Pohled na chalupu", label: "Pohled na chalupu" },
-  { url: "/images/64fecd68d795d0489d94adaf_Sejkora_vchod_Large.jpeg", caption: "Vchod", label: "Vchod" },
-  { url: "/images/64fec541385f1e55d5bdf3e7_Sejkora_obyvaci_pokoj_1_Large.jpeg", caption: "Obývací pokoj", label: "Společenská místnost" },
-  { url: "/images/64fec5c2385f1e55d5be7bf0_Sejkora_obyvaci_pokoj_2_Large.jpeg", caption: "Obývací pokoj", label: "Obývací pokoj" },
-  { url: "/images/64fec62c880af21199abfd0f_Sejkora_loznice_1_1_Large.jpeg", caption: "Ložnice 1", label: "Ložnice 1" },
-  { url: "/images/64fec68310ef6fb92a3d3e26_Sejkora_loznice_1_4_Large.jpeg", caption: "Ložnice 1", label: "Ložnice 1" },
-  { url: "/images/6502b54d3ed0ae8b6d6876d2_AAA_loznice_2_1_Large.jpeg", caption: "Ložnice 2", label: "Ložnice 2" },
-  { url: "/images/64fec740625c155c18475d8e_Sejkora_loznice_2_2_Large.jpeg", caption: "Ložnice 2", label: "Ložnice 2" },
-  { url: "/images/6502b4da93b1197f48ba5851_AAA_loznice_3_1_Large.jpeg", caption: "Ložnice 3", label: "Ložnice 3" },
-  { url: "/images/6502b4f8bada5953b9eb0c22_AAA_loznice_3_2_Large.jpeg", caption: "Ložnice 3", label: "Ložnice 3" },
-  { url: "/images/64fecaa67a1b0d48c9176f7b_Sejkora_kuchyne_1_Large.jpeg", caption: "Kuchyně", label: "Kuchyně" },
-  { url: "/images/64fecaca9f7f964880182ab1_Sejkora_kuchyne_2_Large.jpeg", caption: "Kuchyně", label: "Kuchyně" },
-  { url: "/images/64fecafd126548ca6e8921ec_Sejkora_koupelna_2_Large.jpeg", caption: "Koupelna 1", label: "Koupelna 1" },
-  { url: "/images/64fecb17b78725a05b18c774_Sejkora_koupelna_2_1_Large.jpeg", caption: "Koupelna 1", label: "Koupelna 1" },
-  { url: "/images/64fecb3aaef6acf8a9ece446_Sejkora_koupelna_1_Large.jpeg", caption: "Koupelna 2", label: "Koupelna 2" },
-  { url: "/images/64fecb9ee214f2e762e44a71_Sejkora_detske_hriste_s_piskovistem_1_Large.jpeg", caption: "Dětské hřiště", label: "Dětské hřiště" },
-  { url: "/images/64fecbbf71b5f82b71dd7f12_Sejkora_detske_hriste_s_piskovistem_2_Large.jpeg", caption: "Dětské hřiště", label: "Dětské hřiště" },
-  { url: "/images/6502b5e1f91f4d27cd395c7b_AAA_zahrada_3_Large.jpeg", caption: "Zahrada", label: "Zahrada" },
-  { url: "/images/64fecc2a2994b2723a1efd2f_Sejkora_posezeni_ve_stodole_1_Large.jpeg", caption: "Posezení ve stodole", label: "Posezení ve stodole" },
-  { url: "/images/64fecc4ef21d29c63f1f4590_Sejkora_herni_stodola_Large.jpeg", caption: "Herní stodola", label: "Herní stodola" },
-  { url: "/images/64fecc91d2ee83c0e2f02c57_Sejkora_finska_sauna_Large.jpeg", caption: "Finská sauna", label: "Finská sauna" },
-  { url: "/images/64fecccd16afe625341ca23a_Sejkora_kolarna_lyzarna_1_Large.jpeg", caption: "Kolárna & Lyžárna", label: "Kolárna & Lyžárna" },
-  { url: "/images/6502f482b91776de6f7d7c56_sejkora-pudorys.jpg", caption: "Půdorys", label: "Půdorys" },
+  { url: "/images/6502eee83e4b0972276210f7_AAA_pohled_na_dum_2_Large.webp", caption: "Pohled na chalupu", label: "Pohled na chalupu" },
+  { url: "/images/64fecd68d795d0489d94adaf_Sejkora_vchod_Large.webp", caption: "Vchod", label: "Vchod" },
+  { url: "/images/64fec541385f1e55d5bdf3e7_Sejkora_obyvaci_pokoj_1_Large.webp", caption: "Obývací pokoj", label: "Společenská místnost" },
+  { url: "/images/64fec5c2385f1e55d5be7bf0_Sejkora_obyvaci_pokoj_2_Large.webp", caption: "Obývací pokoj", label: "Obývací pokoj" },
+  { url: "/images/64fec62c880af21199abfd0f_Sejkora_loznice_1_1_Large.webp", caption: "Ložnice 1", label: "Ložnice 1" },
+  { url: "/images/64fec68310ef6fb92a3d3e26_Sejkora_loznice_1_4_Large.webp", caption: "Ložnice 1", label: "Ložnice 1" },
+  { url: "/images/6502b54d3ed0ae8b6d6876d2_AAA_loznice_2_1_Large.webp", caption: "Ložnice 2", label: "Ložnice 2" },
+  { url: "/images/64fec740625c155c18475d8e_Sejkora_loznice_2_2_Large.webp", caption: "Ložnice 2", label: "Ložnice 2" },
+  { url: "/images/6502b4da93b1197f48ba5851_AAA_loznice_3_1_Large.webp", caption: "Ložnice 3", label: "Ložnice 3" },
+  { url: "/images/6502b4f8bada5953b9eb0c22_AAA_loznice_3_2_Large.webp", caption: "Ložnice 3", label: "Ložnice 3" },
+  { url: "/images/64fecaa67a1b0d48c9176f7b_Sejkora_kuchyne_1_Large.webp", caption: "Kuchyně", label: "Kuchyně" },
+  { url: "/images/64fecaca9f7f964880182ab1_Sejkora_kuchyne_2_Large.webp", caption: "Kuchyně", label: "Kuchyně" },
+  { url: "/images/64fecafd126548ca6e8921ec_Sejkora_koupelna_2_Large.webp", caption: "Koupelna 1", label: "Koupelna 1" },
+  { url: "/images/64fecb17b78725a05b18c774_Sejkora_koupelna_2_1_Large.webp", caption: "Koupelna 1", label: "Koupelna 1" },
+  { url: "/images/64fecb3aaef6acf8a9ece446_Sejkora_koupelna_1_Large.webp", caption: "Koupelna 2", label: "Koupelna 2" },
+  { url: "/images/64fecb9ee214f2e762e44a71_Sejkora_detske_hriste_s_piskovistem_1_Large.webp", caption: "Dětské hřiště", label: "Dětské hřiště" },
+  { url: "/images/64fecbbf71b5f82b71dd7f12_Sejkora_detske_hriste_s_piskovistem_2_Large.webp", caption: "Dětské hřiště", label: "Dětské hřiště" },
+  { url: "/images/6502b5e1f91f4d27cd395c7b_AAA_zahrada_3_Large.webp", caption: "Zahrada", label: "Zahrada" },
+  { url: "/images/64fecc2a2994b2723a1efd2f_Sejkora_posezeni_ve_stodole_1_Large.webp", caption: "Posezení ve stodole", label: "Posezení ve stodole" },
+  { url: "/images/64fecc4ef21d29c63f1f4590_Sejkora_herni_stodola_Large.webp", caption: "Herní stodola", label: "Herní stodola" },
+  { url: "/images/64fecc91d2ee83c0e2f02c57_Sejkora_finska_sauna_Large.webp", caption: "Finská sauna", label: "Finská sauna" },
+  { url: "/images/64fecccd16afe625341ca23a_Sejkora_kolarna_lyzarna_1_Large.webp", caption: "Kolárna & Lyžárna", label: "Kolárna & Lyžárna" },
+  { url: "/images/6502f482b91776de6f7d7c56_sejkora-pudorys.webp", caption: "Půdorys", label: "Půdorys" },
 ];
 
 const surroundingsImages = [
-  { url: "/images/646e676880c678ba21ea6857_image-crop-200001022.jpeg", caption: "Paseky nad Jizerou", distance: "6,5 KM • 8 MIN. AUTEM" },
-  { url: "/images/6476f280b2510bb26a3ef2aa_Rokytnice-nad-Jizerou.jpg", caption: "Rokytnice nad Jizerou", distance: "8,4 KM • 10 MIN. AUTEM" },
-  { url: "/images/6485e70de8b0f28bdcb9bf9e_2022-08-14.jpg", caption: "Bozkovské dolomitové jeskyně", distance: "10,1 KM • 13 MIN. AUTEM" },
-  { url: "/images/6476f1160a13cdc954617cd8_Stepanka_lookout_tower.jpeg", caption: "Rozhledna Štěpánka", distance: "11,3 KM • 13 MIN. AUTEM" },
-  { url: "/images/6476f2a1f6a8eff90695ab36_korenov-jaroslav-moravec-001.jpg", caption: "Kořenov", distance: "12,5 KM • 14 MIN. AUTEM" },
-  { url: "/images/6485e76cdcc1f215a87f1b87_udoli-jizery-riegrova-stezka-2022_19_4-094401.jpg", caption: "Přírodní rezervace údolí Jizery", distance: "14 KM • 15 MIN. AUTEM" },
-  { url: "/images/6476f3c16421f48719b74beb_rokytnice-jpg.jpg", caption: "Lysá hora", distance: "15,4 KM • 21 MIN. AUTEM" },
-  { url: "/images/6485ea447c7f3e612c64a581_harrachov_1.jpg", caption: "Harrachov", distance: "19,9 KM • 22 MIN. AUTEM" },
-  { url: "/images/6485e988da5571598646a9bc_osada-jizera---jizerka258.jpg", caption: "Osada Jizerka", distance: "20,2 KM • 24 MIN. AUTEM" },
-  { url: "/images/6485ef2bda557159864af456_Tanvaldsky-Spicak-Report-AD-2021-02.jpg", caption: "Bikepark Tanvaldský Špičák", distance: "20,8 KM • 26 MIN. AUTEM" },
-  { url: "/images/6485f03fda557159864bcb76_Benecko_pohled_na_Kotel.jpeg", caption: "Benecko", distance: "21,5 KM • 24 MIN. AUTEM" },
-  { url: "/images/6485e7c9e17e150882bfdcca_117575200_3190117631066976_7992518370262501705_n.jpg", caption: "Rozhledna Černá Studnice", distance: "24,8 KM • 31 MIN. AUTEM" },
-  { url: "/images/646e68e48367888e9da262e4_6297_P1180654-Pramen.jpeg", caption: "Pramen Labe", distance: "34,9 KM • 45 MIN. AUTEM" },
+  { url: "/images/646e676880c678ba21ea6857_image-crop-200001022.webp", caption: "Paseky nad Jizerou", distance: "6,5 KM • 8 MIN. AUTEM" },
+  { url: "/images/6476f280b2510bb26a3ef2aa_Rokytnice-nad-Jizerou.webp", caption: "Rokytnice nad Jizerou", distance: "8,4 KM • 10 MIN. AUTEM" },
+  { url: "/images/6485e70de8b0f28bdcb9bf9e_2022-08-14.webp", caption: "Bozkovské dolomitové jeskyně", distance: "10,1 KM • 13 MIN. AUTEM" },
+  { url: "/images/6476f1160a13cdc954617cd8_Stepanka_lookout_tower.webp", caption: "Rozhledna Štěpánka", distance: "11,3 KM • 13 MIN. AUTEM" },
+  { url: "/images/6476f2a1f6a8eff90695ab36_korenov-jaroslav-moravec-001.webp", caption: "Kořenov", distance: "12,5 KM • 14 MIN. AUTEM" },
+  { url: "/images/6485e76cdcc1f215a87f1b87_udoli-jizery-riegrova-stezka-2022_19_4-094401.webp", caption: "Přírodní rezervace údolí Jizery", distance: "14 KM • 15 MIN. AUTEM" },
+  { url: "/images/6476f3c16421f48719b74beb_rokytnice-jpg.webp", caption: "Lysá hora", distance: "15,4 KM • 21 MIN. AUTEM" },
+  { url: "/images/6485ea447c7f3e612c64a581_harrachov_1.webp", caption: "Harrachov", distance: "19,9 KM • 22 MIN. AUTEM" },
+  { url: "/images/6485e988da5571598646a9bc_osada-jizera---jizerka258.webp", caption: "Osada Jizerka", distance: "20,2 KM • 24 MIN. AUTEM" },
+  { url: "/images/6485ef2bda557159864af456_Tanvaldsky-Spicak-Report-AD-2021-02.webp", caption: "Bikepark Tanvaldský Špičák", distance: "20,8 KM • 26 MIN. AUTEM" },
+  { url: "/images/6485f03fda557159864bcb76_Benecko_pohled_na_Kotel.webp", caption: "Benecko", distance: "21,5 KM • 24 MIN. AUTEM" },
+  { url: "/images/6485e7c9e17e150882bfdcca_117575200_3190117631066976_7992518370262501705_n.webp", caption: "Rozhledna Černá Studnice", distance: "24,8 KM • 31 MIN. AUTEM" },
+  { url: "/images/646e68e48367888e9da262e4_6297_P1180654-Pramen.webp", caption: "Pramen Labe", distance: "34,9 KM • 45 MIN. AUTEM" },
   { url: "/images/6476f1b4b8cad4706f74cbed_sekce_leto_hero_final-min.webp", caption: "Špindlerův Mlýn", distance: "35,7 KM • 36 MIN. AUTEM" },
-  { url: "/images/6476f2024de25b2b8b35e38e_prachovske-skaly-panorama.jpg", caption: "Český ráj", distance: "36,4 KM • 44 MIN. AUTEM" },
+  { url: "/images/6476f2024de25b2b8b35e38e_prachovske-skaly-panorama.webp", caption: "Český ráj", distance: "36,4 KM • 44 MIN. AUTEM" },
 ];
 
 const mapPinIcon = "/images/646e67c221bf1a9b03208e1b_map-pin.svg";
@@ -320,7 +320,7 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
                   </div>
                 </div>
                 <div class="layout_image-wrapper">
-                  <img src="/images/64fec541385f1e55d5bdf3e7_Sejkora_obyvaci_pokoj_1_Large.jpeg" loading="lazy" alt="Obývací pokoj" class="layout_image" />
+                  <img src="/images/64fec541385f1e55d5bdf3e7_Sejkora_obyvaci_pokoj_1_Large.webp" loading="lazy" alt="Obývací pokoj" class="layout_image" />
                 </div>
               </div>
             </div>
@@ -334,7 +334,7 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
           <div class="container-large">
             <div class="layout_component">
               <div class="layout_image-wrapper">
-                <img src="/images/64fecc2a2994b2723a1efd2f_Sejkora_posezeni_ve_stodole_1_Large.jpeg" loading="lazy" alt="Stodola" class="layout_image" />
+                <img src="/images/64fecc2a2994b2723a1efd2f_Sejkora_posezeni_ve_stodole_1_Large.webp" loading="lazy" alt="Stodola" class="layout_image" />
               </div>
               <div class="layout_content">
                 <div class="margin-bottom margin-small"><div class="max-width-small"><h3><span class="text-highlight">Unikátní</span> kombinace odpočinku a&nbsp;venkovního vyžití</h3></div></div>
