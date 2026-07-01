@@ -17,9 +17,9 @@
       "price_per_night": 6000,
       "min_nights": 4,
       "availability": {
-        "status": "green",
-        "label_cs": "Volné",
-        "label_en": "Available"
+        "status": "orange",
+        "label_cs": "Obsazeno",
+        "label_en": "Booked"
       }
     },
     "silvestr_2026": {
@@ -27,7 +27,7 @@
       "min_nights": 4,
       "availability": {
         "status": "green",
-        "label_cs": "Volné",
+        "label_cs": "VolnÃ©",
         "label_en": "Available"
       }
     },
