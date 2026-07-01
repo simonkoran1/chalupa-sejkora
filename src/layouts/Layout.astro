@@ -61,6 +61,7 @@ const ogImage = `${siteUrl}/images/647386d463040bdcf0d4e98f_og-chalupa-sejkora.w
   <link rel="apple-touch-icon" href="/images/6471bc4b651cee234dd8f4c6_webclip.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,500,600,700,800,900" />
   <!-- Google Analytics -->
   <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-MLR0ED9RFN"></script>
@@ -71,15 +72,16 @@ const ogImage = `${siteUrl}/images/647386d463040bdcf0d4e98f_og-chalupa-sejkora.w
     gtag('config', 'G-MLR0ED9RFN');
   </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+  <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" /></noscript>
   <link rel="stylesheet" href="/styles/global.css" />
   <style>html { scroll-behavior: smooth; }</style>
 </head>
 <body>
   <slot />
-  <script is:inline src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script is:inline src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script is:inline src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
-  <script is:inline src="/scripts/main.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
+  <script is:inline defer src="/scripts/main.js"></script>
 </body>
 </html>
