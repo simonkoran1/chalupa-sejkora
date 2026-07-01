@@ -18,6 +18,7 @@ const {
 const siteUrl = 'https://chalupasejkora.cz';
 const pagePath = canonicalPath ?? Astro.url.pathname;
 const canonicalUrl = `${siteUrl}${pagePath}`;
+const cmsEnabled = import.meta.env.PUBLIC_CMS_ENABLED === 'true';
 const ogLocale = lang === 'cs' ? 'cs_CZ' : 'en_US';
 const ogImage = `${siteUrl}/images/647386d463040bdcf0d4e98f_og-chalupa-sejkora.webp`;
 ---
@@ -83,5 +84,6 @@ const ogImage = `${siteUrl}/images/647386d463040bdcf0d4e98f_og-chalupa-sejkora.w
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
   <script is:inline defer src="/scripts/main.js"></script>
+  {cmsEnabled && <script is:inline defer src="/scripts/editor.js"></script>}
 </body>
 </html>

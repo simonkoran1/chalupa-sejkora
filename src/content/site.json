@@ -1,0 +1,16 @@
+{
+  "pricing": {
+    "vanoce_2026": {
+      "price_per_night": 6000,
+      "min_nights": 4
+    },
+    "silvestr_2026": {
+      "price_per_night": 10000,
+      "min_nights": 4
+    },
+    "fees": {
+      "cleaning": 2000,
+      "tourism_tax_per_adult_per_night": 25
+    }
+  }
+}
