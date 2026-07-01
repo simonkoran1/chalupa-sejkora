@@ -18,7 +18,7 @@
       "min_nights": 4,
       "availability": {
         "status": "green",
-        "label_cs": "Volné",
+        "label_cs": "Dostupné",
         "label_en": "Available"
       }
     },
@@ -27,7 +27,7 @@
       "min_nights": 4,
       "availability": {
         "status": "green",
-        "label_cs": "DostupnÃ©",
+        "label_cs": "Dostupné",
         "label_en": "Available"
       }
     },
