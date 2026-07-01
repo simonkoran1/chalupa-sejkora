@@ -31,6 +31,11 @@ function parseCalendar(html) {
 }
 
 // ============================================================================
+// CMS: constants
+// ============================================================================
+const GITHUB_REPO = 'simonkoran1/chalupa-sejkora';
+
+// ============================================================================
 // CMS: session cookies (HMAC-signed)
 // ============================================================================
 const COOKIE_NAME = 'cms_session';
@@ -73,7 +78,7 @@ async function requireAuth(request, env) {
 }
 
 function cmsEnabled(env) {
-  return !!(env.CMS_PASSWORD && env.CMS_EMAIL && env.CMS_SESSION_SECRET && env.ANTHROPIC_API_KEY && env.GITHUB_TOKEN && env.GITHUB_REPO);
+  return !!(env.CMS_PASSWORD && env.CMS_EMAIL && env.CMS_SESSION_SECRET && env.ANTHROPIC_API_KEY && env.GITHUB_TOKEN);
 }
 
 // ============================================================================
@@ -146,7 +151,7 @@ function validateChange(path, value) {
 // CMS: GitHub commit
 // ============================================================================
 async function ghApi(env, path, init = {}) {
-  const resp = await fetch(`https://api.github.com/repos/${env.GITHUB_REPO}${path}`, {
+  const resp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}${path}`, {
     ...init,
     headers: {
       ...(init.headers || {}),
