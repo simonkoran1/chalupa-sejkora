@@ -142,6 +142,8 @@
         return;
       }
       state.selectedField = path;
+      // If element has a related status field (e.g. availability tag → status color), include it as secondary context
+      state.selectedStatusField = el.getAttribute('data-cms-status-field') || null;
       el.classList.add('cms-selected');
       updateSelectedLabel();
       openChat();
@@ -151,15 +153,25 @@
   // ---------- Applying preview edits ----------
   function applyPreview(path, value) {
     state.pending[path] = value;
-    // Update DOM in place — replace the field's text with the new value formatted
+    const type = schema[path]?.type;
+    // 1) Elements where this path is the primary field
     document.querySelectorAll(`[data-cms-field="${path}"]`).forEach(el => {
-      const fmt = new Intl.NumberFormat('cs-CZ').format(value);
-      // Rebuild text content preserving surrounding format hints — heuristic:
-      // For numeric fields we replace the numeric portion in the element's text
-      const original = el.textContent;
-      const replaced = original.replace(/[\d\s]+([.,]\d+)?/, fmt);
-      el.textContent = replaced;
+      if (type === 'number') {
+        const fmt = new Intl.NumberFormat('cs-CZ').format(value);
+        el.textContent = el.textContent.replace(/[\d\s.,]+/, fmt);
+      } else if (type === 'string') {
+        el.textContent = value;
+      }
       el.classList.add('cms-pending');
+    });
+    // 2) Elements where this path controls the availability-status CSS class
+    document.querySelectorAll(`[data-cms-status-field="${path}"]`).forEach(el => {
+      if (type === 'enum') {
+        // Swap color class (green/orange) in the class list
+        el.classList.remove('green', 'orange');
+        el.classList.add(value);
+        el.classList.add('cms-pending');
+      }
     });
     updatePendingBadge();
   }
@@ -176,7 +188,7 @@
       const resp = await fetch('/api/cms/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: state.messages, selectedField: state.selectedField }),
+        body: JSON.stringify({ messages: state.messages, selectedField: state.selectedField, selectedStatusField: state.selectedStatusField }),
       });
       const data = await resp.json();
       if (!data.ok) { addMessage('system', 'Chyba: ' + (data.error || 'neznámá')); return; }

@@ -1,12 +1,35 @@
 {
   "pricing": {
+    "vedlejsi_sezona": {
+      "night_2": 5500,
+      "night_3_4": 4500,
+      "night_5_plus": 4000
+    },
+    "stredni_sezona": {
+      "night_2": 6000,
+      "night_3_4": 5000,
+      "night_5_plus": 4000
+    },
+    "hlavni_sezona": {
+      "leto_zima": 5000
+    },
     "vanoce_2026": {
       "price_per_night": 6000,
-      "min_nights": 4
+      "min_nights": 4,
+      "availability": {
+        "status": "green",
+        "label_cs": "Volné",
+        "label_en": "Available"
+      }
     },
     "silvestr_2026": {
       "price_per_night": 10000,
-      "min_nights": 4
+      "min_nights": 4,
+      "availability": {
+        "status": "green",
+        "label_cs": "Volné",
+        "label_en": "Available"
+      }
     },
     "fees": {
       "cleaning": 2000,

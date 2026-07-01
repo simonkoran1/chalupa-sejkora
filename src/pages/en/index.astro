@@ -2,8 +2,10 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import site from '../../content/site.json';
 
 const web3formsAccessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
+const fmtEN = (n: number) => n.toLocaleString('en-US');
 
 const heroImages = [
   { src: "/images/64fecd68d795d0489d94adaf_Sejkora_vchod_Large.webp", alt: "Entrance" },
@@ -426,9 +428,9 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
                       <div class="tags-wrapper"><div class="small-tag">March</div><div class="small-tag">April</div><div class="small-tag">October</div><div class="small-tag">November</div></div>
                       <div class="divider"></div>
                       <div class="pricing_feature-list">
-                        <div class="pricing_feature"><div class="text-weight-bold">2 nights</div><div><span class="text-weight-bold">5,500 CZK</span> / night</div></div>
-                        <div class="pricing_feature"><div class="text-weight-bold">3–4 nights</div><div><span class="text-weight-bold">4,500 CZK</span> / night</div></div>
-                        <div class="pricing_feature"><div class="text-weight-bold">5+ nights</div><div><span class="text-weight-bold">4,000 CZK</span> / night</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">2 nights</div><div><span class="text-weight-bold" data-cms-field="pricing.vedlejsi_sezona.night_2">{fmtEN(site.pricing.vedlejsi_sezona.night_2)} CZK</span> / night</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">3–4 nights</div><div><span class="text-weight-bold" data-cms-field="pricing.vedlejsi_sezona.night_3_4">{fmtEN(site.pricing.vedlejsi_sezona.night_3_4)} CZK</span> / night</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">5+ nights</div><div><span class="text-weight-bold" data-cms-field="pricing.vedlejsi_sezona.night_5_plus">{fmtEN(site.pricing.vedlejsi_sezona.night_5_plus)} CZK</span> / night</div></div>
                       </div>
                     </div>
                   </div>
@@ -442,9 +444,9 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
                       <div class="tags-wrapper"><div class="small-tag">May</div><div class="small-tag">June</div><div class="small-tag">September</div><div class="small-tag">December</div></div>
                       <div class="divider"></div>
                       <div class="pricing_feature-list">
-                        <div class="pricing_feature"><div class="text-weight-bold">2 nights</div><div><span class="text-weight-bold">6,000 CZK</span> / night</div></div>
-                        <div class="pricing_feature"><div class="text-weight-bold">3–4 nights</div><div><span class="text-weight-bold">5,000 CZK</span> / night</div></div>
-                        <div class="pricing_feature"><div class="text-weight-bold">5+ nights</div><div><span class="text-weight-bold">4,000 CZK</span> / night</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">2 nights</div><div><span class="text-weight-bold" data-cms-field="pricing.stredni_sezona.night_2">{fmtEN(site.pricing.stredni_sezona.night_2)} CZK</span> / night</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">3–4 nights</div><div><span class="text-weight-bold" data-cms-field="pricing.stredni_sezona.night_3_4">{fmtEN(site.pricing.stredni_sezona.night_3_4)} CZK</span> / night</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">5+ nights</div><div><span class="text-weight-bold" data-cms-field="pricing.stredni_sezona.night_5_plus">{fmtEN(site.pricing.stredni_sezona.night_5_plus)} CZK</span> / night</div></div>
                       </div>
                     </div>
                   </div>
@@ -458,7 +460,7 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
                       <div class="tags-wrapper"><div class="small-tag">January</div><div class="small-tag">February</div><div class="small-tag">July</div><div class="small-tag">August</div></div>
                       <div class="divider"></div>
                       <div class="pricing_feature-list">
-                        <div class="pricing_feature"><div class="text-weight-bold">Summer / Winter</div><div><span class="text-weight-bold">5,000 CZK</span> / night</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">Summer / Winter</div><div><span class="text-weight-bold" data-cms-field="pricing.hlavni_sezona.leto_zima">{fmtEN(site.pricing.hlavni_sezona.leto_zima)} CZK</span> / night</div></div>
                       </div>
                     </div>
                   </div>
@@ -470,13 +472,13 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
                       <div class="pricing-name-wrap">
                         <div class="heading-style-h5">Christmas 2026</div>
                         <div class="tags-wrapper">
-                          <div class="small-tag big green">Available</div>
-                          <div class="small-tag big">Min. 4 nights</div>
+                          <div class={`small-tag big ${site.pricing.vanoce_2026.availability.status}`} data-cms-field="pricing.vanoce_2026.availability.label_en" data-cms-status-field="pricing.vanoce_2026.availability.status">{site.pricing.vanoce_2026.availability.label_en}</div>
+                          <div class="small-tag big"><span data-cms-field="pricing.vanoce_2026.min_nights">Min. {site.pricing.vanoce_2026.min_nights} nights</span></div>
                         </div>
                       </div>
                       <div class="divider"></div>
                       <div class="pricing_feature-list">
-                        <div class="pricing_feature"><div class="text-weight-bold">Price</div><div><span class="text-weight-bold">6,000 CZK</span> / night</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">Price</div><div><span class="text-weight-bold" data-cms-field="pricing.vanoce_2026.price_per_night">{fmtEN(site.pricing.vanoce_2026.price_per_night)} CZK</span> / night</div></div>
                         <div class="pricing_feature"><div>*Discount for longer stays</div></div>
                       </div>
                     </div>
@@ -489,13 +491,13 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
                       <div class="pricing-name-wrap">
                         <div class="heading-style-h5">New Year's Eve 2026</div>
                         <div class="tags-wrapper">
-                          <div class="small-tag big green">Available</div>
-                          <div class="small-tag big">Min. 4 nights</div>
+                          <div class={`small-tag big ${site.pricing.silvestr_2026.availability.status}`} data-cms-field="pricing.silvestr_2026.availability.label_en" data-cms-status-field="pricing.silvestr_2026.availability.status">{site.pricing.silvestr_2026.availability.label_en}</div>
+                          <div class="small-tag big"><span data-cms-field="pricing.silvestr_2026.min_nights">Min. {site.pricing.silvestr_2026.min_nights} nights</span></div>
                         </div>
                       </div>
                       <div class="divider"></div>
                       <div class="pricing_feature-list">
-                        <div class="pricing_feature"><div class="text-weight-bold">Price</div><div><span class="text-weight-bold">10,000 CZK</span> / night</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">Price</div><div><span class="text-weight-bold" data-cms-field="pricing.silvestr_2026.price_per_night">{fmtEN(site.pricing.silvestr_2026.price_per_night)} CZK</span> / night</div></div>
                         <div class="pricing_feature"><div>*Discount for longer stays</div></div>
                       </div>
                     </div>
@@ -538,8 +540,8 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
                       <div class="faq_answer">
                         <div class="faq_answer-wrap">
                           <ul class="faq-answer-list">
-                            <li>Local municipal fee – 25 CZK / adult / night</li>
-                            <li>Final cleaning 2,000 CZK</li>
+                            <li data-cms-field="pricing.fees.tourism_tax_per_adult_per_night">Local municipal fee – {site.pricing.fees.tourism_tax_per_adult_per_night} CZK / adult / night</li>
+                            <li data-cms-field="pricing.fees.cleaning">Final cleaning {fmtEN(site.pricing.fees.cleaning)} CZK</li>
                             <li>Sauna electricity consumption</li>
                             <li>Electricity above 100 kWh / night</li>
                             <li>Dog by prior arrangement – 200 CZK / night</li>

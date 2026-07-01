@@ -428,9 +428,9 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
                       <div class="tags-wrapper"><div class="small-tag">Březen</div><div class="small-tag">Duben</div><div class="small-tag">Říjen</div><div class="small-tag">Listopad</div></div>
                       <div class="divider"></div>
                       <div class="pricing_feature-list">
-                        <div class="pricing_feature"><div class="text-weight-bold">2 noci</div><div><span class="text-weight-bold">5.500,- Kč</span> / noc</div></div>
-                        <div class="pricing_feature"><div class="text-weight-bold">3–4 noci</div><div><span class="text-weight-bold">4.500,- Kč</span> / noc</div></div>
-                        <div class="pricing_feature"><div class="text-weight-bold">5+ nocí</div><div><span class="text-weight-bold">4.000,- Kč</span> / noc</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">2 noci</div><div><span class="text-weight-bold" data-cms-field="pricing.vedlejsi_sezona.night_2">{fmtCZK(site.pricing.vedlejsi_sezona.night_2)},- Kč</span> / noc</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">3–4 noci</div><div><span class="text-weight-bold" data-cms-field="pricing.vedlejsi_sezona.night_3_4">{fmtCZK(site.pricing.vedlejsi_sezona.night_3_4)},- Kč</span> / noc</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">5+ nocí</div><div><span class="text-weight-bold" data-cms-field="pricing.vedlejsi_sezona.night_5_plus">{fmtCZK(site.pricing.vedlejsi_sezona.night_5_plus)},- Kč</span> / noc</div></div>
                       </div>
                     </div>
                   </div>
@@ -444,9 +444,9 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
                       <div class="tags-wrapper"><div class="small-tag">Květen</div><div class="small-tag">Červen</div><div class="small-tag">Září</div><div class="small-tag">Prosinec</div></div>
                       <div class="divider"></div>
                       <div class="pricing_feature-list">
-                        <div class="pricing_feature"><div class="text-weight-bold">2 noci</div><div><span class="text-weight-bold">6.000,- Kč</span> / noc</div></div>
-                        <div class="pricing_feature"><div class="text-weight-bold">3–4 noci</div><div><span class="text-weight-bold">5.000,- Kč</span> / noc</div></div>
-                        <div class="pricing_feature"><div class="text-weight-bold">5+ nocí</div><div><span class="text-weight-bold">4.000,- Kč</span> / noc</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">2 noci</div><div><span class="text-weight-bold" data-cms-field="pricing.stredni_sezona.night_2">{fmtCZK(site.pricing.stredni_sezona.night_2)},- Kč</span> / noc</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">3–4 noci</div><div><span class="text-weight-bold" data-cms-field="pricing.stredni_sezona.night_3_4">{fmtCZK(site.pricing.stredni_sezona.night_3_4)},- Kč</span> / noc</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">5+ nocí</div><div><span class="text-weight-bold" data-cms-field="pricing.stredni_sezona.night_5_plus">{fmtCZK(site.pricing.stredni_sezona.night_5_plus)},- Kč</span> / noc</div></div>
                       </div>
                     </div>
                   </div>
@@ -460,7 +460,7 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
                       <div class="tags-wrapper"><div class="small-tag">Leden</div><div class="small-tag">Únor</div><div class="small-tag">Červenec</div><div class="small-tag">Srpen</div></div>
                       <div class="divider"></div>
                       <div class="pricing_feature-list">
-                        <div class="pricing_feature"><div class="text-weight-bold">Léto / Zima</div><div><span class="text-weight-bold">5.000,- Kč</span> / noc</div></div>
+                        <div class="pricing_feature"><div class="text-weight-bold">Léto / Zima</div><div><span class="text-weight-bold" data-cms-field="pricing.hlavni_sezona.leto_zima">{fmtCZK(site.pricing.hlavni_sezona.leto_zima)},- Kč</span> / noc</div></div>
                       </div>
                     </div>
                   </div>
@@ -472,7 +472,7 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
                       <div class="pricing-name-wrap">
                         <div class="heading-style-h5">Vánoce 2026</div>
                         <div class="tags-wrapper">
-                          <div class="small-tag big green">Volné</div>
+                          <div class={`small-tag big ${site.pricing.vanoce_2026.availability.status}`} data-cms-field="pricing.vanoce_2026.availability.label_cs" data-cms-status-field="pricing.vanoce_2026.availability.status">{site.pricing.vanoce_2026.availability.label_cs}</div>
                           <div class="small-tag big"><span data-cms-field="pricing.vanoce_2026.min_nights">Min. {site.pricing.vanoce_2026.min_nights} noci</span></div>
                         </div>
                       </div>
@@ -491,7 +491,7 @@ const arrowRightIcon = "/images/6470a888c22911c855a58e7f_arrow-right-circle.svg"
                       <div class="pricing-name-wrap">
                         <div class="heading-style-h5">Silvestr 2026</div>
                         <div class="tags-wrapper">
-                          <div class="small-tag big green">Volné</div>
+                          <div class={`small-tag big ${site.pricing.silvestr_2026.availability.status}`} data-cms-field="pricing.silvestr_2026.availability.label_cs" data-cms-status-field="pricing.silvestr_2026.availability.status">{site.pricing.silvestr_2026.availability.label_cs}</div>
                           <div class="small-tag big"><span data-cms-field="pricing.silvestr_2026.min_nights">Min. {site.pricing.silvestr_2026.min_nights} noci</span></div>
                         </div>
                       </div>

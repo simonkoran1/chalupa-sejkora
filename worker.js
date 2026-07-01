@@ -80,10 +80,29 @@ function cmsEnabled(env) {
 // CMS: content schema (only these paths can be edited)
 // ============================================================================
 const EDITABLE_SCHEMA = {
+  // Vedlejší sezóna
+  'pricing.vedlejsi_sezona.night_2':              { type: 'number', min: 0, max: 100000, label: 'Vedlejší sezóna — 2 noci (Kč / noc)' },
+  'pricing.vedlejsi_sezona.night_3_4':            { type: 'number', min: 0, max: 100000, label: 'Vedlejší sezóna — 3–4 noci (Kč / noc)' },
+  'pricing.vedlejsi_sezona.night_5_plus':         { type: 'number', min: 0, max: 100000, label: 'Vedlejší sezóna — 5+ nocí (Kč / noc)' },
+  // Střední sezóna
+  'pricing.stredni_sezona.night_2':               { type: 'number', min: 0, max: 100000, label: 'Střední sezóna — 2 noci (Kč / noc)' },
+  'pricing.stredni_sezona.night_3_4':             { type: 'number', min: 0, max: 100000, label: 'Střední sezóna — 3–4 noci (Kč / noc)' },
+  'pricing.stredni_sezona.night_5_plus':          { type: 'number', min: 0, max: 100000, label: 'Střední sezóna — 5+ nocí (Kč / noc)' },
+  // Hlavní sezóna
+  'pricing.hlavni_sezona.leto_zima':              { type: 'number', min: 0, max: 100000, label: 'Hlavní sezóna — Léto / Zima (Kč / noc)' },
+  // Vánoce 2026
   'pricing.vanoce_2026.price_per_night':          { type: 'number', min: 0, max: 100000, label: 'Vánoce 2026 — cena / noc (Kč)' },
   'pricing.vanoce_2026.min_nights':               { type: 'number', min: 1, max: 30, label: 'Vánoce 2026 — minimální počet nocí' },
+  'pricing.vanoce_2026.availability.status':      { type: 'enum', values: ['green', 'orange'], label: 'Vánoce 2026 — status obsazenosti (green=volno, orange=obsazeno)' },
+  'pricing.vanoce_2026.availability.label_cs':    { type: 'string', maxLength: 40, label: 'Vánoce 2026 — text štítku (česky)' },
+  'pricing.vanoce_2026.availability.label_en':    { type: 'string', maxLength: 40, label: 'Vánoce 2026 — text štítku (anglicky)' },
+  // Silvestr 2026
   'pricing.silvestr_2026.price_per_night':        { type: 'number', min: 0, max: 100000, label: 'Silvestr 2026 — cena / noc (Kč)' },
   'pricing.silvestr_2026.min_nights':             { type: 'number', min: 1, max: 30, label: 'Silvestr 2026 — minimální počet nocí' },
+  'pricing.silvestr_2026.availability.status':    { type: 'enum', values: ['green', 'orange'], label: 'Silvestr 2026 — status obsazenosti (green=volno, orange=obsazeno)' },
+  'pricing.silvestr_2026.availability.label_cs':  { type: 'string', maxLength: 40, label: 'Silvestr 2026 — text štítku (česky)' },
+  'pricing.silvestr_2026.availability.label_en':  { type: 'string', maxLength: 40, label: 'Silvestr 2026 — text štítku (anglicky)' },
+  // Poplatky
   'pricing.fees.cleaning':                        { type: 'number', min: 0, max: 20000, label: 'Závěrečný úklid (Kč)' },
   'pricing.fees.tourism_tax_per_adult_per_night': { type: 'number', min: 0, max: 500, label: 'Místní poplatek / dospělý / noc (Kč)' },
 };
@@ -110,6 +129,15 @@ function validateChange(path, value) {
     if (!Number.isFinite(n)) return { ok: false, err: `Value must be a number.` };
     if (n < schema.min || n > schema.max) return { ok: false, err: `Value must be between ${schema.min} and ${schema.max}.` };
     return { ok: true, value: n };
+  }
+  if (schema.type === 'enum') {
+    if (!schema.values.includes(value)) return { ok: false, err: `Value must be one of: ${schema.values.join(', ')}.` };
+    return { ok: true, value };
+  }
+  if (schema.type === 'string') {
+    if (typeof value !== 'string') return { ok: false, err: `Value must be a string.` };
+    if (schema.maxLength && value.length > schema.maxLength) return { ok: false, err: `Max length ${schema.maxLength}.` };
+    return { ok: true, value };
   }
   return { ok: true, value };
 }
@@ -242,16 +270,25 @@ export default {
       }
 
       if (url.pathname === '/api/cms/chat' && request.method === 'POST') {
-        const { messages, selectedField } = await request.json();
+        const { messages, selectedField, selectedStatusField } = await request.json();
         const { json: currentContent } = await fetchContent(env);
         const currentValue = selectedField ? getPath(currentContent, selectedField) : null;
-        const schemaSummary = Object.entries(EDITABLE_SCHEMA).map(([k, v]) => `- ${k} (${v.type}${v.min !== undefined ? `, ${v.min}-${v.max}` : ''}) — ${v.label}`).join('\n');
+        const currentStatusValue = selectedStatusField ? getPath(currentContent, selectedStatusField) : null;
+        const schemaSummary = Object.entries(EDITABLE_SCHEMA).map(([k, v]) => {
+          const constraints = v.type === 'number' ? `${v.min}-${v.max}` : v.type === 'enum' ? v.values.join('|') : v.type === 'string' ? `max ${v.maxLength || '∞'} chars` : '';
+          return `- ${k} (${v.type}${constraints ? ', ' + constraints : ''}) — ${v.label}`;
+        }).join('\n');
         const systemPrompt = `You are an editing assistant for a Czech cottage-rental website (Chalupa Sejkora).
 The user speaks Czech or English. Respond in the same language as the user.
 Your job: help them edit content. When they request a change to a field, call the updateField tool.
 Only these fields are editable:
 ${schemaSummary}
+
+Notes:
+- For availability tags: the label (text like "Volné"/"Obsazeno") and the color status (green/orange) are separate fields but related. If the user says "mark as obsazeno" or "change color to orange", update BOTH the label ("Obsazeno") AND the status ("orange") in the SAME reply — call updateField twice, once for each. If they say "change label to Available" without color, just update the label. If they say "make it orange" only, just update the status.
+- If the user is editing a CZ label (label_cs), you may also update the corresponding EN label (label_en) with a translation, but only when it makes semantic sense (e.g., "Volné"→"Available", "Obsazeno"→"Booked").
 ${selectedField ? `\nUser has selected: ${selectedField}\nCurrent value: ${JSON.stringify(currentValue)}` : ''}
+${selectedStatusField ? `Related status field: ${selectedStatusField}\nCurrent status: ${JSON.stringify(currentStatusValue)}` : ''}
 If the request is unclear or refers to a non-editable field, ask for clarification. Be concise.`;
         try {
           const reply = await callClaude(env, messages, systemPrompt);
