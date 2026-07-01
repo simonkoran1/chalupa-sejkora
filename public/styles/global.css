@@ -261,21 +261,25 @@ label { margin-bottom: .25rem; font-weight: 500; display: block; }
 
 .flatpickr-rContainer { display: inline-block; }
 .flatpickr-weekdays { margin-bottom: .5rem; width: auto; }
-.flatpickr-weekdaycontainer { flex: none !important; gap: 0; }
+.flatpickr-weekdaycontainer { flex: none !important; gap: 0; width: 24.5rem; }
 span.flatpickr-weekday { flex: none !important; width: 3.5rem; font-size: .78rem; font-weight: 600; color: #888; }
 
-.flatpickr-days { border: none; }
-.flatpickr-innerContainer { border: none; }
-.dayContainer { padding: 0; min-width: 0; max-width: none; width: auto; gap: 0; }
-/* Two-month separator */
+.flatpickr-days { border: none; width: auto !important; }
+.flatpickr-innerContainer { border: none; width: auto !important; }
+.dayContainer { padding: 0; min-width: 24.5rem !important; max-width: none !important; width: 24.5rem !important; gap: 0; flex-wrap: wrap; box-sizing: content-box; justify-content: flex-start !important; }
+/* Two-month separator — matching padding + border on BOTH containers so column widths line up exactly */
+.flatpickr-calendar.multiMonth .flatpickr-weekdays .flatpickr-weekdaycontainer:first-child,
 .flatpickr-calendar.multiMonth .flatpickr-days .dayContainer:first-child { padding-right: 2rem; border-right: 1px solid #e8e8e8; }
+.flatpickr-calendar.multiMonth .flatpickr-weekdays .flatpickr-weekdaycontainer:last-child,
 .flatpickr-calendar.multiMonth .flatpickr-days .dayContainer:last-child { padding-left: 2rem; }
+/* Hide the border on the weekday row visually but preserve the width so headers align with day cells */
+.flatpickr-calendar.multiMonth .flatpickr-weekdays .flatpickr-weekdaycontainer:first-child { border-right-color: transparent; }
 
 .flatpickr-day { flex: 0 0 3.5rem !important; border-radius: 50%; border: none; height: 3.5rem; line-height: 3.5rem; max-width: 3.5rem; width: 3.5rem; font-size: 1rem; font-weight: 400; color: var(--text); margin: 0; transition: background .1s; }
 @media (hover: hover) { .flatpickr-day:not(.flatpickr-disabled):not(.startRange):not(.endRange):not(.inRange):hover { background: #f0f0f0; border-color: transparent; font-weight: 600; } }
 
-/* Today */
-.flatpickr-day.today:not(.startRange):not(.endRange):not(.inRange) { font-weight: 800; text-decoration: underline; background: none; box-shadow: none; border: none; }
+/* Today — circle outline instead of underline */
+.flatpickr-day.today:not(.startRange):not(.endRange):not(.inRange) { font-weight: 600; text-decoration: none; background: none; box-shadow: inset 0 0 0 1.5px var(--text); border-radius: 50%; }
 
 /* Other month — hidden like Airbnb */
 .flatpickr-day.prevMonthDay, .flatpickr-day.nextMonthDay { visibility: hidden; }
@@ -354,6 +358,12 @@ span.flatpickr-weekday { flex: none !important; width: 3.5rem; font-size: .78rem
 .footer3_bottom-wrapper { flex-direction: column-reverse; }
   .footer3_credit-text { margin-top: 2rem; }
   .text-size-medium { font-size: 1rem; }
+  /* Flatpickr: smaller cells on mobile so it fits within the input width */
+  .flatpickr-calendar { padding: 1.25rem 1rem 1.5rem; max-width: calc(100vw - 2rem); }
+  .flatpickr-day { flex: 0 0 2.5rem !important; height: 2.5rem; line-height: 2.5rem; max-width: 2.5rem; width: 2.5rem; font-size: .9rem; }
+  span.flatpickr-weekday { width: 2.5rem; }
+  .flatpickr-weekdaycontainer { width: 17.5rem; }
+  .dayContainer { min-width: 17.5rem !important; width: 17.5rem !important; }
 }
 @media screen and (max-width: 479px) {
   .header_image-wrapper { height: 64vw; }

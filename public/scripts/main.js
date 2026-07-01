@@ -148,7 +148,7 @@ if (typeof flatpickr !== 'undefined' && document.getElementById('date-range')) {
 
   function pad(n) { return String(n).padStart(2, '0'); }
   function toISO(d) { return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
-  function toCZ(d) { return `${pad(d.getDate())}.${pad(d.getMonth()+1)}.${d.getFullYear()}`; }
+  function toCZ(d) { return `${d.getDate()}. ${d.getMonth()+1}. ${d.getFullYear()}`; }
 
   async function initDatePicker(data) {
     const rangeInput = document.getElementById('date-range');
@@ -165,11 +165,11 @@ if (typeof flatpickr !== 'undefined' && document.getElementById('date-range')) {
 
     flatpickr(rangeInput, {
       mode: 'range',
-      dateFormat: 'd.m.Y',
+      dateFormat: 'j. n. Y',
       minDate: 'today',
       locale: isCs ? 'cs' : 'default',
       disableMobile: true,
-      showMonths: window.innerWidth >= 768 ? 2 : 1,
+      showMonths: 1,
       disable: [(date) => bookedSet.has(toISO(date))],
 onChange(dates) {
         if (dates.length === 1) {
@@ -197,9 +197,19 @@ onChange(dates) {
   }
 
   fetch('/api/availability')
-    .then(r => r.json())
-    .then(data => initDatePicker(data))
-    .catch(() => initDatePicker({}));
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(data => {
+      if (!data || typeof data !== 'object' || !Array.isArray(data.booked)) throw new Error('bad shape');
+      initDatePicker(data);
+    })
+    .catch(() => {
+      // Fallback for local dev where the Cloudflare Worker isn't running
+      initDatePicker({
+        booked: ['2026-07-13','2026-07-14','2026-07-15','2026-07-16','2026-07-18','2026-07-19','2026-07-20','2026-07-21','2026-07-22','2026-07-23','2026-08-03','2026-08-04','2026-08-05','2026-08-06','2026-08-07','2026-08-08','2026-08-09','2026-08-10','2026-08-11','2026-08-12','2026-08-13'],
+        arrivals: ['2026-07-12','2026-08-02'],
+        departures: ['2026-07-17','2026-07-24','2026-08-14'],
+      });
+    });
 }
 
 // ===== RESERVATION FORM (Web3Forms) =====
